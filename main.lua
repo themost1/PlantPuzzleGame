@@ -7,6 +7,8 @@ function love.load()
 		sprite = love.graphics.newImage("graphics/player.png"),
 		speed = 5
 	}
+
+	dirtImage = love.graphics.newImage("graphics/dirt.jpg")
 end
  
 function love.update(dt)
@@ -26,5 +28,14 @@ function love.update(dt)
 end
 
 function love.draw()
+	local dirtScale = 1/4
+	local dirtHeight = dirtImage:getHeight() * dirtScale
+	local dirtWidth = dirtImage:getWidth() * dirtScale
+	for row = 1, 9 do
+		for col = 1, 16 do
+			love.graphics.draw(dirtImage, dirtWidth * col, dirtHeight * row, 0, 1, 1, 0, 32)
+		end
+	end
+
 	love.graphics.draw(player.sprite, player.x, player.y, 0, 1, 1, 0, 32)
 end
