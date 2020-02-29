@@ -16,9 +16,10 @@ end
 
 
 bamboo = plant:new {
-	name = "Bamboo"
+	name = "Bamboo",
+	image = nil
 }
 
 function bamboo:onLoad()
-	self.image = love.graphics.newImage("graphics/bamboo.jpg")
+	self.image = love.graphics.newImage("graphics/bamboo.png")
 end

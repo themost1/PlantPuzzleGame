@@ -13,8 +13,8 @@ function love.load()
 		aTileMatrix[i] = {}
 		for j = 1,16 do
 			plantObject = plant:new()
-			if i % 2 == 0 then
-				plantObject = bamboo:new()
+			if i % 2 == 0 or i % 2 == 1 then
+				plantObject = plant:new()
 			end
 			plantObject:onLoad()
 			aTileMatrix[i][j] = plantObject
@@ -30,6 +30,10 @@ function love.load()
 		tilesPressed[#tilesPressed+1] = row
 	end
 
+	plantSize = 32
+	plantStartX = 100
+	plantStartY = 10
+	plantScale = 2.5
 end
  
 function love.update(dt)
@@ -53,11 +57,10 @@ function love.draw()
 		for col = 1, 16 do
 			plantObject = aTileMatrix[row][col]
 			plantImage = plantObject:getImage()
-			plantScale = 4
-			plantHeight = plantImage:getHeight() * plantScale
-			plantWidth = plantImage:getWidth() * plantScale
-			love.graphics.draw(plantImage, plantWidth * col, plantHeight * row, 0,
-					plantWidth/plantImage:getWidth(), plantHeight/plantImage:getHeight(), 32)
+			plantXScale = plantSize / plantImage:getWidth()
+			plantYScale = plantSize / plantImage:getHeight()
+			love.graphics.draw(plantImage, plantSize * col + plantStartX, plantSize * row + plantStartY, 0,
+					plantXScale, plantYScale, 32)
 		end
 	end
 
