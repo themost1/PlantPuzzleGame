@@ -5,6 +5,10 @@ plant = object:new {
 	image = nil
 }
 
+function plant:onLoad()
+	self.image = love.graphics.newImage("graphics/pngwave.png")
+end
+
 function plant:getImage()
-	return love.graphics.newImage("graphics/pngwave.png")
+	return self.image
 end

@@ -13,6 +13,7 @@ function love.load()
 		aTileMatrix[i] = {}
 		for j = 1,16 do
 			plantObject = plant:new()
+			plantObject:onLoad()
 			aTileMatrix[i][j] = plantObject
 		end
 	end
