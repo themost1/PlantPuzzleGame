@@ -1,4 +1,5 @@
 love.graphics.setDefaultFilter("nearest")
+require ('plant')
 
 function love.load()
 	player = {
@@ -7,6 +8,14 @@ function love.load()
 		sprite = love.graphics.newImage("graphics/player.png"),
 		speed = 5
 	}
+	aTileMatrix = { }
+	for i = 1, 9 do
+		aTileMatrix[i] = {}
+		for j = 1,16 do
+			plantObject = plant:new()
+			aTileMatrix[i][j] = plantObject
+		end
+	end
 
 	tilesPressed = { }
 	for i = 1, 9 do
@@ -17,7 +26,6 @@ function love.load()
 		tilesPressed[#tilesPressed+1] = row
 	end
 
-	dirtImage = love.graphics.newImage("graphics/dirt.jpg")
 end
  
 function love.update(dt)
@@ -37,14 +45,16 @@ function love.update(dt)
 end
 
 function love.draw()
-	local dirtScale = 1/4
-	local dirtHeight = dirtImage:getHeight() * dirtScale
-	local dirtWidth = dirtImage:getWidth() * dirtScale
 	for row = 1, 9 do
 		for col = 1, 16 do
 			if tilesPressed[row][col] == 0 then
-				love.graphics.draw(dirtImage, dirtWidth * col, dirtHeight * row, 0,
-						dirtWidth/dirtImage:getWidth(), dirtHeight/dirtImage:getHeight(), 32)
+				plantObject = aTileMatrix[row][col]
+				plantImage = plantObject:getImage()
+ 				plantScale = 4
+				plantHeight = plantImage:getHeight() * plantScale
+				plantWidth = plantImage:getWidth() * plantScale
+				love.graphics.draw(plantImage, plantWidth * col, plantHeight * row, 0,
+						plantWidth/plantImage:getWidth(), plantHeight/plantImage:getHeight(), 32)
 			else
 				--love.graphics.draw(dirtImage, dirtWidth * col, dirtHeight * row, 0, 1, 1, 0, 32)
 			end
@@ -57,11 +67,11 @@ end
 function love.mousepressed(x, y, button, istouch)
 	local tileY = 0
 	local tileX = 0
-	local dirtScale = 1/4
-	local dirtHeight = dirtImage:getHeight() * dirtScale
-	local dirtWidth = dirtImage:getWidth() * dirtScale
+	local plantScale = 4
+	local plantHeight = plantImage:getHeight() * plantScale
+	local plantWidth = plantImage:getWidth() * plantScale
 
-	tileY = math.floor(y / dirtHeight)
-	tileX = math.floor(x / dirtWidth)
+	tileY = math.floor(y / plantHeight)
+	tileX = math.floor(x / plantWidth)
 	tilesPressed[tileY][tileX] = 1
 end
