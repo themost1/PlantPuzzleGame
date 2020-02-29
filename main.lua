@@ -31,8 +31,8 @@ function love.load()
 	end
 
 	plantSize = 80
-	plantStartX = 200
-	plantStartY = 200
+	plantStartX = 100
+	plantStartY = 100
 	plantScale = 2.5
 end
  
