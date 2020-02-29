@@ -31,8 +31,8 @@ function love.load()
 	end
 
 	plantSize = 80
-	plantStartX = 100
-	plantStartY = 10
+	plantStartX = 200
+	plantStartY = 200
 	plantScale = 2.5
 end
  
@@ -59,7 +59,7 @@ function love.draw()
 			plantImage = plantObject:getImage()
 			plantXScale = plantSize / plantImage:getWidth()
 			plantYScale = plantSize / plantImage:getHeight()
-			love.graphics.draw(plantImage, plantSize * col + plantStartX, plantSize * row + plantStartY, 0,
+			love.graphics.draw(plantImage, plantSize * (col-1) + plantStartX, plantSize * (row-1) + plantStartY, 0,
 					plantXScale, plantYScale, 32)
 		end
 	end
@@ -70,11 +70,14 @@ end
 function love.mousepressed(x, y, button, istouch)
 	local tileY = 0
 	local tileX = 0
-	local plantScale = 4
-	local plantHeight = plantImage:getHeight() * plantScale
-	local plantWidth = plantImage:getWidth() * plantScale
 
-	tileY = math.floor(y / plantHeight)
-	tileX = math.floor(x / plantWidth)
-	tilesPressed[tileY][tileX] = 1
+	local plantX = x - plantStartX
+	local plantY = y - plantStartY
+
+	tileY = math.ceil( plantY / plantSize )
+	tileX = math.ceil( plantX / plantSize )
+
+	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
+		aTileMatrix[tileY][tileX]:onClick()
+	end
 end

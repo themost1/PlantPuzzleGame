@@ -9,6 +9,10 @@ function plant:onLoad()
 	self.image = love.graphics.newImage("graphics/pngwave.png")
 end
 
+function plant:onClick()
+	self.image = love.graphics.newImage("graphics/bamboo.png")
+end
+
 function plant:getImage()
 	return self.image
 end
