@@ -34,6 +34,9 @@ function love.load()
 	plantStartX = 100
 	plantStartY = 100
 	plantScale = 2.5
+
+	xScale = love.graphics.getWidth() / 1600
+	yScale =love.graphics.getHeight() / 900
 end
  
 function love.update(dt)
@@ -53,6 +56,9 @@ function love.update(dt)
 end
 
 function love.draw()
+	love.graphics.scale(xScale, yScale)
+
+
 	for row = 1, 9 do
 		for col = 1, 16 do
 			plantObject = aTileMatrix[row][col]
@@ -69,12 +75,15 @@ function love.draw()
 end
 
 function love.mousepressed(x, y, button, istouch)
+	x = x / xScale 
+	y = y / yScale
+
 	local tileY = 0
 	local tileX = 0
 
 	local plantX = x - plantStartX
 	local plantY = y - plantStartY
-	print("pressed: "..x.." "..y)
+	print("pressed: "..x.." "..y.." "..xScale.." "..yScale)
 
 	tileY = math.ceil( plantY / plantSize )
 	tileX = math.ceil( plantX / plantSize )
