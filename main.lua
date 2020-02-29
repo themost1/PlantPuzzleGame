@@ -49,7 +49,7 @@ function love.draw()
 		for col = 1, 16 do
 			plantObject = aTileMatrix[row][col]
 			plantImage = plantObject:getImage()
-				plantScale = 4
+			plantScale = 4
 			plantHeight = plantImage:getHeight() * plantScale
 			plantWidth = plantImage:getWidth() * plantScale
 			love.graphics.draw(plantImage, plantWidth * col, plantHeight * row, 0,
