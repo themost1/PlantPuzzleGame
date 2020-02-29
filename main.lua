@@ -13,6 +13,9 @@ function love.load()
 		aTileMatrix[i] = {}
 		for j = 1,16 do
 			plantObject = plant:new()
+			if i % 2 == 0 then
+				plantObject = bamboo:new()
+			end
 			plantObject:onLoad()
 			aTileMatrix[i][j] = plantObject
 		end
