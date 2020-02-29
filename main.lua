@@ -47,17 +47,13 @@ end
 function love.draw()
 	for row = 1, 9 do
 		for col = 1, 16 do
-			if tilesPressed[row][col] == 0 then
-				plantObject = aTileMatrix[row][col]
-				plantImage = plantObject:getImage()
- 				plantScale = 4
-				plantHeight = plantImage:getHeight() * plantScale
-				plantWidth = plantImage:getWidth() * plantScale
-				love.graphics.draw(plantImage, plantWidth * col, plantHeight * row, 0,
-						plantWidth/plantImage:getWidth(), plantHeight/plantImage:getHeight(), 32)
-			else
-				--love.graphics.draw(dirtImage, dirtWidth * col, dirtHeight * row, 0, 1, 1, 0, 32)
-			end
+			plantObject = aTileMatrix[row][col]
+			plantImage = plantObject:getImage()
+				plantScale = 4
+			plantHeight = plantImage:getHeight() * plantScale
+			plantWidth = plantImage:getWidth() * plantScale
+			love.graphics.draw(plantImage, plantWidth * col, plantHeight * row, 0,
+					plantWidth/plantImage:getWidth(), plantHeight/plantImage:getHeight(), 32)
 		end
 	end
 
