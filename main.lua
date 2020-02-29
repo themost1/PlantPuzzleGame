@@ -30,7 +30,7 @@ function love.load()
 		tilesPressed[#tilesPressed+1] = row
 	end
 
-	plantSize = 32
+	plantSize = 80
 	plantStartX = 100
 	plantStartY = 10
 	plantScale = 2.5
