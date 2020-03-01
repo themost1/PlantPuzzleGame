@@ -1,8 +1,9 @@
 require('object')
 
-plant = object:new {
+plant = object:new{
 	name = "Base Plant",
-	image = nil
+	image = nil,
+	watered = false
 }
 
 function plant:onLoad()
@@ -10,13 +11,17 @@ function plant:onLoad()
 end
 
 function plant:onClick()
-	self.image = love.graphics.newImage("graphics/bamboo.png")
+	if(selected == "water") then
+		self:onWater()
+	end
 end
 
 function plant:getImage()
 	return self.image
 end
 
+function plant:onWater()
+end
 
 
 bamboo = plant:new {
