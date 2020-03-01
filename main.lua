@@ -44,14 +44,12 @@ function love.load()
 
 	selected = ""
 
-	--=======
-	--xScale = love.graphics.getWidth() / 1600
-	--yScale =love.graphics.getHeight() / 900
-	-->>>>>>> d9b082bee180d1b56665a5ac2bf1ebcef4aa3888
+	xScale = love.graphics.getWidth() / 1600
+	yScale =love.graphics.getHeight() / 900
 
 	inventorySquare = love.graphics.newImage("graphics/square (1).png")
 
-	inventoryScale = 3/4
+	inventoryScale = 3
 	inventoryHeight = inventorySquare:getHeight() * inventoryScale
 	inventoryWidth = inventorySquare:getWidth() * inventoryScale
 
@@ -129,7 +127,7 @@ function love.draw()
 	end
 
 	wateringcan = love.graphics.newImage("graphics/wateringcan.png")
-	local wateringcanScale = 0.2
+	local wateringcanScale = 1.5
 	local wateringcanHeight = wateringcan:getHeight() * wateringcanScale
 	local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
 	love.graphics.draw(wateringcan, 0 , 0, 0, 
