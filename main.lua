@@ -200,7 +200,7 @@ function love.mousepressed(x, y, button, istouch)
 
 	if x <= inventoryWidth and y <= inventoryHeight then
 		selected = "water"
-		local cursor = love.mouse.newCursor("graphics/wateringcan.png", 0, 0)
+		local cursor = love.mouse.newCursor("graphics/watering-can-pixilart.png", 0, 0)
 		love.mouse.setCursor(cursor)
 	end
 
