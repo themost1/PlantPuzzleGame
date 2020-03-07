@@ -1,4 +1,4 @@
-local json = require('scripts.dkjson')
+local json = require('scripts.json')
 
 local P = {}
 util = P
@@ -18,13 +18,8 @@ end
 
 function P.readJSON(filePath, askForRooms)
 	local str = love.filesystem.read(filePath)
-	local obj, pos, err, roomsArray = json.decode(str, 1, nil, askForRooms and 'rooms' or nil)
-	if err then
-		print('Error:', err)
-		return nil
-	else
-		return obj, roomsArray
-	end
+	local ret = json.decode(str)
+	return ret
 end
 
 function P.writeJSON(filePath, data, state, directory)

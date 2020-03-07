@@ -1,5 +1,6 @@
 love.graphics.setDefaultFilter("nearest")
-require ('scripts.plant')
+plants = require ('scripts.plant')
+util = require('scripts.util')
 
 function love.load()
 	player = {
@@ -13,27 +14,6 @@ function love.load()
 		tileSize = 80,   -- pixels size for each tile (PlantSize)
 		state = 'still'
 	}
-	aTileMatrix = { }
-	for i = 1, 9 do
-		aTileMatrix[i] = {}
-		for j = 1,16 do
-			plantObject = plant:new()
-			if i % 2 == 0 and j % 2 == 0 then
-				plantObject = bamboo:new()
-			end
-			plantObject:onLoad()
-			aTileMatrix[i][j] = plantObject
-		end
-	end
-
-	tilesPressed = { }
-	for i = 1, 9 do
-		local row = {}
-		for j = 1, 16 do
-			row[#row+1] = 0
-		end
-		tilesPressed[#tilesPressed+1] = row
-	end
 
 	plantSize = 80
 	plantStartX = 160
@@ -51,6 +31,34 @@ function love.load()
 	inventoryHeight = inventorySquare:getHeight() * inventoryScale
 	inventoryWidth = inventorySquare:getWidth() * inventoryScale
 
+	loadMap()
+	aTileMatrix = currentRoom.layout
+	for i = 1, #aTileMatrix do
+		for j = 1, #aTileMatrix[i] do
+			print(aTileMatrix[i][j].id)
+		end
+	end
+end
+
+function loadMap()
+	local rooms = util.readJSON('roomData/rooms.json', true)
+
+	local testRoom = rooms[1]
+	local testLayout = testRoom.layout
+
+	currentRoom = {}
+	local layout =  {}
+	for i = 1, #testLayout do
+		local layoutRow = {}
+		for j = 1, #testLayout[i] do
+			local addPlant = plants[testLayout[i][j]]:new()
+			addPlant:onLoad()
+			layoutRow[#layoutRow+1] = addPlant
+		end
+		layout[#layout+1] = layoutRow
+	end
+
+	currentRoom.layout = layout
 end
 
 
@@ -139,8 +147,8 @@ end
 function love.draw()
 	love.graphics.scale(xScale, yScale)
 
-	for row = 1, 9 do
-		for col = 1, 16 do
+	for row = 1, #aTileMatrix do
+		for col = 1, #aTileMatrix[row] do
 			plantObject = aTileMatrix[row][col]
 			plantImage = plantObject:getImage()
 			plantXScale = plantSize / plantImage:getWidth()

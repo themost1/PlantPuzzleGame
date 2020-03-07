@@ -1,5 +1,6 @@
 require('scripts.object')
 
+local plants = {}
 plant = object:new{
 	name = "Base Plant",
 	id = "",
@@ -36,3 +37,12 @@ bamboo = plant:new {
 function bamboo:onLoad()
 	self.image = love.graphics.newImage("graphics/bamboo_tile.png")
 end
+
+function plants:addPlant(toAdd)
+	self.toAdd.id = toAdd
+end
+
+
+plants:addPlant(plant)
+plants:addPlant(bamboo)
+return plants
