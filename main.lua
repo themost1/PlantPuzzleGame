@@ -1,5 +1,5 @@
 love.graphics.setDefaultFilter("nearest")
-require ('plant')
+require ('scripts.plant')
 
 function love.load()
 	player = {

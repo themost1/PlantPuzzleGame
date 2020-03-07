@@ -1,4 +1,4 @@
-require('object')
+require('scripts.object')
 
 plant = object:new{
 	name = "Base Plant",
