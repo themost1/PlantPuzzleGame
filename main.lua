@@ -31,34 +31,49 @@ function love.load()
 	inventoryHeight = inventorySquare:getHeight() * inventoryScale
 	inventoryWidth = inventorySquare:getWidth() * inventoryScale
 
+	loadRooms()
 	loadMap()
 	aTileMatrix = currentRoom.layout
-	for i = 1, #aTileMatrix do
-		for j = 1, #aTileMatrix[i] do
-			print(aTileMatrix[i][j].id)
-		end
+end
+
+function loadRooms()
+	local read = util.readJSON('roomData/rooms.json', true)
+	rooms = {}
+	for i = 1, #read do
+		rooms[#rooms + 1] = read[i]
+		rooms[read[i].name] = read[i]
 	end
 end
 
 function loadMap()
-	local rooms = util.readJSON('roomData/rooms.json', true)
+	local read = util.readJSON('maps/map1.json', true)
+	local mapLayout = read[1].layout
 
-	local testRoom = rooms[1]
-	local testLayout = testRoom.layout
+	map = {}
 
-	currentRoom = {}
-	local layout =  {}
-	for i = 1, #testLayout do
-		local layoutRow = {}
-		for j = 1, #testLayout[i] do
-			local addPlant = plants[testLayout[i][j]]:new()
-			addPlant:onLoad()
-			layoutRow[#layoutRow+1] = addPlant
+	for i = 1, #mapLayout do
+		local mapRow = {}
+		for j = 1, #mapLayout[i] do
+			currentRoom = {}
+			local layout =  {}
+			local testLayout = rooms[mapLayout[i][j]].layout
+			for i2 = 1, #testLayout do
+				local layoutRow = {}
+				for j2 = 1, #testLayout[i] do
+					local addPlant = plants[testLayout[i2][j2]]:new()
+					addPlant:onLoad()
+					layoutRow[#layoutRow+1] = addPlant
+				end
+				layout[#layout+1] = layoutRow
+			end
+
+			currentRoom.layout = layout
+			mapRow[#mapRow + 1] = currentRoom
 		end
-		layout[#layout+1] = layoutRow
+		map[#map+1] = mapRow
 	end
 
-	currentRoom.layout = layout
+	currentRoom = map[1][1]
 end
 
 
