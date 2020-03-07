@@ -3,11 +3,12 @@ require('object')
 plant = object:new{
 	name = "Base Plant",
 	image = nil,
-	watered = false
+	watered = false,
+	passable = true
 }
 
 function plant:onLoad()
-	self.image = love.graphics.newImage("graphics/pngwave.png")
+	self.image = love.graphics.newImage("graphics/grass.png")
 end
 
 function plant:onClick()
@@ -26,9 +27,10 @@ end
 
 bamboo = plant:new {
 	name = "Bamboo",
-	image = nil
+	image = nil,
+	passable = false
 }
 
 function bamboo:onLoad()
-	self.image = love.graphics.newImage("graphics/bamboo.png")
+	self.image = love.graphics.newImage("graphics/bamboo_tile.png")
 end

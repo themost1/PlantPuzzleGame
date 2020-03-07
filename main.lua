@@ -1,26 +1,24 @@
 love.graphics.setDefaultFilter("nearest")
 require ('plant')
 
-
-
-
 function love.load()
 	player = {
-		x = 100,          -- initial position (must be =)
+		x = 160,          -- initial position (must be =)
 		y = 140,    -- initial position (must be =)
 		scale = 0.40,         -- size (compared to original image)
-		static_x = 100,       -- initial position (must be =)
+		static_x = 160,       -- initial position (must be =)
 		static_y = 140,    -- initial position (must be =)
 		sprite = love.graphics.newImage("graphics/player.png"),
 		speed = 4,       -- pixels of movement by frame
-		tileSize = 80    -- pixels size for each tile (PlantSize)
+		tileSize = 80,   -- pixels size for each tile (PlantSize)
+		state = 'still'
 	}
 	aTileMatrix = { }
 	for i = 1, 9 do
 		aTileMatrix[i] = {}
 		for j = 1,16 do
 			plantObject = plant:new()
-			if i % 2 == j % 2 then
+			if i % 2 == 0 and j % 2 == 0 then
 				plantObject = bamboo:new()
 			end
 			plantObject:onLoad()
@@ -38,7 +36,7 @@ function love.load()
 	end
 
 	plantSize = 80
-	plantStartX = 100
+	plantStartX = 160
 	plantStartY = 140
 	plantScale = 2.5
 
@@ -54,14 +52,46 @@ function love.load()
 	inventoryWidth = inventorySquare:getWidth() * inventoryScale
 
 end
- 
-
 
 
 function love.update(dt)
 
+	-- check what cell we currently are in
+	-- cells go from (1,1) to (9,16)
+	local cell = {1+(player.static_y-plantStartY)/plantSize,
+		1+(player.static_x-plantStartX)/plantSize}
+
+	-- before moving, check that you can actually pass the object in the cell :)
+
+	if love.keyboard.isDown("up") and cell[1] > 1 then
+		local obj = aTileMatrix[cell[1]-1][cell[2]]
+		if not obj.passable then
+			return
+		end
+	elseif love.keyboard.isDown("down") and cell[1] < 9 then
+		local obj = aTileMatrix[cell[1]+1][cell[2]]
+		if not obj.passable then
+			return
+		end
+	elseif love.keyboard.isDown("left") and cell[2] > 1 then
+		local obj = aTileMatrix[cell[1]][cell[2]-1]
+		if not obj.passable then
+			return
+		end
+	elseif love.keyboard.isDown("right") and cell[2] < 16 then
+		local obj = aTileMatrix[cell[1]][cell[2]+1]
+		if not obj.passable then
+			return
+		end
+	end
+
+	player.state = 'still'
+	if player.x ~= player.static_x or player.y ~= player.static_y then
+		player.state = 'moving'
+	end 
 
 	-- MOVE CONTINUOUSLY FROM THE CURRENT LOCATION TO THE FOLLOWING ONE
+
 	if player.x>player.static_x then
 		player.x = player.x - player.speed
 	end
@@ -74,31 +104,32 @@ function love.update(dt)
 	if player.y<player.static_y then
 		player.y = player.y + player.speed
 	end
-    
 
 
-	-- PRESS A KEY TO MOVE TO THE NEXT LOCATION
-	if love.keyboard.isDown("up") and player.y==player.static_y then
-		if ((player.static_y - plantSize) > (plantStartY/ 2)) then
+	if player.state == 'still' then
+		-- We restrict the player to stay within the bounds of the playable board
+		-- PRESS A KEY TO MOVE TO THE NEXT LOCATION
+		if love.keyboard.isDown("up") and player.y==player.static_y then
+			if ((player.static_y - plantSize) >= (plantStartY)) then
 				player.static_y = player.static_y - plantSize
-		end
-    end
-	if love.keyboard.isDown("down") and player.y==player.static_y then
-		if (player.static_y + plantSize) < (plantStartY / 2 + plantSize * 9) then
-			player.static_y = player.static_y + plantSize
-		end
-    end
-	if love.keyboard.isDown("left") and player.x==player.static_x then
-		if (player.static_x - plantSize) > (plantStartX / 2) then
-			player.static_x = player.static_x - plantSize
-		end
+			end
+	    --end
+		elseif love.keyboard.isDown("down") and player.y==player.static_y then
+			if (player.static_y + plantSize) < (plantStartY + plantSize * 9) then
+				player.static_y = player.static_y + plantSize
+			end
+	    --end
+		elseif love.keyboard.isDown("left") and player.x==player.static_x then
+			if (player.static_x - plantSize) >= (plantStartX) then
+				player.static_x = player.static_x - plantSize
+			end
+		--end
+		elseif love.keyboard.isDown("right") and player.x==player.static_x then
+			if (player.static_x + plantSize) < (plantStartX + plantSize * 16) then
+				player.static_x = player.static_x + plantSize
+			end
+	    end
 	end
-	if love.keyboard.isDown("right") and player.x==player.static_x then
-		if (player.static_x + plantSize) < (plantStartX / 2 + plantSize * 16) then
-			player.static_x = player.static_x + plantSize
-		end
-    end
-
 
 end
 
@@ -132,7 +163,6 @@ function love.draw()
 	local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
 	love.graphics.draw(wateringcan, 0 , 0, 0, 
 	wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
-
 
 	love.graphics.draw(player.sprite, player.x, player.y, 0, player.scale, player.scale, 0, 32)
 end
