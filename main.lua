@@ -4,16 +4,25 @@ util = require('scripts.util')
 
 function love.load()
 	player = {
-		x = 160,          -- initial position (must be =)
-		y = 140,    -- initial position (must be =)
-		scale = 0.40,         -- size (compared to original image)
-		static_x = 160,       -- initial position (must be =)
-		static_y = 140,    -- initial position (must be =)
+		x = 160,          		-- initial position (must be =)
+		y = 140,    			-- initial position (must be =)
+		scale = 0.40,         	-- size (compared to original image)
+		static_x = 160,       	-- initial position (must be =)
+		static_y = 140,    		-- initial position (must be =)
 		sprite = love.graphics.newImage("graphics/player.png"),
-		speed = 4,       -- pixels of movement by frame
-		tileSize = 80,   -- pixels size for each tile (PlantSize)
-		state = 'still'
+		speed = 3,       		-- pixels of movement by frame
+		tileSize = 80,   		-- pixels size for each tile (PlantSize)
+		state = 'still', 		-- at the beginning the character is still
+		map_x = 1,				-- coordinates of the first room (in the bigger map)
+		map_y = 1
 	}
+
+	-- ROOM/DOOR DYNAMIC (just for testing purpose)
+	-- door location
+	door_cell = {0,1}
+	-- initialize the new_room as 0
+	new_room=0
+
 
 	plantSize = 80
 	plantStartX = 160
@@ -40,9 +49,11 @@ function love.load()
 	end
 end
 
-function loadMap()
-	local rooms = util.readJSON('roomData/rooms.json', true)
 
+
+function loadMap()
+
+	local rooms = util.readJSON('roomData/rooms.json', true)
 	local testRoom = rooms[1]
 	local testLayout = testRoom.layout
 
@@ -62,82 +73,131 @@ function loadMap()
 end
 
 
+
 function love.update(dt)
+
+	-- MOVEMENT
 
 	-- check what cell we currently are in
 	-- cells go from (1,1) to (9,16)
-	local cell = {1+(player.static_y-plantStartY)/plantSize,
+	cell = {1+(player.static_y-plantStartY)/plantSize,
 		1+(player.static_x-plantStartX)/plantSize}
 
 	-- before moving, check that you can actually pass the object in the cell :)
+	-- step 1 - initialize every direction as "not allowed"
+	up_allowed=0
+	down_allowed=0
+	left_allowed=0
+	right_allowed=0
 
+	-- step 2 - check if the neighbour cells are "passable"
 	if love.keyboard.isDown("up") and cell[1] > 1 then
 		local obj = aTileMatrix[cell[1]-1][cell[2]]
-		if not obj.passable then
-			return
+		if obj.passable then
+			up_allowed = 1
 		end
 	elseif love.keyboard.isDown("down") and cell[1] < 9 then
 		local obj = aTileMatrix[cell[1]+1][cell[2]]
-		if not obj.passable then
-			return
+		if obj.passable then
+			down_allowed = 1
 		end
 	elseif love.keyboard.isDown("left") and cell[2] > 1 then
 		local obj = aTileMatrix[cell[1]][cell[2]-1]
-		if not obj.passable then
-			return
+		if obj.passable then
+			left_allowed = 1
 		end
 	elseif love.keyboard.isDown("right") and cell[2] < 16 then
 		local obj = aTileMatrix[cell[1]][cell[2]+1]
-		if not obj.passable then
-			return
+		if obj.passable then
+			right_allowed = 1
 		end
 	end
 
+
+	-- step 3 - declare if the player is still or moving
 	player.state = 'still'
 	if player.x ~= player.static_x or player.y ~= player.static_y then
 		player.state = 'moving'
 	end 
 
-	-- MOVE CONTINUOUSLY FROM THE CURRENT LOCATION TO THE FOLLOWING ONE
-
+	-- step 4 - update player position (smooth movement)
+	-- default: 100 x dt (seconds between frames)
+	frame_speed = player.speed*dt*100
+	-- move left
 	if player.x>player.static_x then
-		player.x = player.x - player.speed
+		if player.x-player.static_x>=frame_speed then
+			player.x = player.x - frame_speed
+		else
+			player.x = player.static_x
+		end
 	end
+	-- move right
 	if player.x<player.static_x then
-		player.x = player.x + player.speed
+		if player.static_x-player.x>=frame_speed then
+			player.x = player.x + frame_speed
+		else
+			player.x = player.static_x
+		end
 	end
+	-- move up
 	if player.y>player.static_y then
-		player.y = player.y - player.speed
+		if player.y-player.static_y>=frame_speed then
+			player.y = player.y - frame_speed
+		else
+			player.y = player.static_y
+		end
 	end
+	-- move down
 	if player.y<player.static_y then
-		player.y = player.y + player.speed
+		if player.static_y-player.y>=frame_speed then
+			player.y = player.y + frame_speed
+		else
+			player.y = player.static_y
+		end
 	end
 
-
+	-- step 5 - read the keyboard for new movement
 	if player.state == 'still' then
 		-- We restrict the player to stay within the bounds of the playable board
 		-- PRESS A KEY TO MOVE TO THE NEXT LOCATION
-		if love.keyboard.isDown("up") and player.y==player.static_y then
+		if love.keyboard.isDown("up") and up_allowed==1 then
 			if ((player.static_y - plantSize) >= (plantStartY)) then
 				player.static_y = player.static_y - plantSize
 			end
 	    --end
-		elseif love.keyboard.isDown("down") and player.y==player.static_y then
+		elseif love.keyboard.isDown("down") and down_allowed==1 then
 			if (player.static_y + plantSize) < (plantStartY + plantSize * 9) then
 				player.static_y = player.static_y + plantSize
 			end
 	    --end
-		elseif love.keyboard.isDown("left") and player.x==player.static_x then
+		elseif love.keyboard.isDown("left") and left_allowed==1 then
 			if (player.static_x - plantSize) >= (plantStartX) then
 				player.static_x = player.static_x - plantSize
 			end
 		--end
-		elseif love.keyboard.isDown("right") and player.x==player.static_x then
+		elseif love.keyboard.isDown("right") and right_allowed==1 then
 			if (player.static_x + plantSize) < (plantStartX + plantSize * 16) then
 				player.static_x = player.static_x + plantSize
 			end
 	    end
 	end
+
+	-- step 6 - we can add here a mechanism that checks where is the door
+	if player.state == 'still' then
+	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]+1) and cell[2] == door_cell[2] then
+			new_room=1
+		end
+	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]-1) and cell[2] == door_cell[2] then
+			new_room=1
+		end
+	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]+1) == door_cell[2] then
+			new_room=1
+		end
+	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]-1) == door_cell[2] then
+			new_room=1
+		end
+	end
+
 
 end
 
@@ -160,9 +220,11 @@ function love.draw()
 		end
 	end
 
-	for col = 0, 9 do
-		love.graphics.draw(inventorySquare, (inventoryWidth * col), 0, 0,
-		inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)	
+	if new_room==0 then
+		for col = 0, 9 do
+			love.graphics.draw(inventorySquare, (inventoryWidth * col), 0, 0,
+			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)	
+		end
 	end
 
 	wateringcan = love.graphics.newImage("graphics/wateringcan.png")
