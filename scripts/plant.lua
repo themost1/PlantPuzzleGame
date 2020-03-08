@@ -1,7 +1,9 @@
-require('object')
+require('scripts.object')
 
+local plants = {}
 plant = object:new{
 	name = "Base Plant",
+	id = "",
 	image = nil,
 	watered = false,
 	passable = true,
@@ -35,7 +37,8 @@ end
 bamboo = plant:new {
 	name = "Bamboo",
 	image = nil,
-	passable = false
+	passable = false,
+	id = "bamboo"
 }
 
 cactus = plant:new {
@@ -47,8 +50,19 @@ function bamboo:onLoad()
 	self.image = love.graphics.newImage("graphics/bamboo_tile.png")
 end
 
+<<<<<<< HEAD
 function cactus:onLoad()
 	self.image = love.graphics.newImage("graphics/cactus.png")
 end
 
 
+=======
+function plants:addPlant(toAdd)
+	self.toAdd.id = toAdd
+end
+
+
+plants:addPlant(plant)
+plants:addPlant(bamboo)
+return plants
+>>>>>>> 8f9b42ab97a1b6157ccce9fc377aada04caeb238
