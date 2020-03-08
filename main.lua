@@ -1,5 +1,6 @@
 love.graphics.setDefaultFilter("nearest")
 require ('plant')
+require ('game_object')
 
 function love.load()
 	player = {
@@ -19,7 +20,7 @@ function love.load()
 		for j = 1,16 do
 			plantObject = plant:new()
 			if i % 2 == 0 and j % 2 == 0 then
-				plantObject = bamboo:new()
+				plantObject = cactus:new()
 			end
 			plantObject:onLoad()
 			aTileMatrix[i][j] = plantObject
@@ -51,6 +52,11 @@ function love.load()
 	inventoryHeight = inventorySquare:getHeight() * inventoryScale
 	inventoryWidth = inventorySquare:getWidth() * inventoryScale
 
+	hp_bar = hp_bar:new()
+	full_heart = love.graphics.newImage("graphics/heart_full.png")
+	empty_heart = love.graphics.newImage("graphics/heart_empty.png")
+
+	prev_cells = {{}, {}}
 end
 
 
@@ -60,6 +66,22 @@ function love.update(dt)
 	-- cells go from (1,1) to (9,16)
 	local cell = {1+(player.static_y-plantStartY)/plantSize,
 		1+(player.static_x-plantStartX)/plantSize}
+
+	if prev_cells[2] == {} then
+		prev_cells[2][1] = cell[1]
+		prev_cells[2][2] = cell[2]
+	end
+
+	-- check if we changed cells
+	if cell[1] ~= prev_cells[2][1] or cell[2] ~= prev_cells[2][2] then
+		-- trigger onEnter()
+		aTileMatrix[cell[1]][cell[2]]:onEnter()
+		-- update curr and prev cell
+		prev_cells[1][1] = prev_cells[2][1]
+		prev_cells[1][2] = prev_cells[2][2]
+		prev_cells[2][1] = cell[1]
+		prev_cells[2][2] = cell[2]
+	end
 
 	-- before moving, check that you can actually pass the object in the cell :)
 
@@ -107,23 +129,21 @@ function love.update(dt)
 
 
 	if player.state == 'still' then
+
 		-- We restrict the player to stay within the bounds of the playable board
 		-- PRESS A KEY TO MOVE TO THE NEXT LOCATION
 		if love.keyboard.isDown("up") and player.y==player.static_y then
 			if ((player.static_y - plantSize) >= (plantStartY)) then
 				player.static_y = player.static_y - plantSize
 			end
-	    --end
 		elseif love.keyboard.isDown("down") and player.y==player.static_y then
 			if (player.static_y + plantSize) < (plantStartY + plantSize * 9) then
 				player.static_y = player.static_y + plantSize
 			end
-	    --end
 		elseif love.keyboard.isDown("left") and player.x==player.static_x then
 			if (player.static_x - plantSize) >= (plantStartX) then
 				player.static_x = player.static_x - plantSize
 			end
-		--end
 		elseif love.keyboard.isDown("right") and player.x==player.static_x then
 			if (player.static_x + plantSize) < (plantStartX + plantSize * 16) then
 				player.static_x = player.static_x + plantSize
@@ -139,6 +159,13 @@ end
 function love.draw()
 	love.graphics.scale(xScale, yScale)
 
+	-- set Background Color
+	red = 98/255
+    green = 168/255
+    blue = 229/255
+    alpha = 1/100
+    love.graphics.setBackgroundColor( red, green, blue, alpha)
+	
 	for row = 1, 9 do
 		for col = 1, 16 do
 			plantObject = aTileMatrix[row][col]
@@ -152,10 +179,10 @@ function love.draw()
 		end
 	end
 
-	for col = 0, 9 do
-		love.graphics.draw(inventorySquare, (inventoryWidth * col), 0, 0,
-		inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)	
-	end
+	-- for col = 0, 9 do
+	-- 	love.graphics.draw(inventorySquare, (inventoryWidth * col), 0, 0,
+	-- 	inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)	
+	-- end
 
 	wateringcan = love.graphics.newImage("graphics/wateringcan.png")
 	local wateringcanScale = 1.5
@@ -165,6 +192,17 @@ function love.draw()
 	wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
 
 	love.graphics.draw(player.sprite, player.x, player.y, 0, player.scale, player.scale, 0, 32)
+
+	-- draw the hearts representing HP; for now it is hard-coded
+	for h = 1, 5 do
+		local x = hp_bar.hearts[h]
+		if x == 0 then
+			love.graphics.draw(empty_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
+		else
+			love.graphics.draw(full_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
+		end
+	end
+
 end
 
 
