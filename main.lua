@@ -6,7 +6,7 @@ function love.load()
 	player = {
 		x = 160,          		-- initial position (must be =)
 		y = 140,    			-- initial position (must be =)
-		scale = 0.40,         	-- size (compared to original image)
+		scale = 2,         	-- size (compared to original image)
 		static_x = 160,       	-- initial position (must be =)
 		static_y = 140,    		-- initial position (must be =)
 		sprite = love.graphics.newImage("graphics/player.png"),
@@ -216,7 +216,10 @@ function love.update(dt)
 
 end
 
-
+function goToRoom(row, col)
+	currentRoom = map[row][col]
+	aTileMatrix = currentRoom.layout
+end
 
 
 function love.draw()
