@@ -3,7 +3,7 @@ require('scripts.object')
 local plants = {}
 plant = object:new{
 	name = "Base Plant",
-	id = "",
+	id = "grass",
 	image = nil,
 	watered = false,
 	passable = true,
@@ -43,6 +43,7 @@ bamboo = plant:new {
 
 cactus = plant:new {
 	name = "Cactus",
+	id = "cactus",
 	dmg = true
 }
 
@@ -50,19 +51,18 @@ function bamboo:onLoad()
 	self.image = love.graphics.newImage("graphics/bamboo_tile.png")
 end
 
-<<<<<<< HEAD
 function cactus:onLoad()
 	self.image = love.graphics.newImage("graphics/cactus.png")
 end
 
 
-=======
 function plants:addPlant(toAdd)
-	self.toAdd.id = toAdd
+	self[toAdd.id] = toAdd
 end
 
 
 plants:addPlant(plant)
 plants:addPlant(bamboo)
+plants:addPlant(cactus)
+
 return plants
->>>>>>> 8f9b42ab97a1b6157ccce9fc377aada04caeb238

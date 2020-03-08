@@ -1,4 +1,4 @@
-require('object')
+require('scripts.object')
 
 hp_bar = object:new {
 	hearts = {1,1,1,1,1},
