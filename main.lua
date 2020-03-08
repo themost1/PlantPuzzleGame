@@ -17,18 +17,6 @@ function love.load()
 		map_x = 1,				-- coordinates of the first room (in the bigger map)
 		map_y = 1
 	}
-	aTileMatrix = { }
-	for i = 1, 9 do
-		aTileMatrix[i] = {}
-		for j = 1,16 do
-			plantObject = plant:new()
-			if i % 2 == 0 and j % 2 == 0 then
-				plantObject = cactus:new()
-			end
-			plantObject:onLoad()
-			aTileMatrix[i][j] = plantObject
-		end
-	end
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
 	-- door location
@@ -60,7 +48,7 @@ function love.load()
 	prev_cells = {{}, {}}
 	loadRooms()
 	loadMap()
-	aTileMatrix = currentRoom.layout
+	tileMatrix = currentRoom.layout
 end
 
 function loadRooms()
@@ -124,7 +112,7 @@ function love.update(dt)
 	-- check if we changed cells
 	if cell[1] ~= prev_cells[2][1] or cell[2] ~= prev_cells[2][2] then
 		-- trigger onEnter()
-		aTileMatrix[cell[1]][cell[2]]:onEnter()
+		tileMatrix[cell[1]][cell[2]]:onEnter()
 		-- update curr and prev cell
 		prev_cells[1][1] = prev_cells[2][1]
 		prev_cells[1][2] = prev_cells[2][2]
@@ -141,22 +129,22 @@ function love.update(dt)
 
 	-- step 2 - check if the neighbour cells are "passable"
 	if love.keyboard.isDown("up") and cell[1] > 1 then
-		local obj = aTileMatrix[cell[1]-1][cell[2]]
+		local obj = tileMatrix[cell[1]-1][cell[2]]
 		if obj.passable then
 			up_allowed = 1
 		end
 	elseif love.keyboard.isDown("down") and cell[1] < 9 then
-		local obj = aTileMatrix[cell[1]+1][cell[2]]
+		local obj = tileMatrix[cell[1]+1][cell[2]]
 		if obj.passable then
 			down_allowed = 1
 		end
 	elseif love.keyboard.isDown("left") and cell[2] > 1 then
-		local obj = aTileMatrix[cell[1]][cell[2]-1]
+		local obj = tileMatrix[cell[1]][cell[2]-1]
 		if obj.passable then
 			left_allowed = 1
 		end
 	elseif love.keyboard.isDown("right") and cell[2] < 16 then
-		local obj = aTileMatrix[cell[1]][cell[2]+1]
+		local obj = tileMatrix[cell[1]][cell[2]+1]
 		if obj.passable then
 			right_allowed = 1
 		end
@@ -266,9 +254,9 @@ function love.draw()
     alpha = 1/100
     love.graphics.setBackgroundColor( red, green, blue, alpha)
 	
-	for row = 1, #aTileMatrix do
-		for col = 1, #aTileMatrix[row] do
-			plantObject = aTileMatrix[row][col]
+	for row = 1, #tileMatrix do
+		for col = 1, #tileMatrix[row] do
+			plantObject = tileMatrix[row][col]
 			plantImage = plantObject:getImage()
 			plantXScale = plantSize / plantImage:getWidth()
 			plantYScale = plantSize / plantImage:getHeight()
@@ -328,7 +316,7 @@ function love.mousepressed(x, y, button, istouch)
 	print(tileX .. " " .. tileY)
 
 	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
-		aTileMatrix[tileY][tileX]:onClick()
+		tileMatrix[tileY][tileX]:onClick()
 	end
 
 	if x <= inventoryWidth and y <= inventoryHeight then
