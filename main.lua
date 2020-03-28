@@ -7,7 +7,7 @@ function love.load()
 	player = {
 		x = 160,          		-- initial position (must be =)
 		y = 140,    			-- initial position (must be =)
-		scale = 2,         	-- size (compared to original image)
+		scale = 2,         	    -- size (compared to original image)
 		static_x = 160,       	-- initial position (must be =)
 		static_y = 140,    		-- initial position (must be =)
 		sprite = love.graphics.newImage("graphics/player.png"),
@@ -17,7 +17,8 @@ function love.load()
 		map_x = 1,				-- coordinates of the first room (in the bigger map)
 		map_y = 1,
 		seeds = {},
-		water = 0
+		water = 0,
+		stop_time = 0,          -- how many frames of stop after a new room is entered
 	}
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
@@ -178,10 +179,14 @@ function love.update(dt)
 
 	-- step 3 - declare if the player is still or moving
 	player.state = 'still'
-	if player.x ~= player.static_x or player.y ~= player.static_y then
+	if player.stop_time>0 then
+		player.stop_time=player.stop_time-1   	-- if you entered a new room
 		player.state = 'moving'
-	end 
-
+	else
+		if player.x ~= player.static_x or player.y ~= player.static_y then
+			player.state = 'moving'
+		end 
+	end
 	-- step 4 - update player position (smooth movement)
 	-- default: 100 x dt (seconds between frames)
 	frame_speed = player.speed*dt*100
@@ -249,33 +254,38 @@ function love.update(dt)
 	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] and door_direction == "N" then
 			player.map_y = player.map_y - 1
 			goToRoom(player.map_y, player.map_x, "up")
+			player.stop_time=50
 			-- adjust y coordinates
 			next_cell_y = 9
 			player.static_y = plantStartY + (next_cell_y-1)*plantSize
-			player.y = player.static_y+30
+			player.y = player.static_y+80
 		end
 	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] and door_direction == "S" then
 			player.map_y = player.map_y + 1
 			goToRoom(player.map_y, player.map_x, "down")
+			player.stop_time=50
 			-- adjust y coordinates
 			next_cell_y = 1
 			player.static_y = plantStartY + (next_cell_y-1)*plantSize
-			player.y = player.static_y-30
+			player.y = player.static_y-80
 		end
 	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] and door_direction == "E" then
 			player.map_x = player.map_x + 1
 			goToRoom(player.map_y, player.map_x, "right")
+			player.stop_time=50
 			-- adjust x coordinates
 			next_cell_x = 1
 			player.static_x = plantStartX + (next_cell_x-1)*plantSize
-			player.y = player.static_y+30
+			player.y = player.static_y+80
 		end
 	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] and door_direction == "W" then
 			player.map_x = player.map_x - 1
 			goToRoom(player.map_y, player.map_x, "left")
+			player.stop_time=50
+			-- adjust x coordinates
 			next_cell_x = 16
 			player.static_x = plantStartX + (next_cell_x-1)*plantSize
-			player.y = player.static_y-30
+			player.y = player.static_y-80
 		end
 	end
 
@@ -506,7 +516,6 @@ function love.mousepressed(x, y, button, istouch)
 				plants[selected].seeds = plants[selected].seeds - 1
 			end
 		elseif selected == "water" and player.water > 0 then
-			print(player.water.." is water before spending")
 			tileMatrix[tileY][tileX]:onWater()
 			player.water = player.water - 1
 		end

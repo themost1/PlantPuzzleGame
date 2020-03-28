@@ -14,12 +14,20 @@
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "doorX": 3,
-    "doorY": 1,
     "seeds": ["bamboo", "cactus"],
     "seedCounts": [1, 2],
     "doorDirection": "N",
-    "water": 3
+    "water": 3,
+    "doorX": 3,
+    "doorY": 1,
+    "doorDirection": "N",
+
+    "door1X": 3,
+    "door1Y": 1,
+    "door1Direction": "N",
+    "door2X": 5,
+    "door2Y": 1,
+    "door2Direction": "N"
   },
 
   {
@@ -37,11 +45,20 @@
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "doorX": 3,
-    "doorY": 9,
     "seeds": ["cactus"],
     "seedCounts": [2],
     "doorDirection": "S",
-    "water": 1
+    "water": 1,
+    "seedCounts": [3],
+    "doorX": 3,
+    "doorY": 9,
+    "doorDirection": "S",
+
+    "door1X": 3,
+    "door1Y": 9,
+    "door1Direction": "S",
+    "door2X": 5,
+    "door2Y": 9,
+    "door2Direction": "S"
   }
 ]
