@@ -96,6 +96,8 @@ function loadMap()
 			currentRoom.layout = layout
 			currentRoom.doorX = rooms[mapLayout[i][j]].doorX
 			currentRoom.doorY = rooms[mapLayout[i][j]].doorY
+			currentRoom.doorDirection = rooms[mapLayout[i][j]].doorDirection
+
 			mapRow[#mapRow + 1] = currentRoom
 		end
 		map[#map+1] = mapRow
@@ -232,21 +234,36 @@ function love.update(dt)
 
 	-- step 6 - we can add here a mechanism that checks where is the door
 	if player.state == 'still' then
-	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] then
+	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] and door_direction == "N" then
 			player.map_y = player.map_y - 1
 			goToRoom(player.map_y, player.map_x, "up")
+			-- adjust y coordinates
+			next_cell_y = 9
+			player.static_y = plantStartY + (next_cell_y-1)*plantSize
+			player.y = player.static_y+30
 		end
-	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] then
+	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] and door_direction == "S" then
 			player.map_y = player.map_y + 1
 			goToRoom(player.map_y, player.map_x, "down")
+			-- adjust y coordinates
+			next_cell_y = 1
+			player.static_y = plantStartY + (next_cell_y-1)*plantSize
+			player.y = player.static_y-30
 		end
-	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] then
+	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] and door_direction == "E" then
 			player.map_x = player.map_x + 1
 			goToRoom(player.map_y, player.map_x, "right")
+			-- adjust x coordinates
+			next_cell_x = 1
+			player.static_x = plantStartX + (next_cell_x-1)*plantSize
+			player.y = player.static_y+30
 		end
-	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] then
+	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] and door_direction == "W" then
 			player.map_x = player.map_x - 1
 			goToRoom(player.map_y, player.map_x, "left")
+			next_cell_x = 16
+			player.static_x = plantStartX + (next_cell_x-1)*plantSize
+			player.y = player.static_y-30
 		end
 	end
 
@@ -259,6 +276,7 @@ function goToRoom(row, col, dir)
 	tileMatrix = aTileMatrix
 	door_cell[1] = currentRoom.doorY
 	door_cell[2] = currentRoom.doorX
+	door_direction = currentRoom.doorDirection
 
 	-- move player to appropriate tile
 	if dir == "up" then
@@ -386,6 +404,10 @@ function love.mousepressed(x, y, button, istouch)
 	tileY = math.ceil( plantY / plantSize )
 	tileX = math.ceil( plantX / plantSize )
 	print(tileX .. " " .. tileY)
+	-- print door coordinates and character coordinates
+	print("door coordinates: "..door_cell[1].." "..door_cell[2])
+	print(door_direction)
+	print("character coordinates: "..cell[1].." "..cell[2])
 
 	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
 		tileMatrix[tileY][tileX]:onClick()

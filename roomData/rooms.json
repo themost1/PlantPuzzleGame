@@ -15,7 +15,8 @@
     ],
 
     "doorX": 3,
-    "doorY": 1
+    "doorY": 1,
+    "doorDirection": "N"
   },
 
   {
@@ -34,7 +35,8 @@
     ],
 
     "doorX": 3,
-    "doorY": 9
+    "doorY": 9,
+    "doorDirection": "S"
 
   }
 ]
