@@ -16,8 +16,9 @@ function love.load()
 		state = 'still', 		-- at the beginning the character is still
 		map_x = 1,				-- coordinates of the first room (in the bigger map)
 		map_y = 1,
+		seeds = {},
+		water = 0,
 		stop_time = 0,          -- how many frames of stop after a new room is entered
-		seeds = {}
 	}
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
@@ -113,6 +114,8 @@ function loadMap()
 			currentRoom.door2X = rooms[mapLayout[i][j]].door2X
 			currentRoom.door2Y = rooms[mapLayout[i][j]].door2Y
 			currentRoom.door2Direction = rooms[mapLayout[i][j]].door2Direction
+
+			currentRoom.water = rooms[mapLayout[i][j]].water
 
 			mapRow[#mapRow + 1] = currentRoom
 		end
@@ -296,10 +299,13 @@ function love.update(dt)
 end
 
 function goToRoom(row, col, dir)
+	selected = ""
+
 	currentRoom = map[row][col]
 	aTileMatrix = currentRoom.layout
 	tileMatrix = aTileMatrix
 	player.seeds = currentRoom.seeds
+	player.water = currentRoom.water
 	for seed = 1, #player.seeds do
 		local thisSeed = player.seeds[seed]
 		plants[thisSeed]:onLoad()
@@ -409,6 +415,20 @@ function love.draw()
 				wallXScale, wallYScale, 0)
     end
 	
+	-- draw dirt beneath everything
+	local dirtImage = love.graphics.newImage("graphics/dirt.jpg")
+	for row = 1, #tileMatrix do
+		for col = 1, #tileMatrix[row] do
+			plantXScale = plantSize / dirtImage:getWidth()
+			plantYScale = plantSize / dirtImage:getHeight()
+			local startX = plantSize * (col-1) + plantStartX
+			local startY = plantSize * (row-1) + plantStartY
+			love.graphics.draw(dirtImage, startX, startY, 0,
+					plantXScale, plantYScale, 0)
+		end
+	end
+
+	--draw plants
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
 			plantObject = tileMatrix[row][col]
@@ -442,9 +462,11 @@ function love.draw()
 			local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
 			love.graphics.draw(wateringcan, 0 , invY, 0, 
 			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
+			local waterCount = player.water
+			love.graphics.print(""..waterCount, invX + 5, invY + 2, 0, 3, 3)
 		elseif col <= #player.seeds then
 			local plantToDraw = player.seeds[col]
-			local seedImage = plants[plantToDraw]:getSeedImage()
+			local seedImage = plants[plantToDraw]:getImage()
 			local invOffset = 20
 			local seedscale1 = (inventoryWidth - 2 * invOffset) / seedImage:getWidth()
 			local seedscale2 = (inventoryHeight - 2 * invOffset) / seedImage:getHeight()
@@ -496,21 +518,27 @@ function love.mousepressed(x, y, button, istouch)
 		if selected ~= "water" and selected ~= "" then
 			local selectedPlant = plants[selected]
 			local overTile = tileMatrix[tileY][tileX]
-			if selectedPlant:canPlantOnTile(overTile) then
+			if selectedPlant:canPlantOnTile(overTile) and plants[selected].seeds > 0 then
 				tileMatrix[tileY][tileX] = plants[selected]:new()
+				tileMatrix[tileY][tileX]:onLoad()
+				tileMatrix[tileY][tileX]:onPlant()
 				plants[selected].seeds = plants[selected].seeds - 1
 			end
+		elseif selected == "water" and player.water > 0 then
+			tileMatrix[tileY][tileX]:onWater()
+			player.water = player.water - 1
 		end
 	end
 
 	-- print door coordinates and character coordinates
 	print("door 1 coordinates: "..door1_cell[1].." "..door1_cell[2].." "..door1_direction)
 	print("door 2 coordinates: "..door2_cell[1].." "..door2_cell[2].." "..door2_direction)
+	--[[
+	print("door coordinates: "..door_cell[1].." "..door_cell[2])
+	print(door_direction)
+>>>>>>> 1b0f784c84b267bf0a1fee9b79ab1f458b48a79b
 	print("character coordinates: "..cell[1].." "..cell[2])
-
-	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
-		tileMatrix[tileY][tileX]:onClick()
-	end
+	]]
 
 	if y <= inventoryHeight then
 		local inventoryXPressed = math.floor(x / inventoryWidth)
@@ -519,7 +547,7 @@ function love.mousepressed(x, y, button, istouch)
 			cursorImage = love.graphics.newImage("graphics/watering-can-pixilart.png")
 		elseif inventoryXPressed <= #player.seeds then
 			selected = player.seeds[inventoryXPressed]
-			cursorImage = love.graphics.newImage(plants[selected].seedImageDir)
+			cursorImage = love.graphics.newImage(plants[selected].imageDir)
 		end
 	end
 
