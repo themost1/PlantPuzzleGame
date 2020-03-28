@@ -432,6 +432,8 @@ function love.draw()
 			local seedscale2 = (inventoryHeight - invOffset) / seedImage:getHeight()
 			love.graphics.draw(seedImage, invX + invOffset, invY + invOffset, 0,
 				seedscale1, seedscale2, 0)
+			local thisSeedCount = plants[plantToDraw].seeds
+			love.graphics.print(""..thisSeedCount, invX + 2 * invOffset, invY + invOffset, 0, 3, 3)
 		end
 	end
 
