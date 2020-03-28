@@ -99,7 +99,7 @@ function loadMap()
 		map[#map+1] = mapRow
 	end
 
-	currentRoom = map[1][1]
+	goToRoom(1, 1)
 end
 
 
@@ -231,16 +231,20 @@ function love.update(dt)
 	-- step 6 - we can add here a mechanism that checks where is the door
 	if player.state == 'still' then
 	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]+1) and cell[2] == door_cell[2] then
-			new_room=1
+			player.map_y = player.map_y - 1
+			goToRoom(player.map_y, player.map_x)
 		end
 	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]-1) and cell[2] == door_cell[2] then
-			new_room=1
+			player.map_y = player.map_y + 1
+			goToRoom(player.map_y, player.map_x)
 		end
 	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]+1) == door_cell[2] then
-			new_room=1
+			player.map_x = player.map_x + 1
+			goToRoom(player.map_y, player.map_x)
 		end
 	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]-1) == door_cell[2] then
-			new_room=1
+			player.map_x = player.map_x - 1
+			goToRoom(player.map_y, player.map_x)
 		end
 	end
 
@@ -250,6 +254,7 @@ end
 function goToRoom(row, col)
 	currentRoom = map[row][col]
 	aTileMatrix = currentRoom.layout
+	tileMatrix = aTileMatrix
 end
 
 
@@ -263,6 +268,7 @@ function love.draw()
     alpha = 1/100
     love.graphics.setBackgroundColor( red, green, blue, alpha)
 
+    -- two for-loops to draw walls around the sides
     for col = 1, #tileMatrix[1] do
     	wallXScale = plantSize / topWall:getWidth()
 		wallYScale = plantSize / topWall:getHeight()
@@ -278,7 +284,6 @@ function love.draw()
 		love.graphics.draw(bottomWall, startX, startY, 0,
 				wallXScale, wallYScale, 0)
     end
-
     for row = 1, #tileMatrix do
     	wallXScale = plantSize / leftWall:getWidth()
 		wallYScale = plantSize / leftWall:getHeight()
@@ -309,12 +314,12 @@ function love.draw()
 	end
 
 
-	if new_room==0 then
+	--if new_room==0 then
 		for col = 0, 9 do
 			love.graphics.draw(inventorySquare, (inventoryWidth * col), 0, 0,
 			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)	
 		end
-	end
+	--end
 
 	wateringcan = love.graphics.newImage("graphics/wateringcan.png")
 	local wateringcanScale = 1.5
