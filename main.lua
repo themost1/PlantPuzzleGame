@@ -45,6 +45,15 @@ function love.load()
 	full_heart = love.graphics.newImage("graphics/heart_full.png")
 	empty_heart = love.graphics.newImage("graphics/heart_empty.png")
 
+	cornerWall1 = love.graphics.newImage("graphics/walls/corner1.png")
+	cornerWall2 = love.graphics.newImage("graphics/walls/corner2.png")
+	cornerWall3 = love.graphics.newImage("graphics/walls/corner3.png")
+	cornerWall4 = love.graphics.newImage("graphics/walls/corner4.png")
+	topWall = love.graphics.newImage("graphics/walls/top.png")
+	bottomWall = love.graphics.newImage("graphics/walls/bottom.png")
+	leftWall = love.graphics.newImage("graphics/walls/left.png")
+	rightWall = love.graphics.newImage("graphics/walls/right.png")
+
 	prev_cells = {{}, {}}
 	loadRooms()
 	loadMap()
@@ -253,6 +262,15 @@ function love.draw()
     blue = 229/255
     alpha = 1/100
     love.graphics.setBackgroundColor( red, green, blue, alpha)
+
+    for col = 1, #tileMatrix[1] do
+    	wallXScale = plantSize / topWall:getWidth()
+		wallYScale = plantSize / topWall:getHeight()
+		local startX = plantSize * (col-1) + plantStartX
+		local startY = plantSize * -1 + plantStartY
+		love.graphics.draw(topWall, startX, startY, 0,
+				wallXScale, wallYScale, 0)
+    end
 	
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
