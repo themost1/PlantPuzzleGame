@@ -9,11 +9,14 @@ plant = object:new{
 	passable = true,
 	dmg = false,
 	seeds = 0,
-	seedImage = love.graphics.newImage("graphics/grass.png")
+	seedImage = nil,
+	seedImageDir = "graphics/grass.png",
+	imageDir = "graphics/grass.png"
 }
 
 function plant:onLoad()
-	self.image = love.graphics.newImage("graphics/grass.png")
+	self.image = love.graphics.newImage(self.imageDir)
+	self.seedImage = love.graphics.newImage(self.seedImageDir)
 end
 
 function plant:onClick()
@@ -45,24 +48,17 @@ bamboo = plant:new {
 	image = nil,
 	passable = false,
 	id = "bamboo",
-	seedImage = love.graphics.newImage("graphics/bamboo_tile.png")
+	imageDir = "graphics/bamboo_tile.png",
+	seedImageDir = "graphics/bamboo_tile.png"
 }
 
 cactus = plant:new {
 	name = "Cactus",
 	id = "cactus",
 	dmg = true,
-	seedImage = love.graphics.newImage("graphics/cactus.png")
+	imageDir = "graphics/cactus.png",
+	seedImageDir = "graphics/cactus.png"
 }
-
-function bamboo:onLoad()
-	self.image = love.graphics.newImage("graphics/bamboo_tile.png")
-end
-
-function cactus:onLoad()
-	self.image = love.graphics.newImage("graphics/cactus.png")
-end
-
 
 function plants:addPlant(toAdd)
 	self[toAdd.id] = toAdd

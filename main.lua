@@ -63,6 +63,9 @@ function love.load()
 	loadRooms()
 	loadMap()
 	tileMatrix = currentRoom.layout
+
+	love.mouse.setVisible(false)
+	cursorImage = love.graphics.newImage("graphics/mouse.png")
 end
 
 function loadRooms()
@@ -269,6 +272,7 @@ function goToRoom(row, col, dir)
 	player.seeds = currentRoom.seeds
 	for seed = 1, #player.seeds do
 		local thisSeed = player.seeds[seed]
+		plants[thisSeed]:onLoad()
 		plants[thisSeed].seeds = currentRoom.seedCounts[seed]
 	end
 
@@ -396,7 +400,6 @@ function love.draw()
 			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
 		elseif col <= #player.seeds then
 			local plantToDraw = player.seeds[col]
-			print(plantToDraw)
 			local seedImage = plants[plantToDraw]:getSeedImage()
 			local invOffset = 2
 			local seedscale1 = (inventoryWidth - invOffset) / seedImage:getWidth()
@@ -420,6 +423,9 @@ function love.draw()
 		end
 	end
 
+	local mouseX, mouseY = love.mouse.getPosition()
+	love.graphics.scale(1/xScale, 1/yScale)
+	love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), 0, 0)
 end
 
 
@@ -427,6 +433,7 @@ end
 
 
 function love.mousepressed(x, y, button, istouch)
+	print(x.." "..y)
 	x = x / xScale 
 	y = y / yScale
 
@@ -435,20 +442,25 @@ function love.mousepressed(x, y, button, istouch)
 
 	local plantX = x - plantStartX
 	local plantY = y - plantStartY
-	print("pressed: "..x.." "..y.." "..xScale.." "..yScale)
+	--print("pressed: "..x.." "..y.." "..xScale.." "..yScale)
 
 	tileY = math.ceil( plantY / plantSize )
 	tileX = math.ceil( plantX / plantSize )
-	print(tileX .. " " .. tileY)
+	--print(tileX .. " " .. tileY)
 
 	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
 		tileMatrix[tileY][tileX]:onClick()
 	end
 
-	if x <= inventoryWidth and y <= inventoryHeight then
-		selected = "water"
-		local cursor = love.mouse.newCursor("graphics/watering-can-pixilart.png", 0, 0)
-		love.mouse.setCursor(cursor)
+	if y <= inventoryHeight then
+		local inventoryXPressed = math.floor(x / inventoryWidth)
+		if (inventoryXPressed == 0) then
+			selected = "water"
+			cursorImage = love.graphics.newImage("graphics/watering-can-pixilart.png")
+		elseif inventoryXPressed <= #player.seeds then
+			selected = player.seeds[inventoryXPressed]
+			cursorImage = love.graphics.newImage(plants[selected].seedImageDir)
+		end
 	end
 
 end
