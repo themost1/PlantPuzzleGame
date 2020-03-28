@@ -383,7 +383,7 @@ function love.draw()
 	invY = 0
 	for col = 0, 9 do
 		local invX = (inventoryWidth * col)
-		love.graphics.draw(inventorySquare, (inventoryWidth * col), invY, 0,
+		love.graphics.draw(inventorySquare, invX, invY, 0,
 		inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
 
 		-- draw watering can in first slot, seeds in all else
@@ -394,9 +394,15 @@ function love.draw()
 			local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
 			love.graphics.draw(wateringcan, 0 , invY, 0, 
 			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
-		else
-			--local plantToDraw = player.seeds[col]
-			--local seedImage = plantToDraw:getSeedImage()
+		elseif col <= #player.seeds then
+			local plantToDraw = player.seeds[col]
+			print(plantToDraw)
+			local seedImage = plants[plantToDraw]:getSeedImage()
+			local invOffset = 2
+			local seedscale1 = (inventoryWidth - invOffset) / seedImage:getWidth()
+			local seedscale2 = (inventoryHeight - invOffset) / seedImage:getHeight()
+			love.graphics.draw(seedImage, invX + invOffset, invY + invOffset, 0,
+				seedscale1, seedscale2, 0)
 		end
 	end
 
@@ -446,6 +452,3 @@ function love.mousepressed(x, y, button, istouch)
 	end
 
 end
-
-
-

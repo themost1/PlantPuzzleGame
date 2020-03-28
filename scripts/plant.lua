@@ -8,7 +8,8 @@ plant = object:new{
 	watered = false,
 	passable = true,
 	dmg = false,
-	seeds = 0
+	seeds = 0,
+	seedImage = love.graphics.newImage("graphics/grass.png")
 }
 
 function plant:onLoad()
@@ -26,7 +27,7 @@ function plant:getImage()
 end
 
 function plant:getSeedImage()
-	return self.image
+	return self.seedImage
 end
 
 function plant:onWater()
@@ -43,13 +44,15 @@ bamboo = plant:new {
 	name = "Bamboo",
 	image = nil,
 	passable = false,
-	id = "bamboo"
+	id = "bamboo",
+	seedImage = love.graphics.newImage("graphics/bamboo_tile.png")
 }
 
 cactus = plant:new {
 	name = "Cactus",
 	id = "cactus",
-	dmg = true
+	dmg = true,
+	seedImage = love.graphics.newImage("graphics/cactus.png")
 }
 
 function bamboo:onLoad()
