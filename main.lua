@@ -391,6 +391,20 @@ function love.draw()
 				wallXScale, wallYScale, 0)
     end
 	
+	-- draw dirt beneath everything
+	local dirtImage = love.graphics.newImage("graphics/dirt.jpg")
+	for row = 1, #tileMatrix do
+		for col = 1, #tileMatrix[row] do
+			plantXScale = plantSize / dirtImage:getWidth()
+			plantYScale = plantSize / dirtImage:getHeight()
+			local startX = plantSize * (col-1) + plantStartX
+			local startY = plantSize * (row-1) + plantStartY
+			love.graphics.draw(dirtImage, startX, startY, 0,
+					plantXScale, plantYScale, 0)
+		end
+	end
+
+	--draw plants
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
 			plantObject = tileMatrix[row][col]
