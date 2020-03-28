@@ -16,7 +16,8 @@ function love.load()
 		state = 'still', 		-- at the beginning the character is still
 		map_x = 1,				-- coordinates of the first room (in the bigger map)
 		map_y = 1,
-		seeds = {}
+		seeds = {},
+		water = 0
 	}
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
@@ -107,6 +108,7 @@ function loadMap()
 			currentRoom.seedCounts = rooms[mapLayout[i][j]].seedCounts
 			currentRoom.seeds = rooms[mapLayout[i][j]].seeds
 			currentRoom.doorDirection = rooms[mapLayout[i][j]].doorDirection
+			currentRoom.water = rooms[mapLayout[i][j]].water
 
 			mapRow[#mapRow + 1] = currentRoom
 		end
@@ -287,6 +289,7 @@ function goToRoom(row, col, dir)
 	door_cell[1] = currentRoom.doorY
 	door_cell[2] = currentRoom.doorX
 	player.seeds = currentRoom.seeds
+	player.water = currentRoom.water
 	for seed = 1, #player.seeds do
 		local thisSeed = player.seeds[seed]
 		plants[thisSeed]:onLoad()
@@ -438,6 +441,8 @@ function love.draw()
 			local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
 			love.graphics.draw(wateringcan, 0 , invY, 0, 
 			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
+			local waterCount = player.water
+			love.graphics.print(""..waterCount, invX + 5, invY + 2, 0, 3, 3)
 		elseif col <= #player.seeds then
 			local plantToDraw = player.seeds[col]
 			local seedImage = plants[plantToDraw]:getImage()
@@ -498,8 +503,9 @@ function love.mousepressed(x, y, button, istouch)
 				tileMatrix[tileY][tileX]:onPlant()
 				plants[selected].seeds = plants[selected].seeds - 1
 			end
-		elseif selected == "water" then
+		elseif selected == "water" and player.water > 0 then
 			tileMatrix[tileY][tileX]:onWater()
+			player.water = player.water - 1
 		end
 	end
 
