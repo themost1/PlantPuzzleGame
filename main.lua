@@ -94,6 +94,8 @@ function loadMap()
 			end
 
 			currentRoom.layout = layout
+			currentRoom.doorX = rooms[mapLayout[i][j]].doorX
+			currentRoom.doorY = rooms[mapLayout[i][j]].doorY
 			mapRow[#mapRow + 1] = currentRoom
 		end
 		map[#map+1] = mapRow
@@ -255,6 +257,8 @@ function goToRoom(row, col)
 	currentRoom = map[row][col]
 	aTileMatrix = currentRoom.layout
 	tileMatrix = aTileMatrix
+	door_cell[1] = currentRoom.doorY
+	door_cell[2] = currentRoom.doorX
 end
 
 

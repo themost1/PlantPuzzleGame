@@ -14,7 +14,7 @@
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "doorX": 1,
+    "doorX": 3,
     "doorY": 1
   },
 
@@ -31,6 +31,10 @@
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ]
+    ],
+
+    "doorX": 3,
+    "doorY": 9
+
   }
 ]
