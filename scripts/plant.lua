@@ -42,8 +42,8 @@ function plant:onEnter()
 	end
 end
 
-function plant:canPlantOnTile(tileId)
-	if tileId == "dirt" then
+function plant:canPlantOnTile(tile)
+	if tile.id == "dirt" then
 		return true
 	else
 		return false
