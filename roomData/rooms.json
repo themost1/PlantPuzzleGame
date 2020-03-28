@@ -15,7 +15,9 @@
     ],
 
     "doorX": 3,
-    "doorY": 1
+    "doorY": 1,
+    "seeds": ["bamboo", "cactus"],
+    "seedCounts": [1, 2]
   },
 
   {
@@ -34,7 +36,9 @@
     ],
 
     "doorX": 3,
-    "doorY": 9
+    "doorY": 9,
+    "seeds": ["cactus"],
+    "seedCounts": [3]
 
   }
 ]

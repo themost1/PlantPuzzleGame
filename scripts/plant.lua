@@ -7,7 +7,8 @@ plant = object:new{
 	image = nil,
 	watered = false,
 	passable = true,
-	dmg = false
+	dmg = false,
+	seeds = 0
 }
 
 function plant:onLoad()
@@ -21,6 +22,10 @@ function plant:onClick()
 end
 
 function plant:getImage()
+	return self.image
+end
+
+function plant:getSeedImage()
 	return self.image
 end
 

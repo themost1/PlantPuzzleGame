@@ -15,7 +15,8 @@ function love.load()
 		tileSize = 80,   		-- pixels size for each tile (PlantSize)
 		state = 'still', 		-- at the beginning the character is still
 		map_x = 1,				-- coordinates of the first room (in the bigger map)
-		map_y = 1
+		map_y = 1,
+		seeds = {}
 	}
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
@@ -53,6 +54,10 @@ function love.load()
 	bottomWall = love.graphics.newImage("graphics/walls/bottom.png")
 	leftWall = love.graphics.newImage("graphics/walls/left.png")
 	rightWall = love.graphics.newImage("graphics/walls/right.png")
+	doorTop = love.graphics.newImage("graphics/walls/doortop.png")
+	doorBottom = love.graphics.newImage("graphics/walls/doorbottom.png")
+	doorLeft = love.graphics.newImage("graphics/walls/doorleft.png")
+	doorRight = love.graphics.newImage("graphics/walls/doorright.png")
 
 	prev_cells = {{}, {}}
 	loadRooms()
@@ -96,6 +101,8 @@ function loadMap()
 			currentRoom.layout = layout
 			currentRoom.doorX = rooms[mapLayout[i][j]].doorX
 			currentRoom.doorY = rooms[mapLayout[i][j]].doorY
+			currentRoom.seedCounts = rooms[mapLayout[i][j]].seedCounts
+			currentRoom.seeds = rooms[mapLayout[i][j]].seeds
 			mapRow[#mapRow + 1] = currentRoom
 		end
 		map[#map+1] = mapRow
@@ -259,6 +266,11 @@ function goToRoom(row, col, dir)
 	tileMatrix = aTileMatrix
 	door_cell[1] = currentRoom.doorY
 	door_cell[2] = currentRoom.doorX
+	player.seeds = currentRoom.seeds
+	for seed = 1, #player.seeds do
+		local thisSeed = player.seeds[seed]
+		plants[thisSeed].seeds = currentRoom.seedCounts[seed]
+	end
 
 	-- move player to appropriate tile
 	if dir == "up" then
@@ -294,6 +306,9 @@ function love.draw()
 		if (shouldDrawWall) then
 			love.graphics.draw(topWall, startX, startY, 0,
 				wallXScale, wallYScale, 0)
+		else
+			love.graphics.draw(doorTop, startX, startY, 0,
+				wallXScale, wallYScale, 0)
 		end
 
 		wallXScale = plantSize / bottomWall:getWidth()
@@ -308,6 +323,9 @@ function love.draw()
 		if (shouldDrawWall) then
 			love.graphics.draw(bottomWall, startX, startY, 0,
 					wallXScale, wallYScale, 0)
+		else
+			love.graphics.draw(doorBottom, startX, startY, 0,
+				wallXScale, wallYScale, 0)
 		end
     end
     for row = 1, #tileMatrix do
@@ -315,13 +333,35 @@ function love.draw()
 		wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * -1 + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
-		love.graphics.draw(leftWall, startX, startY, 0,
+		if (door_cell[1] == row and door_cell[2] == 1) then
+			shouldDrawWall = false
+		else
+			shouldDrawWall = true
+		end
+		if shouldDrawWall then
+			love.graphics.draw(leftWall, startX, startY, 0,
+					wallXScale, wallYScale, 0)
+		else
+			love.graphics.draw(doorLeft, startX, startY, 0,
 				wallXScale, wallYScale, 0)
+		end
 
 		wallXScale = plantSize / leftWall:getWidth()
 		wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * (#tileMatrix[row]) + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
+		if (door_cell[1] == row and door_cell[2] == #tileMatrix[1]) then
+			shouldDrawWall = false
+		else
+			shouldDrawWall = true
+		end
+		if shouldDrawWall then
+			love.graphics.draw(leftWall, startX, startY, 0,
+					wallXScale, wallYScale, 0)
+		else
+			love.graphics.draw(doorRight, startX, startY, 0,
+				wallXScale, wallYScale, 0)
+		end
 		love.graphics.draw(rightWall, startX, startY, 0,
 				wallXScale, wallYScale, 0)
     end
@@ -339,20 +379,28 @@ function love.draw()
 		end
 	end
 
+	-- draw inventory
+	invY = 0
+	for col = 0, 9 do
+		local invX = (inventoryWidth * col)
+		love.graphics.draw(inventorySquare, (inventoryWidth * col), invY, 0,
+		inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
 
-	--if new_room==0 then
-		for col = 0, 9 do
-			love.graphics.draw(inventorySquare, (inventoryWidth * col), 0, 0,
-			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)	
+		-- draw watering can in first slot, seeds in all else
+		if col == 0 then
+			wateringcan = love.graphics.newImage("graphics/wateringcan.png")
+			local wateringcanScale = 1.5
+			local wateringcanHeight = wateringcan:getHeight() * wateringcanScale
+			local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
+			love.graphics.draw(wateringcan, 0 , invY, 0, 
+			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
+		else
+			--local plantToDraw = player.seeds[col]
+			--local seedImage = plantToDraw:getSeedImage()
 		end
-	--end
+	end
 
-	wateringcan = love.graphics.newImage("graphics/wateringcan.png")
-	local wateringcanScale = 1.5
-	local wateringcanHeight = wateringcan:getHeight() * wateringcanScale
-	local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
-	love.graphics.draw(wateringcan, 0 , 0, 0, 
-	wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
+
 
 	love.graphics.draw(player.sprite, player.x, player.y, 0, player.scale, player.scale, 0, 32)
 
