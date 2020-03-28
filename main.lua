@@ -437,11 +437,13 @@ function love.draw()
 		elseif col <= #player.seeds then
 			local plantToDraw = player.seeds[col]
 			local seedImage = plants[plantToDraw]:getSeedImage()
-			local invOffset = 2
-			local seedscale1 = (inventoryWidth - invOffset) / seedImage:getWidth()
-			local seedscale2 = (inventoryHeight - invOffset) / seedImage:getHeight()
+			local invOffset = 20
+			local seedscale1 = (inventoryWidth - 2 * invOffset) / seedImage:getWidth()
+			local seedscale2 = (inventoryHeight - 2 * invOffset) / seedImage:getHeight()
 			love.graphics.draw(seedImage, invX + invOffset, invY + invOffset, 0,
 				seedscale1, seedscale2, 0)
+			local thisSeedCount = plants[plantToDraw].seeds
+			love.graphics.print(""..thisSeedCount, invX + 5, invY + 2, 0, 3, 3)
 		end
 	end
 
@@ -481,8 +483,18 @@ function love.mousepressed(x, y, button, istouch)
 
 	tileY = math.ceil( plantY / plantSize )
 	tileX = math.ceil( plantX / plantSize )
-	--print(tileX .. " " .. tileY)
-	print(tileX .. " " .. tileY)
+
+	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
+		if selected ~= "water" and selected ~= "" then
+			local selectedPlant = plants[selected]
+			local overTile = tileMatrix[tileY][tileX]
+			if selectedPlant:canPlantOnTile(overTile) then
+				tileMatrix[tileY][tileX] = plants[selected]:new()
+				plants[selected].seeds = plants[selected].seeds - 1
+			end
+		end
+	end
+
 	-- print door coordinates and character coordinates
 	print("door coordinates: "..door_cell[1].." "..door_cell[2])
 	print(door_direction)
