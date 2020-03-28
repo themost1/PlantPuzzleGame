@@ -440,7 +440,7 @@ function love.draw()
 			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
 		elseif col <= #player.seeds then
 			local plantToDraw = player.seeds[col]
-			local seedImage = plants[plantToDraw]:getSeedImage()
+			local seedImage = plants[plantToDraw]:getImage()
 			local invOffset = 20
 			local seedscale1 = (inventoryWidth - 2 * invOffset) / seedImage:getWidth()
 			local seedscale2 = (inventoryHeight - 2 * invOffset) / seedImage:getHeight()
@@ -492,10 +492,14 @@ function love.mousepressed(x, y, button, istouch)
 		if selected ~= "water" and selected ~= "" then
 			local selectedPlant = plants[selected]
 			local overTile = tileMatrix[tileY][tileX]
-			if selectedPlant:canPlantOnTile(overTile) and plant[selected].seeds > 0 then
+			if selectedPlant:canPlantOnTile(overTile) and plants[selected].seeds > 0 then
 				tileMatrix[tileY][tileX] = plants[selected]:new()
+				tileMatrix[tileY][tileX]:onLoad()
+				tileMatrix[tileY][tileX]:onPlant()
 				plants[selected].seeds = plants[selected].seeds - 1
 			end
+		elseif selected == "water" then
+			tileMatrix[tileY][tileX]:onWater()
 		end
 	end
 
@@ -515,7 +519,7 @@ function love.mousepressed(x, y, button, istouch)
 			cursorImage = love.graphics.newImage("graphics/watering-can-pixilart.png")
 		elseif inventoryXPressed <= #player.seeds then
 			selected = player.seeds[inventoryXPressed]
-			cursorImage = love.graphics.newImage(plants[selected].seedImageDir)
+			cursorImage = love.graphics.newImage(plants[selected].imageDir)
 		end
 	end
 

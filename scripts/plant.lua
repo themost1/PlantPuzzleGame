@@ -10,8 +10,9 @@ plant = object:new{
 	dmg = false,
 	seeds = 0,
 	seedImage = nil,
-	seedImageDir = "graphics/grass.png",
-	imageDir = "graphics/grass.png"
+	seedImageDir = "graphics/seeds.png",
+	imageDir = "graphics/grass.png",
+	watered = true
 }
 
 function plant:onLoad()
@@ -26,7 +27,11 @@ function plant:onClick()
 end
 
 function plant:getImage()
-	return self.image
+	if self.watered then
+		return self.image
+	else
+		return self.seedImage
+	end
 end
 
 function plant:getSeedImage()
@@ -34,12 +39,17 @@ function plant:getSeedImage()
 end
 
 function plant:onWater()
+	self.watered = true
 end
 
 function plant:onEnter()
 	if self.dmg then
 		hp_bar:onDamage()
 	end
+end
+
+function plant:onPlant()
+	self.watered = false
 end
 
 function plant:canPlantOnTile(tile)
@@ -62,16 +72,14 @@ bamboo = plant:new {
 	image = nil,
 	passable = false,
 	id = "bamboo",
-	imageDir = "graphics/bamboo_tile.png",
-	seedImageDir = "graphics/bamboo_tile.png"
+	imageDir = "graphics/bamboo_tile.png"
 }
 
 cactus = plant:new {
 	name = "Cactus",
 	id = "cactus",
 	dmg = true,
-	imageDir = "graphics/cactus.png",
-	seedImageDir = "graphics/cactus.png"
+	imageDir = "graphics/cactus.png"
 }
 
 function plants:addPlant(toAdd)
