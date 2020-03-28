@@ -286,6 +286,9 @@ end
 
 
 function love.draw()
+	local mouseX, mouseY = love.mouse.getPosition()
+	local mouseXScaled = mouseX / xScale
+	local mouseYScaled = mouseY / yScale
 	love.graphics.scale(xScale, yScale)
 
 	-- set Background Color
@@ -380,6 +383,11 @@ function love.draw()
 			local startY = plantSize * (row-1) + plantStartY
 			love.graphics.draw(plantImage, startX, startY, 0,
 					plantXScale, plantYScale, 0)
+			if mouseXScaled > startX and mouseYScaled > startY and mouseXScaled < startX + plantSize and mouseYScaled < startY + plantSize then
+				local greenImage = love.graphics.newImage("graphics/green.png")
+				love.graphics.draw(greenImage, startX, startY, 0,
+					plantSize / greenImage:getWidth(), plantSize / greenImage:getHeight(), 0)
+			end
 		end
 	end
 
@@ -411,7 +419,7 @@ function love.draw()
 
 
 
-	love.graphics.draw(player.sprite, player.x, player.y, 0, player.scale, player.scale, 0, 32)
+	love.graphics.draw(player.sprite, player.x, player.y, 0, player.scale, player.scale, 12, 32)
 
 	-- draw the hearts representing HP; for now it is hard-coded
 	for h = 1, 5 do
@@ -423,7 +431,6 @@ function love.draw()
 		end
 	end
 
-	local mouseX, mouseY = love.mouse.getPosition()
 	love.graphics.scale(1/xScale, 1/yScale)
 	love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), 0, 0)
 end

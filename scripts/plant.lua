@@ -42,6 +42,20 @@ function plant:onEnter()
 	end
 end
 
+function plant:canPlantOnTile(tileId)
+	if tileId == "dirt" then
+		return true
+	else
+		return false
+	end
+end
+
+dirt = plant:new {
+	name = "Dirt",
+	id = "dirt",
+	seedImageDir = "graphics/dirt.jpg",
+	imageDir = "graphics/dirt.jpg"
+}
 
 bamboo = plant:new {
 	name = "Bamboo",
@@ -66,6 +80,7 @@ end
 
 
 plants:addPlant(plant)
+plants:addPlant(dirt)
 plants:addPlant(bamboo)
 plants:addPlant(cactus)
 
