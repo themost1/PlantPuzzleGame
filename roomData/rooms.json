@@ -6,7 +6,7 @@
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","bamboo","grass", "grass", "grass", "grass", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "grass", "grass", "cactus", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "cactus", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -28,8 +28,8 @@
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","bamboo","grass", "grass", "grass", "grass", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "cactus", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -39,7 +39,7 @@
     "doorX": 3,
     "doorY": 9,
     "seeds": ["cactus"],
-    "seedCounts": [3],
+    "seedCounts": [1],
     "doorDirection": "S"
   }
 ]

@@ -492,7 +492,7 @@ function love.mousepressed(x, y, button, istouch)
 		if selected ~= "water" and selected ~= "" then
 			local selectedPlant = plants[selected]
 			local overTile = tileMatrix[tileY][tileX]
-			if selectedPlant:canPlantOnTile(overTile) then
+			if selectedPlant:canPlantOnTile(overTile) and plant[selected].seeds > 0 then
 				tileMatrix[tileY][tileX] = plants[selected]:new()
 				plants[selected].seeds = plants[selected].seeds - 1
 			end
