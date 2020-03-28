@@ -270,6 +270,29 @@ function love.draw()
 		local startY = plantSize * -1 + plantStartY
 		love.graphics.draw(topWall, startX, startY, 0,
 				wallXScale, wallYScale, 0)
+
+		wallXScale = plantSize / bottomWall:getWidth()
+		wallYScale = plantSize / bottomWall:getHeight()
+		local startX = plantSize * (col-1) + plantStartX
+		local startY = plantSize * (#tileMatrix) + plantStartY
+		love.graphics.draw(bottomWall, startX, startY, 0,
+				wallXScale, wallYScale, 0)
+    end
+
+    for row = 1, #tileMatrix do
+    	wallXScale = plantSize / leftWall:getWidth()
+		wallYScale = plantSize / leftWall:getHeight()
+		local startX = plantSize * -1 + plantStartX
+		local startY = plantSize * (row-1) + plantStartY
+		love.graphics.draw(leftWall, startX, startY, 0,
+				wallXScale, wallYScale, 0)
+
+		wallXScale = plantSize / leftWall:getWidth()
+		wallYScale = plantSize / leftWall:getHeight()
+		local startX = plantSize * (#tileMatrix[row]) + plantStartX
+		local startY = plantSize * (row-1) + plantStartY
+		love.graphics.draw(rightWall, startX, startY, 0,
+				wallXScale, wallYScale, 0)
     end
 	
 	for row = 1, #tileMatrix do
