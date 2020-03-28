@@ -273,20 +273,35 @@ function love.draw()
     love.graphics.setBackgroundColor( red, green, blue, alpha)
 
     -- two for-loops to draw walls around the sides
+    local shouldDrawWall = true
     for col = 1, #tileMatrix[1] do
     	wallXScale = plantSize / topWall:getWidth()
 		wallYScale = plantSize / topWall:getHeight()
 		local startX = plantSize * (col-1) + plantStartX
 		local startY = plantSize * -1 + plantStartY
-		love.graphics.draw(topWall, startX, startY, 0,
+		if (door_cell[2] == col and door_cell[1] == 1) then
+			shouldDrawWall = false
+		else
+			shouldDrawWall = true
+		end
+		if (shouldDrawWall) then
+			love.graphics.draw(topWall, startX, startY, 0,
 				wallXScale, wallYScale, 0)
+		end
 
 		wallXScale = plantSize / bottomWall:getWidth()
 		wallYScale = plantSize / bottomWall:getHeight()
 		local startX = plantSize * (col-1) + plantStartX
 		local startY = plantSize * (#tileMatrix) + plantStartY
-		love.graphics.draw(bottomWall, startX, startY, 0,
-				wallXScale, wallYScale, 0)
+		if (door_cell[2] == col and door_cell[1] == #tileMatrix) then
+			shouldDrawWall = false
+		else
+			shouldDrawWall = true
+		end
+		if (shouldDrawWall) then
+			love.graphics.draw(bottomWall, startX, startY, 0,
+					wallXScale, wallYScale, 0)
+		end
     end
     for row = 1, #tileMatrix do
     	wallXScale = plantSize / leftWall:getWidth()
