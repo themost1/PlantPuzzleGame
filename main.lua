@@ -22,7 +22,8 @@ function love.load()
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
 	-- door location
-	door_cell = {0,1}
+	door1_cell = {0,1}
+	door2_cell = {0,1}
 	-- initialize the new_room as 0
 	new_room=0
 
@@ -103,11 +104,15 @@ function loadMap()
 			end
 
 			currentRoom.layout = layout
-			currentRoom.doorX = rooms[mapLayout[i][j]].doorX
-			currentRoom.doorY = rooms[mapLayout[i][j]].doorY
 			currentRoom.seedCounts = rooms[mapLayout[i][j]].seedCounts
 			currentRoom.seeds = rooms[mapLayout[i][j]].seeds
-			currentRoom.doorDirection = rooms[mapLayout[i][j]].doorDirection
+
+			currentRoom.door1X = rooms[mapLayout[i][j]].door1X
+			currentRoom.door1Y = rooms[mapLayout[i][j]].door1Y
+			currentRoom.door1Direction = rooms[mapLayout[i][j]].door1Direction
+			currentRoom.door2X = rooms[mapLayout[i][j]].door2X
+			currentRoom.door2Y = rooms[mapLayout[i][j]].door2Y
+			currentRoom.door2Direction = rooms[mapLayout[i][j]].door2Direction
 
 			mapRow[#mapRow + 1] = currentRoom
 		end
@@ -249,7 +254,7 @@ function love.update(dt)
 
 	-- step 6 - we can add here a mechanism that checks where is the door
 	if player.state == 'still' then
-	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] and door_direction == "N" then
+	 	if love.keyboard.isDown("up") and ((cell[1] == (door1_cell[1]) and cell[2] == door1_cell[2] and door1_direction == "N") or (cell[1] == (door2_cell[1]) and cell[2] == door2_cell[2] and door2_direction == "N")) then
 			player.map_y = player.map_y - 1
 			goToRoom(player.map_y, player.map_x, "up")
 			player.stop_time=50
@@ -258,7 +263,7 @@ function love.update(dt)
 			player.static_y = plantStartY + (next_cell_y-1)*plantSize
 			player.y = player.static_y+80
 		end
-	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] and door_direction == "S" then
+	 	if love.keyboard.isDown("down") and ((cell[1] == (door1_cell[1]) and cell[2] == door1_cell[2] and door1_direction == "S") or (cell[1] == (door2_cell[1]) and cell[2] == door2_cell[2] and door2_direction == "S")) then
 			player.map_y = player.map_y + 1
 			goToRoom(player.map_y, player.map_x, "down")
 			player.stop_time=50
@@ -267,7 +272,7 @@ function love.update(dt)
 			player.static_y = plantStartY + (next_cell_y-1)*plantSize
 			player.y = player.static_y-80
 		end
-	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] and door_direction == "E" then
+	 	if love.keyboard.isDown("right") and ((cell[1] == door1_cell[1] and (cell[2]) == door1_cell[2] and door1_direction == "E") or (cell[1] == door2_cell[1] and (cell[2]) == door2_cell[2] and door2_direction == "E")) then
 			player.map_x = player.map_x + 1
 			goToRoom(player.map_y, player.map_x, "right")
 			player.stop_time=50
@@ -276,7 +281,7 @@ function love.update(dt)
 			player.static_x = plantStartX + (next_cell_x-1)*plantSize
 			player.y = player.static_y+80
 		end
-	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] and door_direction == "W" then
+	 	if love.keyboard.isDown("left") and ((cell[1] == door1_cell[1] and (cell[2]) == door1_cell[2] and door1_direction == "W") or (cell[1] == door2_cell[1] and (cell[2]) == door2_cell[2] and door2_direction == "W")) then
 			player.map_x = player.map_x - 1
 			goToRoom(player.map_y, player.map_x, "left")
 			player.stop_time=50
@@ -294,15 +299,18 @@ function goToRoom(row, col, dir)
 	currentRoom = map[row][col]
 	aTileMatrix = currentRoom.layout
 	tileMatrix = aTileMatrix
-	door_cell[1] = currentRoom.doorY
-	door_cell[2] = currentRoom.doorX
 	player.seeds = currentRoom.seeds
 	for seed = 1, #player.seeds do
 		local thisSeed = player.seeds[seed]
 		plants[thisSeed]:onLoad()
 		plants[thisSeed].seeds = currentRoom.seedCounts[seed]
 	end
-	door_direction = currentRoom.doorDirection
+	door1_cell[1] = currentRoom.door1Y
+	door1_cell[2] = currentRoom.door1X
+	door1_direction = currentRoom.door1Direction
+	door2_cell[1] = currentRoom.door2Y
+	door2_cell[2] = currentRoom.door2X
+	door2_direction = currentRoom.door2Direction
 
 	-- move player to appropriate tile
 	if dir == "up" then
@@ -333,7 +341,7 @@ function love.draw()
 		wallYScale = plantSize / topWall:getHeight()
 		local startX = plantSize * (col-1) + plantStartX
 		local startY = plantSize * -1 + plantStartY
-		if (door_cell[2] == col and door_cell[1] == 1) then
+		if (door1_cell[2] == col and door1_cell[1] == 1) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -350,7 +358,7 @@ function love.draw()
 		wallYScale = plantSize / bottomWall:getHeight()
 		local startX = plantSize * (col-1) + plantStartX
 		local startY = plantSize * (#tileMatrix) + plantStartY
-		if (door_cell[2] == col and door_cell[1] == #tileMatrix) then
+		if (door1_cell[2] == col and door1_cell[1] == #tileMatrix) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -368,7 +376,7 @@ function love.draw()
 		wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * -1 + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
-		if (door_cell[1] == row and door_cell[2] == 1) then
+		if (door1_cell[1] == row and door1_cell[2] == 1) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -385,7 +393,7 @@ function love.draw()
 		wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * (#tileMatrix[row]) + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
-		if (door_cell[1] == row and door_cell[2] == #tileMatrix[1]) then
+		if (door1_cell[1] == row and door1_cell[2] == #tileMatrix[1]) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -496,8 +504,8 @@ function love.mousepressed(x, y, button, istouch)
 	end
 
 	-- print door coordinates and character coordinates
-	print("door coordinates: "..door_cell[1].." "..door_cell[2])
-	print(door_direction)
+	print("door 1 coordinates: "..door1_cell[1].." "..door1_cell[2].." "..door1_direction)
+	print("door 2 coordinates: "..door2_cell[1].." "..door2_cell[2].." "..door2_direction)
 	print("character coordinates: "..cell[1].." "..cell[2])
 
 	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
