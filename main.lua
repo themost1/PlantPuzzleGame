@@ -232,19 +232,19 @@ function love.update(dt)
 
 	-- step 6 - we can add here a mechanism that checks where is the door
 	if player.state == 'still' then
-	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]+1) and cell[2] == door_cell[2] then
+	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] then
 			player.map_y = player.map_y - 1
 			goToRoom(player.map_y, player.map_x)
 		end
-	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]-1) and cell[2] == door_cell[2] then
+	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] then
 			player.map_y = player.map_y + 1
 			goToRoom(player.map_y, player.map_x)
 		end
-	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]+1) == door_cell[2] then
+	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] then
 			player.map_x = player.map_x + 1
 			goToRoom(player.map_y, player.map_x)
 		end
-	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]-1) == door_cell[2] then
+	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] then
 			player.map_x = player.map_x - 1
 			goToRoom(player.map_y, player.map_x)
 		end
