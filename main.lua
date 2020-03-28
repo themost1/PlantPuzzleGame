@@ -347,7 +347,7 @@ function love.draw()
 		wallYScale = plantSize / topWall:getHeight()
 		local startX = plantSize * (col-1) + plantStartX
 		local startY = plantSize * -1 + plantStartY
-		if (door1_cell[2] == col and door1_cell[1] == 1) then
+		if (door1_cell[2] == col and door1_cell[1] == 1) or (door2_cell[2] == col and door2_cell[1] == 1) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -364,7 +364,7 @@ function love.draw()
 		wallYScale = plantSize / bottomWall:getHeight()
 		local startX = plantSize * (col-1) + plantStartX
 		local startY = plantSize * (#tileMatrix) + plantStartY
-		if (door1_cell[2] == col and door1_cell[1] == #tileMatrix) then
+		if (door1_cell[2] == col and door1_cell[1] == #tileMatrix) or (door2_cell[2] == col and door2_cell[1] == #tileMatrix) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -382,7 +382,7 @@ function love.draw()
 		wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * -1 + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
-		if (door1_cell[1] == row and door1_cell[2] == 1) then
+		if (door1_cell[1] == row and door1_cell[2] == 1) or (door2_cell[1] == row and door2_cell[2] == 1) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -399,7 +399,7 @@ function love.draw()
 		wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * (#tileMatrix[row]) + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
-		if (door1_cell[1] == row and door1_cell[2] == #tileMatrix[1]) then
+		if (door1_cell[1] == row and door1_cell[2] == #tileMatrix[1]) or (door2_cell[1] == row and door2_cell[2] == #tileMatrix[1]) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
@@ -500,7 +500,9 @@ end
 
 
 function love.mousepressed(x, y, button, istouch)
-	print(x.." "..y)
+	-- print coordinates
+	-- print("pressed: "..x.." "..y.." "..xScale.." "..yScale)
+	print("x-y coordinates: "..x.." "..y)
 	x = x / xScale 
 	y = y / yScale
 
@@ -509,7 +511,6 @@ function love.mousepressed(x, y, button, istouch)
 
 	local plantX = x - plantStartX
 	local plantY = y - plantStartY
-	--print("pressed: "..x.." "..y.." "..xScale.." "..yScale)
 
 	tileY = math.ceil( plantY / plantSize )
 	tileX = math.ceil( plantX / plantSize )
@@ -531,14 +532,12 @@ function love.mousepressed(x, y, button, istouch)
 	end
 
 	-- print door coordinates and character coordinates
+	print("character coordinates: "..cell[1].." "..cell[2])
 	print("door 1 coordinates: "..door1_cell[1].." "..door1_cell[2].." "..door1_direction)
 	print("door 2 coordinates: "..door2_cell[1].." "..door2_cell[2].." "..door2_direction)
-	--[[
-	print("door coordinates: "..door_cell[1].." "..door_cell[2])
-	print(door_direction)
->>>>>>> 1b0f784c84b267bf0a1fee9b79ab1f458b48a79b
-	print("character coordinates: "..cell[1].." "..cell[2])
-	]]
+	--print("door coordinates: "..door_cell[1].." "..door_cell[2])
+	--print(door_direction)
+
 
 	if y <= inventoryHeight then
 		local inventoryXPressed = math.floor(x / inventoryWidth)
