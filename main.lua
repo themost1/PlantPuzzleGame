@@ -234,31 +234,38 @@ function love.update(dt)
 	if player.state == 'still' then
 	 	if love.keyboard.isDown("up") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] then
 			player.map_y = player.map_y - 1
-			goToRoom(player.map_y, player.map_x)
+			goToRoom(player.map_y, player.map_x, "up")
 		end
 	 	if love.keyboard.isDown("down") and cell[1] == (door_cell[1]) and cell[2] == door_cell[2] then
 			player.map_y = player.map_y + 1
-			goToRoom(player.map_y, player.map_x)
+			goToRoom(player.map_y, player.map_x, "down")
 		end
 	 	if love.keyboard.isDown("right") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] then
 			player.map_x = player.map_x + 1
-			goToRoom(player.map_y, player.map_x)
+			goToRoom(player.map_y, player.map_x, "right")
 		end
 	 	if love.keyboard.isDown("left") and cell[1] == door_cell[1] and (cell[2]) == door_cell[2] then
 			player.map_x = player.map_x - 1
-			goToRoom(player.map_y, player.map_x)
+			goToRoom(player.map_y, player.map_x, "left")
 		end
 	end
 
 
 end
 
-function goToRoom(row, col)
+function goToRoom(row, col, dir)
 	currentRoom = map[row][col]
 	aTileMatrix = currentRoom.layout
 	tileMatrix = aTileMatrix
 	door_cell[1] = currentRoom.doorY
 	door_cell[2] = currentRoom.doorX
+
+	-- move player to appropriate tile
+	if dir == "up" then
+	elseif dir == "down" then
+	elseif dir == "left" then
+	elseif dir == "right" then
+	end
 end
 
 
