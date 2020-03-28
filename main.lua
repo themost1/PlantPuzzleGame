@@ -283,6 +283,8 @@ function love.update(dt)
 end
 
 function goToRoom(row, col, dir)
+	selected = ""
+
 	currentRoom = map[row][col]
 	aTileMatrix = currentRoom.layout
 	tileMatrix = aTileMatrix
@@ -504,19 +506,18 @@ function love.mousepressed(x, y, button, istouch)
 				plants[selected].seeds = plants[selected].seeds - 1
 			end
 		elseif selected == "water" and player.water > 0 then
+			print(player.water.." is water before spending")
 			tileMatrix[tileY][tileX]:onWater()
 			player.water = player.water - 1
 		end
 	end
 
 	-- print door coordinates and character coordinates
+	--[[
 	print("door coordinates: "..door_cell[1].." "..door_cell[2])
 	print(door_direction)
 	print("character coordinates: "..cell[1].." "..cell[2])
-
-	if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
-		tileMatrix[tileY][tileX]:onClick()
-	end
+	]]
 
 	if y <= inventoryHeight then
 		local inventoryXPressed = math.floor(x / inventoryWidth)
