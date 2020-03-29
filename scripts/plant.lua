@@ -20,7 +20,7 @@ function plant:onLoad()
 	self.seedImage = love.graphics.newImage(self.seedImageDir)
 end
 
-function plant:onClick()
+function plant:onClick(row,col)
 	if(selected == "water") then
 		self:onWater()
 	end
@@ -38,7 +38,7 @@ function plant:getSeedImage()
 	return self.seedImage
 end
 
-function plant:onWater()
+function plant:onWater(row, col)
 	self.watered = true
 end
 
@@ -82,14 +82,33 @@ cactus = plant:new {
 	imageDir = "graphics/cactus.png"
 }
 
+dragonfruit = plant:new {
+	name = "Dragonfruit",
+	id = "dragonfruit",
+	imageDir = "graphics/dragonfruitbomb.png"
+}
+
 function plants:addPlant(toAdd)
 	self[toAdd.id] = toAdd
 end
 
+function dragonfruit:onWater(row, col)
+	self.watered = true
+	for i = -1, 1 do
+		for j = -1, 1 do
+			if row+i >= 1 and row+i <= 9 and col+j >= 1 and col+j <= 16 then
+				d = dirt:new()
+				d:onLoad()
+				tileMatrix[row+i][col+j] = d
+			end
+		end
+	end
+end
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
 plants:addPlant(bamboo)
 plants:addPlant(cactus)
+plants:addPlant(dragonfruit)
 
 return plants
