@@ -45,11 +45,10 @@
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": ["cactus"],
-    "seedCounts": [2],
+    "seeds": ["cactus", "apple"],
     "doorDirection": "S",
     "water": 1,
-    "seedCounts": [3],
+    "seedCounts": [3, 5],
     "doorX": 3,
     "doorY": 9,
     "doorDirection": "S",

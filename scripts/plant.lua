@@ -92,16 +92,6 @@ dragonfruit = plant:new {
 	seedImageDir = "graphics/plants/dragonfruit seed.png",
 }
 
-dandelion = plant:new {
-	name = "Dandelion",
-	id = "dandelion",
-	imageDir = "graphics/dandelion.pixil-pixilart.png"
-}
-
-function plants:addPlant(toAdd)
-	self[toAdd.id] = toAdd
-end
-
 function dragonfruit:onWater(row, col)
 	self.watered = true
 	for i = -1, 1 do
@@ -114,6 +104,12 @@ function dragonfruit:onWater(row, col)
 		end
 	end
 end
+
+dandelion = plant:new {
+	name = "Dandelion",
+	id = "dandelion",
+	imageDir = "graphics/dandelion.pixil-pixilart.png"
+}
 
 function dandelion:onWater(row, col)
 	self.watered = true
@@ -130,6 +126,24 @@ function dandelion:onWater(row, col)
 	end
 end
 
+apple = plant:new {
+	name = "Apple",
+	id = "apple",
+	imageDir = "graphics/plants/apple.png"
+}
+function apple:onEnter()
+	if self.watered and not self.entered then
+		hp_bar:onHeal()
+		self.entered = true
+		self.image = love.graphics.newImage("graphics/plants/apple_core.png")
+	end
+end
+
+
+
+function plants:addPlant(toAdd)
+	self[toAdd.id] = toAdd
+end
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
@@ -137,5 +151,6 @@ plants:addPlant(bamboo)
 plants:addPlant(cactus)
 plants:addPlant(dragonfruit)
 plants:addPlant(dandelion)
+plants:addPlant(apple)
 
 return plants
