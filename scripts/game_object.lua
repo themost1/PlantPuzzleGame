@@ -13,7 +13,7 @@ function hp_bar:onDamage()
 		if self.hp == 0 then
 			-- you are now dead
 			-- TODO: respawn or trigger death animation or w/e
-			print("you are dead")
+			announcementText = "You died :( Press r to restart the room!"
 		end
 	end
 end
