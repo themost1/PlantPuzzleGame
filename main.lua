@@ -344,7 +344,7 @@ function love.update(dt)
 			-- adjust x coordinates
 			next_cell_x = 1
 			player.static_x = plantStartX + (next_cell_x-1)*plantSize
-			player.y = player.static_y+80
+			player.x = player.static_x-80
 			-- reset lives
 			hp_bar.hearts = {1,1,1,1,1}
 			hp_bar.hp = 5
@@ -356,7 +356,7 @@ function love.update(dt)
 			-- adjust x coordinates
 			next_cell_x = 16
 			player.static_x = plantStartX + (next_cell_x-1)*plantSize
-			player.y = player.static_y-80
+			player.x = player.static_x+80
 			-- reset lives
 			hp_bar.hearts = {1,1,1,1,1}
 			hp_bar.hp = 5
