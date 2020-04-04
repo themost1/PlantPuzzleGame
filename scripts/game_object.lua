@@ -24,3 +24,8 @@ function hp_bar:onHeal()
 		self.hp = self.hp + 1
 	end
 end
+
+function hp_bar:fullHeal()
+	self.hp = 5
+	self.hearts = {1,1,1,1,1}
+end

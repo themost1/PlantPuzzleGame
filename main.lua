@@ -99,7 +99,7 @@ function loadMap()
 			local testLayout = rooms[mapLayout[i][j]].layout
 			for i2 = 1, #testLayout do
 				local layoutRow = {}
-				for j2 = 1, #testLayout[i] do
+				for j2 = 1, #testLayout[i2] do
 					local addPlant = plants[testLayout[i2][j2]]:new()
 					addPlant:onLoad()
 					layoutRow[#layoutRow+1] = addPlant
@@ -107,6 +107,7 @@ function loadMap()
 				layout[#layout+1] = layoutRow
 			end
 
+			currentRoom.name = rooms[mapLayout[i][j]].name
 			currentRoom.layout = layout
 			currentRoom.seedCounts = rooms[mapLayout[i][j]].seedCounts
 			currentRoom.seeds = rooms[mapLayout[i][j]].seeds
@@ -128,17 +129,43 @@ function loadMap()
 	goToRoom(1, 1)
 end
 
+function getNewRoomLayout(roomName)
+	local testLayout = rooms[roomName].layout
+	local layout =  {}
+	for i2 = 1, #testLayout do
+		local layoutRow = {}
+		for j2 = 1, #testLayout[i2] do
+			local addPlant = plants[testLayout[i2][j2]]:new()
+			addPlant:onLoad()
+			layoutRow[#layoutRow+1] = addPlant
+		end
+		layout[#layout+1] = layoutRow
+	end
+
+	return layout
+end
+
 function kill_player()
 	announcementText = "You died :( Press r to restart the room!"
 	player.dead = true
 end
 
+function goToTileLoc(row, col)
+	player.x = plantStartX + (col-1)*plantSize
+	player.y = plantStartY + (row-1)*plantSize
+	player.static_x = player.x
+	player.static_y = player.y
+	hp_bar:fullHeal()
+end
+
 function restart_room()
 	player.dead = false
 	goToRoom(player.map_y, player.map_x)
-	player.x = plantStartX + (currentRoom.door1X-1)*plantSize
-	player.y = plantStartY + (currentRoom.door1Y-1)*plantSize
+	goToTileLoc(currentRoom.door1Y, currentRoom.door1X)
 	announcementText = ""
+
+	print(currentRoom.name)
+	currentRoom.layout = getNewRoomLayout(currentRoom.name)
 end
 
 function love.keypressed(key, scancode, isrepeat)
