@@ -108,7 +108,8 @@ end
 dandelion = plant:new {
 	name = "Dandelion",
 	id = "dandelion",
-	imageDir = "graphics/dandelion.pixil-pixilart.png"
+	imageDir = "graphics/dandelion.pixil-pixilart.png",
+	seedImageDir = "graphics/plants/dandelion seed.png"
 }
 
 function dandelion:onWater(row, col)
@@ -129,7 +130,8 @@ end
 apple = plant:new {
 	name = "Apple",
 	id = "apple",
-	imageDir = "graphics/plants/apple.png"
+	imageDir = "graphics/plants/apple.png",
+	seedImageDir = "graphics/plants/apple seed.png"
 }
 function apple:onEnter()
 	if self.watered and not self.entered then
