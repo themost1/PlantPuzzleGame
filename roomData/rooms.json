@@ -14,8 +14,8 @@
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": ["bamboo", "dragonfruit"],
-    "seedCounts": [1, 2],
+    "seeds": ["dragonfruit", "dandelion"],
+    "seedCounts": [3, 4],
     "doorDirection": "N",
     "water": 3,
     "doorX": 3,
