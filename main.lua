@@ -128,6 +128,24 @@ function loadMap()
 	goToRoom(1, 1)
 end
 
+function kill_player()
+	announcementText = "You died :( Press r to restart the room!"
+	player.dead = true
+end
+
+function restart_room()
+	player.dead = false
+	goToRoom(player.map_y, player.map_x)
+	player.x = plantStartX + (currentRoom.door1X-1)*plantSize
+	player.y = plantStartY + (currentRoom.door1Y-1)*plantSize
+	announcementText = ""
+end
+
+function love.keypressed(key, scancode, isrepeat)
+	if key == "r" then
+		restart_room()
+	end
+end
 
 
 function love.update(dt)
