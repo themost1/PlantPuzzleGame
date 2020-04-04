@@ -516,7 +516,7 @@ function love.mousepressed(x, y, button, istouch)
 				plants[selected].seeds = plants[selected].seeds - 1
 			end
 		elseif selected == "water" and player.water > 0 then
-			tileMatrix[tileY][tileX]:onWater()
+			tileMatrix[tileY][tileX]:onWater(tileY, tileX)
 			player.water = player.water - 1
 		end
 	end

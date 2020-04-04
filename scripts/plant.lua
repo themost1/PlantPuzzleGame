@@ -20,12 +20,6 @@ function plant:onLoad()
 	self.seedImage = love.graphics.newImage(self.seedImageDir)
 end
 
-function plant:onClick()
-	if(selected == "water") then
-		self:onWater()
-	end
-end
-
 function plant:getImage()
 	if self.watered then
 		return self.image
@@ -38,7 +32,7 @@ function plant:getSeedImage()
 	return self.seedImage
 end
 
-function plant:onWater()
+function plant:onWater(row, col)
 	self.watered = true
 end
 
@@ -82,14 +76,28 @@ cactus = plant:new {
 	imageDir = "graphics/cactus.png"
 }
 
+dragonfruit = plant:new {
+	name = "Dragonfruit",
+	id = "dragonfruit",
+	imageDir = "graphics/dragonfruit.png"
+}
+function dragonfruit:onWater(row, col)
+end
+
+
+
+
+
 function plants:addPlant(toAdd)
 	self[toAdd.id] = toAdd
 end
+
 
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
 plants:addPlant(bamboo)
 plants:addPlant(cactus)
+plants:addPlant(dragonfruit)
 
 return plants
