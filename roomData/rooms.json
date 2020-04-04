@@ -22,12 +22,12 @@
     "doorY": 1,
     "doorDirection": "N",
 
-    "door1X": 3,
-    "door1Y": 1,
+    "door1X": 16,
+    "door1Y": 4,
     "door1Direction": "N",
-    "door2X": 12,
-    "door2Y": 1,
-    "door2Direction": "N"
+    "door2X": 1,
+    "door2Y": 4,
+    "door2Direction": "W"
   },
 
   {
@@ -49,15 +49,12 @@
     "doorDirection": "S",
     "water": 1,
     "seedCounts": [3, 5],
-    "doorX": 3,
-    "doorY": 9,
-    "doorDirection": "S",
 
     "door1X": 3,
     "door1Y": 9,
     "door1Direction": "S",
-    "door2X": 12,
-    "door2Y": 9,
-    "door2Direction": "S"
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
   }
 ]
