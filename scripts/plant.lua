@@ -20,6 +20,15 @@ function plant:onLoad()
 	self.seedImage = love.graphics.newImage(self.seedImageDir)
 end
 
+<<<<<<< HEAD
+=======
+function plant:onClick(row,col)
+	if(selected == "water") then
+		self:onWater()
+	end
+end
+
+>>>>>>> 169014f2835e80f6c12fd1c299c11dc0a3e977b0
 function plant:getImage()
 	if self.watered then
 		return self.image
@@ -79,19 +88,44 @@ cactus = plant:new {
 dragonfruit = plant:new {
 	name = "Dragonfruit",
 	id = "dragonfruit",
-	imageDir = "graphics/dragonfruit.png"
+	imageDir = "graphics/dragonfruitbomb.png"
 }
-function dragonfruit:onWater(row, col)
-end
 
-
-
-
+dandelion = plant:new {
+	name = "Dandelion",
+	id = "dandelion",
+	imageDir = "graphics/dandelion.pixil-pixilart.png"
+}
 
 function plants:addPlant(toAdd)
 	self[toAdd.id] = toAdd
 end
 
+function dragonfruit:onWater(row, col)
+	self.watered = true
+	for i = -1, 1 do
+		for j = -1, 1 do
+			if row+i >= 1 and row+i <= 9 and col+j >= 1 and col+j <= 16 then
+				d = dirt:new()
+				d:onLoad()
+				tileMatrix[row+i][col+j] = d
+			end
+		end
+	end
+end
+
+function dandelion:onWater(row, col)
+	self.watered = true
+	-- water everything around it
+	for i = -1, 1 do
+		for j = -1, 1 do
+			if row+i >= 1 and row+i <= 9 and col+j >= 1 and col+j <= 16 and (i ~=0 or j ~= 0) then
+				tileMatrix[row+i][col+j]:onWater(row+i, col+j)
+			end
+		end
+	end
+	
+end
 
 
 plants:addPlant(plant)
@@ -99,5 +133,6 @@ plants:addPlant(dirt)
 plants:addPlant(bamboo)
 plants:addPlant(cactus)
 plants:addPlant(dragonfruit)
+plants:addPlant(dandelion)
 
 return plants
