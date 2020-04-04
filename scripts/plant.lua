@@ -117,11 +117,13 @@ function dandelion:onWater(row, col)
 	for i = -1, 1 do
 		for j = -1, 1 do
 			if row+i >= 1 and row+i <= 9 and col+j >= 1 and col+j <= 16 and (i ~=0 or j ~= 0) then
-				tileMatrix[row+i][col+j]:onWater(row+i, col+j)
+				t = tileMatrix[row+i][col+j]
+				if not t.watered then
+					t:onWater(row+i, col+j)
+				end
 			end
 		end
 	end
-	
 end
 
 plants:addPlant(plant)
