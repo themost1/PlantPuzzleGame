@@ -131,7 +131,7 @@ function loadMap()
 		map[#map+1] = mapRow
 	end
 
-	goToRoom(1, 1)
+	goToRoom(1, 1, "")
 end
 
 function getNewRoomLayout(roomName)
@@ -166,7 +166,7 @@ end
 function restart_room()
 	player.dead = false
 	currentRoom.entered = false -- trigger giving necessary seeds/water in this room in gTR
-	goToRoom(player.map_y, player.map_x)
+	goToRoom(player.map_y, player.map_x, "")
 	goToTileLoc(currentRoom.door1Y, currentRoom.door1X)
 	announcementText = ""
 
@@ -502,20 +502,18 @@ function love.draw()
 		wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * (#tileMatrix[row]) + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
-		if (door1_cell[1] == row and door1_cell[2] == #tileMatrix[1]) or (door2_cell[1] == row and door2_cell[2] == #tileMatrix[1]) then
+		if (door1_cell[1] == row and door1_cell[2] == #tileMatrix[1]) or (door2_cell[1] == row and door2_cell[2] == #tileMatrix[row]) then
 			shouldDrawWall = false
 		else
 			shouldDrawWall = true
 		end
 		if shouldDrawWall then
-			love.graphics.draw(leftWall, startX, startY, 0,
+			love.graphics.draw(rightWall, startX, startY, 0,
 					wallXScale, wallYScale, 0)
 		else
 			love.graphics.draw(doorRight, startX, startY, 0,
 				wallXScale, wallYScale, 0)
 		end
-		love.graphics.draw(rightWall, startX, startY, 0,
-				wallXScale, wallYScale, 0)
     end
 	
 	-- draw dirt beneath everything
