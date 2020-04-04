@@ -265,6 +265,10 @@ function love.update(dt)
 			next_cell_y = 9
 			player.static_y = plantStartY + (next_cell_y-1)*plantSize
 			player.y = player.static_y+80
+			hp_bar = hp_bar:new()
+			-- reset lives
+			hp_bar.hearts = {1,1,1,1,1}
+			hp_bar.hp = 5
 		end
 	 	if love.keyboard.isDown("down") and ((cell[1] == (door1_cell[1]) and cell[2] == door1_cell[2] and door1_direction == "S") or (cell[1] == (door2_cell[1]) and cell[2] == door2_cell[2] and door2_direction == "S")) then
 			player.map_y = player.map_y + 1
@@ -274,6 +278,9 @@ function love.update(dt)
 			next_cell_y = 1
 			player.static_y = plantStartY + (next_cell_y-1)*plantSize
 			player.y = player.static_y-80
+			-- reset lives
+			hp_bar.hearts = {1,1,1,1,1}
+			hp_bar.hp = 5
 		end
 	 	if love.keyboard.isDown("right") and ((cell[1] == door1_cell[1] and (cell[2]) == door1_cell[2] and door1_direction == "E") or (cell[1] == door2_cell[1] and (cell[2]) == door2_cell[2] and door2_direction == "E")) then
 			player.map_x = player.map_x + 1
@@ -283,6 +290,9 @@ function love.update(dt)
 			next_cell_x = 1
 			player.static_x = plantStartX + (next_cell_x-1)*plantSize
 			player.y = player.static_y+80
+			-- reset lives
+			hp_bar.hearts = {1,1,1,1,1}
+			hp_bar.hp = 5
 		end
 	 	if love.keyboard.isDown("left") and ((cell[1] == door1_cell[1] and (cell[2]) == door1_cell[2] and door1_direction == "W") or (cell[1] == door2_cell[1] and (cell[2]) == door2_cell[2] and door2_direction == "W")) then
 			player.map_x = player.map_x - 1
@@ -292,6 +302,9 @@ function love.update(dt)
 			next_cell_x = 16
 			player.static_x = plantStartX + (next_cell_x-1)*plantSize
 			player.y = player.static_y-80
+			-- reset lives
+			hp_bar.hearts = {1,1,1,1,1}
+			hp_bar.hp = 5
 		end
 	end
 
