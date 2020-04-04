@@ -19,6 +19,7 @@ function love.load()
 		seeds = {},
 		water = 0,
 		stop_time = 0,          -- how many frames of stop after a new room is entered
+		dead = false
 	}
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
@@ -69,6 +70,8 @@ function love.load()
 
 	love.mouse.setVisible(false)
 	cursorImage = love.graphics.newImage("graphics/mouse.png")
+
+	announcementText = ""
 end
 
 function loadRooms()
@@ -160,25 +163,27 @@ function love.update(dt)
 	right_allowed=0
 
 	-- step 2 - check if the neighbour cells are "passable"
-	if love.keyboard.isDown("up") and cell[1] > 1 then
-		local obj = tileMatrix[cell[1]-1][cell[2]]
-		if obj.passable then
-			up_allowed = 1
-		end
-	elseif love.keyboard.isDown("down") and cell[1] < 9 then
-		local obj = tileMatrix[cell[1]+1][cell[2]]
-		if obj.passable then
-			down_allowed = 1
-		end
-	elseif love.keyboard.isDown("left") and cell[2] > 1 then
-		local obj = tileMatrix[cell[1]][cell[2]-1]
-		if obj.passable then
-			left_allowed = 1
-		end
-	elseif love.keyboard.isDown("right") and cell[2] < 16 then
-		local obj = tileMatrix[cell[1]][cell[2]+1]
-		if obj.passable then
-			right_allowed = 1
+	if player.dead == false then
+		if love.keyboard.isDown("up") and cell[1] > 1 then
+			local obj = tileMatrix[cell[1]-1][cell[2]]
+			if obj.passable then
+				up_allowed = 1
+			end
+		elseif love.keyboard.isDown("down") and cell[1] < 9 then
+			local obj = tileMatrix[cell[1]+1][cell[2]]
+			if obj.passable then
+				down_allowed = 1
+			end
+		elseif love.keyboard.isDown("left") and cell[2] > 1 then
+			local obj = tileMatrix[cell[1]][cell[2]-1]
+			if obj.passable then
+				left_allowed = 1
+			end
+		elseif love.keyboard.isDown("right") and cell[2] < 16 then
+			local obj = tileMatrix[cell[1]][cell[2]+1]
+			if obj.passable then
+				right_allowed = 1
+			end
 		end
 	end
 
@@ -476,6 +481,10 @@ function love.draw()
 			love.graphics.print(""..thisSeedCount, invX + 5, invY + 2, 0, 3, 3)
 		end
 	end
+
+	love.graphics.setColor(0, 0, 0)
+	love.graphics.print(announcementText, 100, 80, 0, 3, 3)
+	love.graphics.setColor(255, 255, 255)
 
 
 

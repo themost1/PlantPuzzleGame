@@ -20,15 +20,13 @@ function plant:onLoad()
 	self.seedImage = love.graphics.newImage(self.seedImageDir)
 end
 
-<<<<<<< HEAD
-=======
+
 function plant:onClick(row,col)
 	if(selected == "water") then
 		self:onWater()
 	end
 end
 
->>>>>>> 169014f2835e80f6c12fd1c299c11dc0a3e977b0
 function plant:getImage()
 	if self.watered then
 		return self.image
