@@ -569,7 +569,7 @@ function love.draw()
 			love.graphics.print(""..waterCount, invX + 5, invY + 2, 0, 3, 3)
 		elseif col <= #player.seeds then
 			local plantToDraw = player.seeds[col]
-			local seedImage = plants[plantToDraw]:getImage()
+			local seedImage = plants[plantToDraw]:getSeedImage()
 			local invOffset = 20
 			local seedscale1 = (inventoryWidth - 2 * invOffset) / seedImage:getWidth()
 			local seedscale2 = (inventoryHeight - 2 * invOffset) / seedImage:getHeight()

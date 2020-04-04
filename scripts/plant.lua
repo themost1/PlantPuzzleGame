@@ -73,20 +73,23 @@ bamboo = plant:new {
 	image = nil,
 	passable = false,
 	id = "bamboo",
-	imageDir = "graphics/bamboo_tile.png"
+	imageDir = "graphics/bamboo_tile.png",
+	seedImageDir = "graphics/plants/bamboo seed.png",
 }
 
 cactus = plant:new {
 	name = "Cactus",
 	id = "cactus",
 	dmg = true,
-	imageDir = "graphics/cactus.png"
+	imageDir = "graphics/cactus.png",
+	seedImageDir = "graphics/plants/cactus seed.png",
 }
 
 dragonfruit = plant:new {
 	name = "Dragonfruit",
 	id = "dragonfruit",
-	imageDir = "graphics/dragonfruitbomb.png"
+	imageDir = "graphics/dragonfruitbomb.png",
+	seedImageDir = "graphics/plants/dragonfruit seed.png",
 }
 
 dandelion = plant:new {
