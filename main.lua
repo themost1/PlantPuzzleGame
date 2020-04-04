@@ -121,6 +121,8 @@ function loadMap()
 
 			currentRoom.water = rooms[mapLayout[i][j]].water
 
+			currentRoom.entered = false
+
 			mapRow[#mapRow + 1] = currentRoom
 		end
 		map[#map+1] = mapRow
@@ -160,11 +162,11 @@ end
 
 function restart_room()
 	player.dead = false
+	currentRoom.entered = false -- trigger giving necessary seeds/water in this room in gTR
 	goToRoom(player.map_y, player.map_x)
 	goToTileLoc(currentRoom.door1Y, currentRoom.door1X)
 	announcementText = ""
 
-	print(currentRoom.name)
 	currentRoom.layout = getNewRoomLayout(currentRoom.name)
 end
 
@@ -367,12 +369,17 @@ function goToRoom(row, col, dir)
 	currentRoom = map[row][col]
 	aTileMatrix = currentRoom.layout
 	tileMatrix = aTileMatrix
-	player.seeds = currentRoom.seeds
-	player.water = currentRoom.water
-	for seed = 1, #player.seeds do
-		local thisSeed = player.seeds[seed]
-		plants[thisSeed]:onLoad()
-		plants[thisSeed].seeds = currentRoom.seedCounts[seed]
+
+	if not currentRoom.entered then
+		player.seeds = currentRoom.seeds
+		player.water = currentRoom.water
+		for seed = 1, #player.seeds do
+			local thisSeed = player.seeds[seed]
+			plants[thisSeed]:onLoad()
+			plants[thisSeed].seeds = currentRoom.seedCounts[seed]
+		end
+
+		currentRoom.entered = true
 	end
 	door1_cell[1] = currentRoom.door1Y
 	door1_cell[2] = currentRoom.door1X
