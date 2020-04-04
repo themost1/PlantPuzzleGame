@@ -41,6 +41,8 @@ function love.load()
 	yScale =love.graphics.getHeight() / 900
 
 	inventorySquare = love.graphics.newImage("graphics/square (1).png")
+	minimapRoomRectangle = love.graphics.newImage("graphics/minimap_room.png")
+	minimapBox = love.graphics.newImage("graphics/minimap_box.jpg")
 
 	inventoryScale = 3
 	inventoryHeight = inventorySquare:getHeight() * inventoryScale
@@ -122,6 +124,7 @@ function loadMap()
 			currentRoom.water = rooms[mapLayout[i][j]].water
 
 			currentRoom.entered = false
+			currentRoom.beaten = false
 
 			mapRow[#mapRow + 1] = currentRoom
 		end
@@ -364,6 +367,9 @@ function love.update(dt)
 end
 
 function goToRoom(row, col, dir)
+	if map[row][col].entered == false then
+		currentRoom.beaten = true
+	end
 	selected = ""
 
 	currentRoom = map[row][col]
@@ -394,6 +400,33 @@ function goToRoom(row, col, dir)
 	elseif dir == "left" then
 	elseif dir == "right" then
 	end
+end
+
+function drawMinimap()
+	love.graphics.scale(1/xScale, 1/yScale)
+	local minimapScale = 0.25
+	local minimapX = love.graphics.getWidth() - minimapBox:getWidth() * minimapScale
+	love.graphics.draw(minimapBox, minimapX, 0, 0, minimapScale, minimapScale)
+
+	local roomRectLen = 12
+	local roomRectHeight = 6
+	local roomRectXScale = roomRectLen / minimapRoomRectangle:getWidth()
+	local roomRectYScale = roomRectHeight / minimapRoomRectangle:getHeight()
+	for i = 1, #map do
+		for j = 1, #map[i] do
+			if map[i][j] ~= nil and map[i][j].entered then
+				if i ~= player.map_y or j ~= player.map_x then
+					love.graphics.setColor(1, 0.5, 0.5)
+				else
+					love.graphics.setColor(0.5, 1, 0.5)
+				end
+				love.graphics.draw(minimapRoomRectangle, minimapX + (j) * roomRectLen + (j-1), (i) * roomRectHeight + (i-1), 0, roomRectXScale, roomRectYScale)
+				love.graphics.setColor(1, 1, 1)
+			end
+		end
+	end
+
+	love.graphics.scale(xScale, yScale)
 end
 
 
@@ -549,7 +582,7 @@ function love.draw()
 
 	love.graphics.setColor(0, 0, 0)
 	love.graphics.print(announcementText, 100, 80, 0, 3, 3)
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(1, 1, 1)
 
 
 
@@ -565,10 +598,11 @@ function love.draw()
 		end
 	end
 
+	drawMinimap()
+
 	love.graphics.scale(1/xScale, 1/yScale)
 	love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), 0, 0)
 end
-
 
 
 
