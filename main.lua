@@ -22,6 +22,12 @@ function love.load()
 		dead = false
 	}
 
+	imageBank = {}
+	startRoomX = 1
+	startRoomY = 1
+	player.map_x = startRoomX
+	player.map_y = startRoomY
+
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
 	-- door location
 	door1_cell = {0,1}
@@ -95,48 +101,51 @@ end
 function loadMap()
 	local read = util.readJSON('maps/map1.json', true)
 	local mapLayout = read[1].layout
-
 	map = {}
 
 	for i = 1, #mapLayout do
 		local mapRow = {}
 		for j = 1, #mapLayout[i] do
 			currentRoom = {}
-			local layout =  {}
-			local testLayout = rooms[mapLayout[i][j]].layout
-			for i2 = 1, #testLayout do
-				local layoutRow = {}
-				for j2 = 1, #testLayout[i2] do
-					local addPlant = plants[testLayout[i2][j2]]:new()
-					addPlant:onLoad()
-					layoutRow[#layoutRow+1] = addPlant
+			local roomId = mapLayout[i][j]
+			if roomId ~= "" then
+				currentRoom.name = rooms[mapLayout[i][j]].name
+
+				local layout =  {}
+				local testLayout = rooms[mapLayout[i][j]].layout
+				for i2 = 1, #testLayout do
+					local layoutRow = {}
+					for j2 = 1, #testLayout[i2] do
+						local addPlant = plants[testLayout[i2][j2]]:new()
+						addPlant:onLoad()
+						layoutRow[#layoutRow+1] = addPlant
+					end
+					layout[#layout+1] = layoutRow
 				end
-				layout[#layout+1] = layoutRow
+
+				currentRoom.layout = layout
+				currentRoom.seedCounts = rooms[mapLayout[i][j]].seedCounts
+				currentRoom.seeds = rooms[mapLayout[i][j]].seeds
+
+				currentRoom.door1X = rooms[mapLayout[i][j]].door1X
+				currentRoom.door1Y = rooms[mapLayout[i][j]].door1Y
+				currentRoom.door1Direction = rooms[mapLayout[i][j]].door1Direction
+				currentRoom.door2X = rooms[mapLayout[i][j]].door2X
+				currentRoom.door2Y = rooms[mapLayout[i][j]].door2Y
+				currentRoom.door2Direction = rooms[mapLayout[i][j]].door2Direction
+
+				currentRoom.water = rooms[mapLayout[i][j]].water
+
+				currentRoom.entered = false
+				currentRoom.beaten = false
 			end
-
-			currentRoom.name = rooms[mapLayout[i][j]].name
-			currentRoom.layout = layout
-			currentRoom.seedCounts = rooms[mapLayout[i][j]].seedCounts
-			currentRoom.seeds = rooms[mapLayout[i][j]].seeds
-
-			currentRoom.door1X = rooms[mapLayout[i][j]].door1X
-			currentRoom.door1Y = rooms[mapLayout[i][j]].door1Y
-			currentRoom.door1Direction = rooms[mapLayout[i][j]].door1Direction
-			currentRoom.door2X = rooms[mapLayout[i][j]].door2X
-			currentRoom.door2Y = rooms[mapLayout[i][j]].door2Y
-			currentRoom.door2Direction = rooms[mapLayout[i][j]].door2Direction
-
-			currentRoom.water = rooms[mapLayout[i][j]].water
-
-			currentRoom.entered = false
-			currentRoom.beaten = false
 
 			mapRow[#mapRow + 1] = currentRoom
 		end
 		map[#map+1] = mapRow
 	end
 
-	goToRoom(1, 1, "")
+	goToRoom(startRoomY, startRoomX, "")
 end
 
 function getNewRoomLayout(roomName)
@@ -659,4 +668,13 @@ function love.mousepressed(x, y, button, istouch)
 		end
 	end
 
+end
+
+function getNewImage(imName)
+	if imageBank[imName] ~= nil then
+		return imageBank[imName]
+	else
+		imageBank[imName] = love.graphics.newImage(imName)
+		return imageBank[imName]
+	end
 end

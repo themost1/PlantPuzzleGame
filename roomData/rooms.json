@@ -1,4 +1,5 @@
 [
+
   {
     "name": "testRoom0101",
     "layout":
@@ -18,9 +19,9 @@
     "water": 1,
     "seedCounts": [3, 5],
 
-    "door1X": 16,
-    "door1Y": 4,
-    "door1Direction": "E",
+    "door1X": 3,
+    "door1Y": 9,
+    "door1Direction": "S",
     "door2X": 16,
     "door2Y": 4,
     "door2Direction": "E"
@@ -108,18 +109,6 @@
   },
 
 
-
-
-
-
-
-
-
-
-
-
-
-
   {
     "name": "testRoom0201",
     "layout":
@@ -128,7 +117,6 @@
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
