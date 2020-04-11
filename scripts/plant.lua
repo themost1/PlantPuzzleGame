@@ -16,8 +16,8 @@ plant = object:new{
 }
 
 function plant:onLoad()
-	self.image = love.graphics.newImage(self.imageDir)
-	self.seedImage = love.graphics.newImage(self.seedImageDir)
+	self.image = getNewImage(self.imageDir)
+	self.seedImage = getNewImage(self.seedImageDir)
 end
 
 
@@ -137,7 +137,7 @@ function apple:onEnter()
 	if self.watered and not self.entered then
 		hp_bar:onHeal()
 		self.entered = true
-		self.image = love.graphics.newImage("graphics/plants/apple_core.png")
+		self.image = getNewImage("graphics/plants/apple_core.png")
 	end
 end
 
