@@ -118,6 +118,35 @@
     "door2X": 16,
     "door2Y": 4,
     "door2Direction": "E"
+    },
+
+    {
+    "name": "cactus_apple_field",
+    "layout":
+    [
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "dirt", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+    ["grass","grass","cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass", "grass", "grass"],
+
+    ],
+
+    "seeds": ["apple", "dandelion", "dragonfruit"],
+    "doorDirection": "S",
+    "water": 2,
+    "seedCounts": [4, 1, 1],
+
+    "door1X": 3,
+    "door1Y": 9,
+    "door1Direction": "S",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
     }
 
 ]
