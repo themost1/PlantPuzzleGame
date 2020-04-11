@@ -1,8 +1,8 @@
 [
   {
     "layout": [
-        ["testRoom2"],
-        ["testRoom"]
+        ["testRoom2","testRoom2"],
+        ["testRoom","testRoom"]
     ]
   }
 ]
