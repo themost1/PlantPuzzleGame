@@ -71,7 +71,12 @@ function love.load()
 	tileMatrix = currentRoom.layout
 
 	love.mouse.setVisible(false)
+
 	cursorImage = love.graphics.newImage("graphics/mouse.png")
+	dirtImage = love.graphics.newImage("graphics/dirt.jpg")
+	greenImage = love.graphics.newImage("graphics/green.png")
+	wateringcanImage = love.graphics.newImage("graphics/wateringcan.png")
+
 
 	announcementText = ""
 end
@@ -481,8 +486,8 @@ function love.draw()
 		end
     end
     for row = 1, #tileMatrix do
-    	wallXScale = plantSize / leftWall:getWidth()
-		wallYScale = plantSize / leftWall:getHeight()
+    	local wallXScale = plantSize / leftWall:getWidth()
+		local wallYScale = plantSize / leftWall:getHeight()
 		local startX = plantSize * -1 + plantStartX
 		local startY = plantSize * (row-1) + plantStartY
 		if (door1_cell[1] == row and door1_cell[2] == 1) or (door2_cell[1] == row and door2_cell[2] == 1) then
@@ -516,12 +521,12 @@ function love.draw()
 		end
     end
 	
+
 	-- draw dirt beneath everything
-	local dirtImage = love.graphics.newImage("graphics/dirt.jpg")
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
-			plantXScale = plantSize / dirtImage:getWidth()
-			plantYScale = plantSize / dirtImage:getHeight()
+			local plantXScale = plantSize / dirtImage:getWidth()
+			local plantYScale = plantSize / dirtImage:getHeight()
 			local startX = plantSize * (col-1) + plantStartX
 			local startY = plantSize * (row-1) + plantStartY
 			love.graphics.draw(dirtImage, startX, startY, 0,
@@ -541,7 +546,6 @@ function love.draw()
 			love.graphics.draw(plantImage, startX, startY, 0,
 					plantXScale, plantYScale, 0)
 			if mouseXScaled > startX and mouseYScaled > startY and mouseXScaled < startX + plantSize and mouseYScaled < startY + plantSize then
-				local greenImage = love.graphics.newImage("graphics/green.png")
 				love.graphics.draw(greenImage, startX, startY, 0,
 					plantSize / greenImage:getWidth(), plantSize / greenImage:getHeight(), 0)
 			end
@@ -557,12 +561,11 @@ function love.draw()
 
 		-- draw watering can in first slot, seeds in all else
 		if col == 0 then
-			wateringcan = love.graphics.newImage("graphics/wateringcan.png")
 			local wateringcanScale = 1.5
-			local wateringcanHeight = wateringcan:getHeight() * wateringcanScale
-			local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
-			love.graphics.draw(wateringcan, 0 , invY, 0, 
-			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
+			local wateringcanHeight = wateringcanImage:getHeight() * wateringcanScale
+			local wateringcanWidth = wateringcanImage:getWidth() * wateringcanScale
+			love.graphics.draw(wateringcanImage, 0 , invY, 0, 
+			wateringcanWidth/wateringcanImage:getWidth(), wateringcanHeight/wateringcanImage:getHeight(), 0)
 			local waterCount = player.water
 			love.graphics.print(""..waterCount, invX + 5, invY + 2, 0, 3, 3)
 		elseif col <= #player.seeds then
