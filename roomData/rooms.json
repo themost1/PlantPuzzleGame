@@ -3,17 +3,17 @@
     "name": "testRoom",
     "layout":
     [
-    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["bamboo","bamboo","bamboo", "grass", "grass", "grass", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["dirt","bamboo","bamboo", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","bamboo","grass", "grass", "grass", "grass", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["dirt","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "grass"],
+    ["grass", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "cactus", "dirt", "cactus", "cactus", "cactus", "cactus", "cactus", "grass"],
+    ["grass", "cactus", "cactus", "cactus", "dirt", "cactus", "dirt", "cactus", "dirt", "dirt", "dirt", "dirt", "dirt", "cactus", "cactus", "grass"],
+    ["grass", "cactus", "cactus", "dirt", "cactus", "cactus", "dirt", "dirt", "cactus", "cactus", "cactus", "cactus", "dirt", "dirt", "dirt", "grass"],
+    ["grass", "grass", "bamboo", "grass", "dirt", "grass", "grass", "bamboo", "grass", "dirt", "grass", "grass", "bamboo", "grass", "grass", "grass"],
+    ["grass", "grass", "bamboo", "grass", "dirt", "grass", "grass", "bamboo", "grass", "dirt", "grass", "grass", "bamboo", "grass", "grass", "grass"],
+    ["grass", "grass", "bamboo", "dirt", "dirt", "dirt", "dirt", "bamboo", "grass", "dirt", "grass", "grass", "bamboo", "grass", "grass", "grass"],
+    ["grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "bamboo", "grass", "dirt", "grass", "grass", "bamboo", "grass", "grass", "grass"],
+    ["grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "bamboo", "dirt", "dirt", "dirt", "dirt", "bamboo", "grass", "grass", "grass"],
     ],
-
+    
     "seeds": ["dragonfruit", "dandelion"],
     "seedCounts": [999, 999],
     "doorDirection": "N",

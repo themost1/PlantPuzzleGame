@@ -37,6 +37,7 @@ for r in room:
     
 print("[")
 for row in final:
+    print('\t',end='')
     print(json.dumps(row), end='')
     print(",")
-print("],")
+print("\t],")
