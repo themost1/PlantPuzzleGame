@@ -1,11 +1,9 @@
 [
   {
     "layout": [
-    	["", "room11", "room12", "", ""],
-        ["room9", "room10", "", "", ""],
-        ["room8", "", "", "room1", ""],
-        ["room7", "room6", "", "room2", ""],
-        ["", "room5", "room4", "room3", ""],
+
+        ["testRoom0101","testRoom0102"],
+        ["testRoom0201","testRoom0202"]
     ]
   }
 ]
