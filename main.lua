@@ -378,6 +378,13 @@ function love.update(dt)
 		end
 	end
 
+	--update plants
+	for i = 1, #currentRoom.layout do
+		for j = 1, #currentRoom.layout[i] do
+			currentRoom.layout[i][j]:update(dt)
+		end
+	end
+
 
 end
 

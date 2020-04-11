@@ -61,6 +61,9 @@ function plant:canPlantOnTile(tile)
 	end
 end
 
+function plant:update(dt)
+end
+
 dirt = plant:new {
 	name = "Dirt",
 	id = "dirt",
