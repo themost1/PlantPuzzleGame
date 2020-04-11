@@ -80,6 +80,7 @@ function love.load()
 
 	cursorImage = love.graphics.newImage("graphics/mouse.png")
 	dirtImage = love.graphics.newImage("graphics/dirt.jpg")
+	grassImage = love.graphics.newImage("graphics/grass.png")
 	greenImage = love.graphics.newImage("graphics/green.png")
 	wateringcanImage = love.graphics.newImage("graphics/wateringcan.png")
 
@@ -534,11 +535,11 @@ function love.draw()
 	-- draw dirt beneath everything
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
-			local plantXScale = plantSize / dirtImage:getWidth()
-			local plantYScale = plantSize / dirtImage:getHeight()
+			local plantXScale = plantSize / grassImage:getWidth()
+			local plantYScale = plantSize / grassImage:getHeight()
 			local startX = plantSize * (col-1) + plantStartX
 			local startY = plantSize * (row-1) + plantStartY
-			love.graphics.draw(dirtImage, startX, startY, 0,
+			love.graphics.draw(grassImage, startX, startY, 0,
 					plantXScale, plantYScale, 0)
 		end
 	end
