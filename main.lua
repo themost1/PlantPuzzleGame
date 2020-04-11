@@ -23,6 +23,8 @@ function love.load()
 	}
 
 	imageBank = {}
+	startRoomX = 4
+	startRoomY = 3
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
 	-- door location
@@ -79,9 +81,6 @@ function love.load()
 	greenImage = love.graphics.newImage("graphics/green.png")
 	wateringcanImage = love.graphics.newImage("graphics/wateringcan.png")
 
-	startRoomX = 4
-	startRoomY = 3
-
 
 	announcementText = ""
 end
@@ -107,7 +106,6 @@ function loadMap()
 		for j = 1, #mapLayout[i] do
 			currentRoom = {}
 			local roomId = mapLayout[i][j]
-			print(roomId.." is id")
 			if roomId ~= "" then
 				currentRoom.name = rooms[mapLayout[i][j]].name
 
