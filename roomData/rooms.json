@@ -6,7 +6,7 @@
     [
     ["grass","grass","grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "bamboo", "grass", "grass", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","dirt", "dirt", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "dandelion", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -15,9 +15,9 @@
     ["grass","grass","grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": [],
-    "seedCounts": [],
-    "water": 0,
+    "seeds": ["dragonfruit"],
+    "seedCounts": [2],
+    "water": 1,
 
     "door1X": 16,
     "door1Y": 4,

@@ -93,19 +93,41 @@ dragonfruit = plant:new {
 	id = "dragonfruit",
 	imageDir = "graphics/dragonfruitbomb.png",
 	seedImageDir = "graphics/plants/dragonfruit seed.png",
+	explosionCounter = 0,
+	explosionTimer = 0
 }
 
 function dragonfruit:onWater(row, col)
 	self.watered = true
-	for i = -1, 1 do
-		for j = -1, 1 do
-			if row+i >= 1 and row+i <= 9 and col+j >= 1 and col+j <= 16 and (i ==0 or j ==0) then
-				d = dirt:new()
-				d:onLoad()
-				tileMatrix[row+i][col+j] = d
+end
+
+function dragonfruit:update(dt, row, col)
+	if not self.watered then return end
+	self.explosionTimer = self.explosionTimer + dt
+	if self.explosionTimer > 0.05 then
+		self.explosionTimer = self.explosionTimer - 0.05
+		self.explosionCounter = self.explosionCounter + 1
+		if self.explosionCounter >= 10 then
+			for i = -1, 1 do
+				for j = -1, 1 do
+					if row+i >= 1 and row+i <= 9 and col+j >= 1 and col+j <= 16 and (i ==0 or j ==0) then
+						local d = dirt:new()
+						d:onLoad()
+						tileMatrix[row+i][col+j] = d
+					end
+				end
 			end
+			return
 		end
 	end
+
+	if self.explosionCounter > 0 then
+		self.imageDir = "graphics/plants/dragonfruit/"
+		self.imageDir = self.imageDir .. self.explosionCounter-1
+		self.imageDir = self.imageDir .. ".png"
+		self.image = getNewImage(self.imageDir)
+	end
+
 end
 
 dandelion = plant:new {
