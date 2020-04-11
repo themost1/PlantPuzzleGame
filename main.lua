@@ -19,7 +19,8 @@ function love.load()
 		seeds = {},
 		water = 0,
 		stop_time = 0,          -- how many frames of stop after a new room is entered
-		dead = false
+		dead = false,
+		editor = false
 	}
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
@@ -177,6 +178,9 @@ function love.keypressed(key, scancode, isrepeat)
 	if key == "r" then
 		restart_room()
 	end
+	if key == "e" then
+		editor = not editor
+	end
 end
 
 
@@ -246,7 +250,7 @@ function love.update(dt)
 	else
 		if player.x ~= player.static_x or player.y ~= player.static_y then
 			player.state = 'moving'
-		end 
+		end
 	end
 	-- step 4 - update player position (smooth movement)
 	-- default: 100 x dt (seconds between frames)
@@ -517,7 +521,7 @@ function love.draw()
 		love.graphics.draw(rightWall, startX, startY, 0,
 				wallXScale, wallYScale, 0)
     end
-	
+
 	-- draw dirt beneath everything
 	local dirtImage = love.graphics.newImage("graphics/dirt.jpg")
 	for row = 1, #tileMatrix do
@@ -535,6 +539,7 @@ function love.draw()
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
 			plantObject = tileMatrix[row][col]
+			print(plantObject)
 			plantImage = plantObject:getImage()
 			plantXScale = plantSize / plantImage:getWidth()
 			plantYScale = plantSize / plantImage:getHeight()
@@ -542,6 +547,7 @@ function love.draw()
 			local startY = plantSize * (row-1) + plantStartY
 			love.graphics.draw(plantImage, startX, startY, 0,
 					plantXScale, plantYScale, 0)
+			--highlight tile mouse is currently hovering over
 			if mouseXScaled > startX and mouseYScaled > startY and mouseXScaled < startX + plantSize and mouseYScaled < startY + plantSize then
 				local greenImage = love.graphics.newImage("graphics/green.png")
 				love.graphics.draw(greenImage, startX, startY, 0,
@@ -563,7 +569,7 @@ function love.draw()
 			local wateringcanScale = 1.5
 			local wateringcanHeight = wateringcan:getHeight() * wateringcanScale
 			local wateringcanWidth = wateringcan:getWidth() * wateringcanScale
-			love.graphics.draw(wateringcan, 0 , invY, 0, 
+			love.graphics.draw(wateringcan, 0 , invY, 0,
 			wateringcanWidth/wateringcan:getWidth(), wateringcanHeight/wateringcan:getHeight(), 0)
 			local waterCount = player.water
 			love.graphics.print(""..waterCount, invX + 5, invY + 2, 0, 3, 3)
@@ -577,6 +583,27 @@ function love.draw()
 				seedscale1, seedscale2, 0)
 			local thisSeedCount = plants[plantToDraw].seeds
 			love.graphics.print(""..thisSeedCount, invX + 5, invY + 2, 0, 3, 3)
+		end
+	end
+	--draw editor inventory
+	if editor == true then
+		invX = 1520
+		allItems = {"bamboo", "cactus", "dragonfruit", "grass", "dirt"}
+		for row = 0, 4 do
+			local invY = (inventoryHeight * row) + 300
+			love.graphics.draw(inventorySquare, invX, invY, 0,
+			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
+			if row == 4 or row == 0 then
+				path = "graphics/" .. allItems[row+1] .. ".jpg"
+			else
+				path = "graphics/" .. allItems[row+1] .. ".png"
+			end
+			currentImage = love.graphics.newImage(path)
+				local invOffset = 20
+				local seedscale1 = (inventoryWidth - 2 * invOffset) / currentImage:getWidth()
+				local seedscale2 = (inventoryHeight - 2 * invOffset) / currentImage:getHeight()
+				love.graphics.draw(currentImage, invX + invOffset, invY + invOffset, 0,
+					seedscale1, seedscale2, 0)
 		end
 	end
 
@@ -611,7 +638,7 @@ function love.mousepressed(x, y, button, istouch)
 	-- print coordinates
 	-- print("pressed: "..x.." "..y.." "..xScale.." "..yScale)
 	print("x-y coordinates: "..x.." "..y)
-	x = x / xScale 
+	x = x / xScale
 	y = y / yScale
 
 	local tileY = 0
@@ -638,7 +665,27 @@ function love.mousepressed(x, y, button, istouch)
 			player.water = player.water - 1
 		end
 	end
-
+	--mouse press functionality for the editor
+	if editor == true then
+		if x >= 1520 then
+			inventoryYPressed = math.floor((y- 300) / inventoryHeight)
+			print(inventoryYPressed)
+			if inventoryYPressed == 4 or inventoryYPressed == 0 then
+				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".jpg"
+			else
+				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".png"
+			end
+			selected = allItems[inventoryYPressed+1]
+			cursorImage = love.graphics.newImage(path)
+		end
+		if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
+				local selectedPlant = plants[selected]
+				local overTile = tileMatrix[tileY][tileX]
+				tileMatrix[tileY][tileX] = plants[selected]:new()
+				tileMatrix[tileY][tileX]:onLoad()
+				tileMatrix[tileY][tileX]:onPlant()
+			end
+		end
 	-- print door coordinates and character coordinates
 	print("character coordinates: "..cell[1].." "..cell[2])
 	print("door 1 coordinates: "..door1_cell[1].." "..door1_cell[2].." "..door1_direction)
