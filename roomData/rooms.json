@@ -47,12 +47,12 @@
     "water": 1,
     "seedCounts": [3, 5],
 
-    "door1X": 3,
-    "door1Y": 9,
-    "door1Direction": "S",
+    "door1X": -1,
+    "door1Y": -1,
+    "door1Direction": "N",
     "door2X": 16,
-    "door2Y": 4,
-    "door2Direction": "E"
+    "door2Y": 14,
+    "door2Direction": "S"
     },
     {
     "name": "room2",
@@ -74,9 +74,9 @@
     "water": 1,
     "seedCounts": [3, 5],
 
-    "door1X": 3,
-    "door1Y": 9,
-    "door1Direction": "S",
+    "door1X": 14,
+    "door1Y": 1,
+    "door1Direction": "N",
     "door2X": 16,
     "door2Y": 4,
     "door2Direction": "E"

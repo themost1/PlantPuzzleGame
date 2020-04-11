@@ -25,6 +25,8 @@ function love.load()
 	imageBank = {}
 	startRoomX = 4
 	startRoomY = 3
+	player.map_x = startRoomX
+	player.map_y = startRoomY
 
 	-- ROOM/DOOR DYNAMIC (just for testing purpose)
 	-- door location
