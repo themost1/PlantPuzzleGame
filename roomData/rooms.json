@@ -205,9 +205,9 @@
     ["grass","grass","cactus", "cactus", "grass", "grass", "cactus", "grass", "grass", "grass", "grass", "cactus", "cactus", "grass", "grass", "grass"],
     ["grass","grass","cactus", "cactus", "grass", "grass", "cactus", "grass", "grass", "bamboo", "grass", "cactus", "cactus", "grass", "grass", "bamboo"],
     ["grass","grass","bamboo", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "grass", "grass", "cactus", "cactus", "bamboo", "cactus"],
-    ["grass","bamboo","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "bamboo", "cactus"],
+    ["grass","bamboo","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "bamboo", "dandelion"],
     ["grass","bamboo","grass", "grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "cactus", "grass", "grass", "bamboo"],
-    ["grass","bamboo","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "grass", "cactus", "cactus", "grass", "grass", "grass"],
+    ["dandelion","bamboo","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "grass", "cactus", "cactus", "grass", "grass", "grass"],
     ["bamboo","grass","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "bamboo", "cactus", "cactus", "cactus", "grass", "grass"],
     ],
 
@@ -314,13 +314,13 @@
     "layout":
     [
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "bamboo", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","dirt",  "dirt",  "dirt",  "dirt",  "grass", "grass", "grass", "bamboo", "bamboo", "grass", "bamboo", "grass", "bamboo", "grass"],
+    ["grass","grass","dirt",  "dirt",  "dirt",  "dirt",  "grass", "grass", "grass", "bamboo", "bamboo", "grass", "bamboo", "dandelion", "bamboo", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "bamboo", "grass", "grass", "bamboo", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "dirt", "dirt", "grass", "bamboo", "grass", "grass", "grass"],
     ["grass","grass","dirt",  "dirt",  "dirt",  "dirt",  "grass", "grass", "bamboo", "dirt", "dirt", "bamboo", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "dirt", "dirt", "grass", "bamboo", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "bamboo", "bamboo", "grass", "grass", "bamboo", "grass", "grass"],
-    ["grass","grass","dirt",  "dirt",  "dirt",  "dirt",  "grass", "grass", "grass", "bamboo", "bamboo", "grass", "bamboo", "grass", "bamboo", "grass"],
+    ["grass","grass","dirt",  "dirt",  "dirt",  "dirt",  "grass", "grass", "grass", "bamboo", "bamboo", "grass", "bamboo", "dandelion", "bamboo", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "bamboo", "grass", "grass", "grass", "grass", "grass"],
     ],
 
