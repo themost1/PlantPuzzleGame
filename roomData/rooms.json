@@ -19,12 +19,12 @@
     "seedCounts": [],
     "water": 0,
 
-    "door1X": 16,
-    "door1Y": 4,
-    "door1Direction": "E",
-    "door2X": 16,
-    "door2Y": 4,
-    "door2Direction": "E"
+    "door1X": 2,
+    "door1Y": 9,
+    "door1Direction": "S",
+    "door2X": 2,
+    "door2Y": 9,
+    "door2Direction": "S"
   },
 
   {
