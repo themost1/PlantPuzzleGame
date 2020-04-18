@@ -194,6 +194,14 @@ end
 function love.keypressed(key, scancode, isrepeat)
 	if key == "r" then
 		restart_room()
+	elseif key == "1" then
+		selected = "water"
+	elseif key == "2" and #player.seeds >= 1 then
+		selected = player.seeds[1]
+	elseif key == "3" and #player.seeds >= 2 then
+		selected = player.seeds[2]
+	elseif key == "4" and #player.seeds >= 3 then
+		selected = player.seeds[3]
 	end
 end
 
