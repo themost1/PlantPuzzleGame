@@ -679,6 +679,8 @@ function love.mousepressed(x, y, button, istouch)
 end
 
 function love.mousemoved(x, y, dx, dy, istouch)
+	x = x / xScale 
+	y = y / yScale
 	-- set announcement text to description of hovered-over plant
 	local potentialAT = ""
 	if y <= inventoryHeight then
