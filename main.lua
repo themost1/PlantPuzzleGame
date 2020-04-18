@@ -42,11 +42,14 @@ function love.load()
 	plantScale = 2.5
 
 	selected = ""
+	hovered = ""
 
 	xScale = love.graphics.getWidth() / 1600
 	yScale =love.graphics.getHeight() / 900
 
-	inventorySquare = love.graphics.newImage("graphics/square (1).png")
+	inventorySquare = love.graphics.newImage("graphics/ui/inventorySquare.png")
+	inventorySquareSelected = love.graphics.newImage("graphics/ui/inventorySquareSelected.png")
+	inventorySquareHovered = love.graphics.newImage("graphics/ui/inventorySquareHovered.png")
 	minimapRoomRectangle = love.graphics.newImage("graphics/minimap_room.png")
 	minimapBox = love.graphics.newImage("graphics/minimap_box.jpg")
 
@@ -573,7 +576,22 @@ function love.draw()
 	invY = 0
 	for col = 0, 9 do
 		local invX = (inventoryWidth * col)
-		love.graphics.draw(inventorySquare, invX, invY, 0,
+		local invSquareToDraw = inventorySquare
+		if col == 0 then
+			if selected == "water" then
+				invSquareToDraw = inventorySquareSelected
+			elseif hovered == "water" then
+				invSquareToDraw = inventorySquareHovered
+			end
+		elseif col <= #player.seeds then
+			local pName = player.seeds[col]
+			if selected == pName then
+				invSquareToDraw = inventorySquareSelected
+			elseif hovered == pName then
+				invSquareToDraw = inventorySquareHovered
+			end
+		end
+		love.graphics.draw(invSquareToDraw, invX, invY, 0,
 		inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
 
 		-- draw watering can in first slot, seeds in all else
@@ -686,11 +704,14 @@ function love.mousemoved(x, y, dx, dy, istouch)
 	if y <= inventoryHeight then
 		local inventoryXPressed = math.floor(x / inventoryWidth)
 		if (inventoryXPressed == 0) then
+			hovered = "water"
 			potentialAT = "Water: Water a plant"
 		elseif inventoryXPressed <= #player.seeds then
-			local hovered = player.seeds[inventoryXPressed]
+			hovered = player.seeds[inventoryXPressed]
 			potentialAT = plants[hovered].name..": "..plants[hovered].description
 		end
+	else
+		hovered = ""
 	end
 
 	if (not player.dead) then
