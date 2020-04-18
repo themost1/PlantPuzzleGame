@@ -189,6 +189,7 @@ function restart_room()
 	announcementText = ""
 
 	currentRoom.layout = getNewRoomLayout(currentRoom.name)
+	tileMatrix = currentRoom.layout
 end
 
 function love.keypressed(key, scancode, isrepeat)
