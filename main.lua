@@ -203,6 +203,12 @@ function love.keypressed(key, scancode, isrepeat)
 	elseif key == "4" and #player.seeds >= 3 then
 		selected = player.seeds[3]
 	end
+
+	if (selected == "water") then
+		cursorImage = love.graphics.newImage("graphics/watering-can-pixilart.png")
+	elseif selected ~= "" then
+		cursorImage = love.graphics.newImage(plants[selected].imageDir)
+	end
 end
 
 
@@ -426,13 +432,7 @@ function goToRoom(row, col, dir)
 	door2_cell[1] = currentRoom.door2Y
 	door2_cell[2] = currentRoom.door2X
 	door2_direction = currentRoom.door2Direction
-
-	-- move player to appropriate tile
-	if dir == "up" then
-	elseif dir == "down" then
-	elseif dir == "left" then
-	elseif dir == "right" then
-	end
+	cursorImage = love.graphics.newImage("graphics/mouse.png")
 end
 
 function drawMinimap()
