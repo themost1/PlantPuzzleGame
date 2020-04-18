@@ -2,7 +2,6 @@ love.graphics.setDefaultFilter("nearest")
 game_objects = require ('scripts.game_object')
 plants = require ('scripts.plant')
 util = require('scripts.util')
-
 function love.load()
 	player = {
 		x = 160,          		-- initial position (must be =)
@@ -181,8 +180,21 @@ function love.keypressed(key, scancode, isrepeat)
 	if key == "e" then
 		editor = not editor
 	end
+	if key == "s" and editor == true then
+		save()
+	end
 end
-
+function save()
+	file = io.open("newMap.txt","w")
+	for row = 1, #tileMatrix do
+		s = ""
+		for col = 1, #tileMatrix[row] do
+			s = s .. '"' .. tileMatrix[row][col].name .. '"'
+		end
+		file:write(s)
+	end
+	file:close()
+end
 
 function love.update(dt)
 
@@ -534,13 +546,16 @@ function love.draw()
 					plantXScale, plantYScale, 0)
 		end
 	end
-
+	images = {}
 	--draw plants
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
 			plantObject = tileMatrix[row][col]
-			print(plantObject)
-			plantImage = plantObject:getImage()
+			if(editor == true) then
+				plantImage = plantObject:getEImage()
+			else
+				plantImage = plantObject:getImage()
+			end
 			plantXScale = plantSize / plantImage:getWidth()
 			plantYScale = plantSize / plantImage:getHeight()
 			local startX = plantSize * (col-1) + plantStartX
@@ -670,8 +685,10 @@ function love.mousepressed(x, y, button, istouch)
 		if x >= 1520 then
 			inventoryYPressed = math.floor((y- 300) / inventoryHeight)
 			print(inventoryYPressed)
-			if inventoryYPressed == 4 or inventoryYPressed == 0 then
+			if inventoryYPressed == 4 then
 				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".jpg"
+			elseif inventoryYPressed == 0 then
+				path = "graphics/" .. allItems[inventoryYPressed+1] .. "_tile.png"
 			else
 				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".png"
 			end
@@ -681,9 +698,15 @@ function love.mousepressed(x, y, button, istouch)
 		if tileY >= 1 and tileY <= 9 and tileX >= 1 and tileX <= 16 then
 				local selectedPlant = plants[selected]
 				local overTile = tileMatrix[tileY][tileX]
+				print(tileMatrix[tileY][tileX])
 				tileMatrix[tileY][tileX] = plants[selected]:new()
 				tileMatrix[tileY][tileX]:onLoad()
-				tileMatrix[tileY][tileX]:onPlant()
+				plantXScale = plantSize / cursorImage:getWidth()
+				plantYScale = plantSize / cursorImage:getHeight()
+				local startX = plantSize * (tileX-1) + plantStartX
+				local startY = plantSize * (tileY-1) + plantStartY
+				love.graphics.draw(cursorImage, startX, startY, 0,
+						plantXScale, plantYScale, 0)
 			end
 		end
 	-- print door coordinates and character coordinates

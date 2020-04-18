@@ -26,7 +26,9 @@ function plant:onClick(row,col)
 		self:onWater()
 	end
 end
-
+function plant:getEImage()
+	return self.image
+end
 function plant:getImage()
 	if self.watered then
 		return self.image
