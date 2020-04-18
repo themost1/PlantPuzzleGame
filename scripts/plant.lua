@@ -12,7 +12,8 @@ plant = object:new{
 	seedImage = nil,
 	seedImageDir = "graphics/seeds.png",
 	imageDir = "graphics/grass.png",
-	watered = true
+	watered = true,
+	description = "Plant this and see"
 }
 
 function plant:onLoad()
@@ -78,6 +79,7 @@ bamboo = plant:new {
 	id = "bamboo",
 	imageDir = "graphics/bamboo_tile.png",
 	seedImageDir = "graphics/plants/bamboo seed.png",
+	description = "Block movement"
 }
 
 cactus = plant:new {
@@ -86,6 +88,7 @@ cactus = plant:new {
 	dmg = true,
 	imageDir = "graphics/cactus.png",
 	seedImageDir = "graphics/plants/cactus seed.png",
+	description = "Take damage on entry"
 }
 
 dragonfruit = plant:new {
@@ -94,7 +97,8 @@ dragonfruit = plant:new {
 	imageDir = "graphics/dragonfruitbomb.png",
 	seedImageDir = "graphics/plants/dragonfruit seed.png",
 	explosionCounter = 0,
-	explosionTimer = 0
+	explosionTimer = 0,
+	description = "Explode!"
 }
 
 function dragonfruit:onWater(row, col)
@@ -134,7 +138,8 @@ dandelion = plant:new {
 	name = "Dandelion",
 	id = "dandelion",
 	imageDir = "graphics/dandelion.pixil-pixilart.png",
-	seedImageDir = "graphics/plants/dandelion seed.png"
+	seedImageDir = "graphics/plants/dandelion seed.png",
+	description = "Water adjacent plants too!"
 }
 
 function dandelion:onWater(row, col)
@@ -156,7 +161,8 @@ apple = plant:new {
 	name = "Apple",
 	id = "apple",
 	imageDir = "graphics/plants/apple.png",
-	seedImageDir = "graphics/plants/apple seed.png"
+	seedImageDir = "graphics/plants/apple seed.png",
+	description = "Gain health"
 }
 function apple:onEnter()
 	if self.watered and not self.entered then
