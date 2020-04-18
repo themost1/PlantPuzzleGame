@@ -12,7 +12,8 @@ plant = object:new{
 	seedImage = nil,
 	seedImageDir = "graphics/seeds.png",
 	imageDir = "graphics/grass.png",
-	watered = true
+	watered = true,
+	description = ""
 }
 
 function plant:onLoad()

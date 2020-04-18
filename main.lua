@@ -678,6 +678,24 @@ function love.mousepressed(x, y, button, istouch)
 
 end
 
+function love.mousemoved(x, y, dx, dy, istouch)
+	-- set announcement text to description of hovered-over plant
+	local potentialAT = ""
+	if y <= inventoryHeight then
+		local inventoryXPressed = math.floor(x / inventoryWidth)
+		if (inventoryXPressed == 0) then
+			potentialAT = "Water: Water a plant"
+		elseif inventoryXPressed <= #player.seeds then
+			local hovered = player.seeds[inventoryXPressed]
+			potentialAT = plants[hovered].name..": "..plants[hovered].description
+		end
+	end
+
+	if (not player.dead) then
+		announcementText = potentialAT
+	end
+end
+
 function getNewImage(imName)
 	if imageBank[imName] ~= nil then
 		return imageBank[imName]
