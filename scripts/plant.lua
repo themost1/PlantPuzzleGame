@@ -61,6 +61,9 @@ function plant:canPlantOnTile(tile)
 		return false
 	end
 end
+function plant:isPassable()
+	return true
+end
 
 function plant:update(dt)
 end
@@ -81,6 +84,13 @@ bamboo = plant:new {
 	seedImageDir = "graphics/plants/bamboo seed.png",
 	description = "Block movement"
 }
+function bamboo:isPassable()
+	if self.watered == false then
+		return true
+	else
+		return false
+	end
+end
 
 cactus = plant:new {
 	name = "Cactus",
@@ -102,6 +112,7 @@ dragonfruit = plant:new {
 }
 
 function dragonfruit:onWater(row, col)
+	print("watering dfruit")
 	self.watered = true
 end
 
@@ -139,19 +150,22 @@ dandelion = plant:new {
 	id = "dandelion",
 	imageDir = "graphics/dandelion.pixil-pixilart.png",
 	seedImageDir = "graphics/plants/dandelion seed.png",
-	description = "Water adjacent plants too!"
+	description = "Water diagonal plants too!"
 }
 
 function dandelion:onWater(row, col)
 	self.watered = true
+	print("aaa")
 	-- water everything around it
 	for i = -1, 1 do
 		for j = -1, 1 do
 			if row+i >= 1 and row+i <= 9 and col+j >= 1 and col+j <= 16 and (i ~= 0 and j ~= 0) then
 				t = tileMatrix[row+i][col+j]
+				print(t.name.." "..row+i.." "..col+j)
 				if not t.watered then
 					t:onWater(row+i, col+j)
 				end
+				tileMatrix[row+i][col+j] = t
 			end
 		end
 	end

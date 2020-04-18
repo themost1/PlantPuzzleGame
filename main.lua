@@ -234,22 +234,22 @@ function love.update(dt)
 	if player.dead == false then
 		if love.keyboard.isDown("up") and cell[1] > 1 then
 			local obj = tileMatrix[cell[1]-1][cell[2]]
-			if obj.passable then
+			if obj:isPassable() then
 				up_allowed = 1
 			end
 		elseif love.keyboard.isDown("down") and cell[1] < 9 then
 			local obj = tileMatrix[cell[1]+1][cell[2]]
-			if obj.passable then
+			if obj:isPassable() then
 				down_allowed = 1
 			end
 		elseif love.keyboard.isDown("left") and cell[2] > 1 then
 			local obj = tileMatrix[cell[1]][cell[2]-1]
-			if obj.passable then
+			if obj:isPassable() then
 				left_allowed = 1
 			end
 		elseif love.keyboard.isDown("right") and cell[2] < 16 then
 			local obj = tileMatrix[cell[1]][cell[2]+1]
-			if obj.passable then
+			if obj:isPassable() then
 				right_allowed = 1
 			end
 		end
