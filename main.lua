@@ -24,7 +24,7 @@ function love.load()
 	}
 
 	imageBank = {}
-	startRoomX = 1
+	startRoomX = 3
 	startRoomY = 2
 	player.map_x = startRoomX
 	player.map_y = startRoomY
@@ -307,11 +307,13 @@ function love.update(dt)
 	-- default: 100 x dt (seconds between frames)
 	frame_speed = player.speed*dt*100
 	-- move left
+	local currLoc = getCurrentTile()
 	if player.x>player.static_x then
 		if player.x-player.static_x>=frame_speed then
 			player.x = player.x - frame_speed
 		else
 			player.x = player.static_x
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 	-- move right
@@ -320,6 +322,7 @@ function love.update(dt)
 			player.x = player.x + frame_speed
 		else
 			player.x = player.static_x
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 	-- move up
@@ -328,6 +331,7 @@ function love.update(dt)
 			player.y = player.y - frame_speed
 		else
 			player.y = player.static_y
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 	-- move down
@@ -336,6 +340,7 @@ function love.update(dt)
 			player.y = player.y + frame_speed
 		else
 			player.y = player.static_y
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 
@@ -808,4 +813,10 @@ function getNewImage(imName)
 		imageBank[imName] = love.graphics.newImage(imName)
 		return imageBank[imName]
 	end
+end
+
+function getCurrentTile()
+	local currX = math.floor((player.x - plantStartX)/plantSize + 1 + 0.5)
+	local currY = math.floor((player.y - plantStartY)/plantSize + 1 + 0.5)
+	return {x = currX, y = currY}
 end

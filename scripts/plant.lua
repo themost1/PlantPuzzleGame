@@ -53,6 +53,9 @@ function plant:onEnter()
 	end
 end
 
+function plant:onReach()
+end
+
 function plant:onPlant()
 	self.watered = false
 end
@@ -206,6 +209,15 @@ function plants:addPlant(toAdd)
 	self[toAdd.id] = toAdd
 end
 
+currentUp = plant:new {
+	name = "Up-Current",
+	id = "currentUp",
+	imageDir = "graphics/plants/waterCurrent.png"
+}
+function currentUp:onReach()
+	player.static_y = player.static_y - plantSize
+end
+
 plants:addPlant(plant)
 plants:addPlant(dirt)
 plants:addPlant(bamboo)
@@ -214,5 +226,6 @@ plants:addPlant(dragonfruit)
 plants:addPlant(dandelion)
 plants:addPlant(apple)
 plants:addPlant(portalPlant)
+plants:addPlant(currentUp)
 
 return plants
