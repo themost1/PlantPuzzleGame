@@ -175,7 +175,7 @@
     "layout":
     [
     ["grass","grass","grass", "bamboo", "grass", "grass", "grass", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "bamboo", "grass", "grass", "dandelion", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","portalPlant", "grass", "bamboo", "grass", "grass", "dandelion", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "bamboo", "grass", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -545,6 +545,33 @@
     "door1Direction": "N",
     "door2X": 1,
     "door2Y": 4,
+    "door2Direction": "W"
+  },
+
+   {
+    "name": "map2Start",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","currentUp", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","currentUp", "grass", "currentDown", "grass", "currentDown", "currentLeft", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "currentRight", "currentUp", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","oxyplant", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "seedCounts": [],
+    "water": 0,
+
+    "door1X": 1,
+    "door1Y": 2,
+    "door1Direction": "W",
+    "door2X": 1,
+    "door2Y": 2,
     "door2Direction": "W"
   }
 

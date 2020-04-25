@@ -19,12 +19,13 @@ function love.load()
 		water = 0,
 		stop_time = 0,          -- how many frames of stop after a new room is entered
 		dead = false,
-		editor = false
+		editor = false,
+		mapNum = 1
 	}
 
 	imageBank = {}
-	startRoomX = 2 -- 2
-	startRoomY = 1 -- 3
+	startRoomX = 2 -- default 3
+	startRoomY = 1 -- default 2
 	player.map_x = startRoomX
 	player.map_y = startRoomY
 
@@ -60,6 +61,7 @@ function love.load()
 	hp_bar = hp_bar:new()
 	full_heart = love.graphics.newImage("graphics/heart_full.png")
 	empty_heart = love.graphics.newImage("graphics/heart_empty.png")
+	half_heart = love.graphics.newImage("graphics/heart_half_full.png")
 
 	cornerWall1 = love.graphics.newImage("graphics/walls/corner1.png")
 	cornerWall2 = love.graphics.newImage("graphics/walls/corner2.png")
@@ -76,7 +78,7 @@ function love.load()
 
 	prev_cells = {{}, {}}
 	loadRooms()
-	loadMap()
+	loadMap('maps/map1.json')
 	tileMatrix = currentRoom.layout
 
 	love.mouse.setVisible(false)
@@ -100,10 +102,15 @@ function loadRooms()
 	end
 end
 
+function goToNextMap()
+	player.mapNum = player.mapNum + 1
+	if player.mapNum == 2 then
+		loadMap('maps/map2.json')
+	end
+end
 
-
-function loadMap()
-	local read = util.readJSON('maps/map1.json', true)
+function loadMap(whichMap)
+	local read = util.readJSON(whichMap, true)
 	local mapLayout = read[1].layout
 	map = {}
 
@@ -246,7 +253,7 @@ function love.update(dt)
 	-- check if we changed cells
 	if cell[1] ~= prev_cells[2][1] or cell[2] ~= prev_cells[2][2] then
 		-- trigger onEnter()
-		tileMatrix[cell[1]][cell[2]]:onEnter()
+		--tileMatrix[cell[1]][cell[2]]:onEnter()
 		-- update curr and prev cell
 		prev_cells[1][1] = prev_cells[2][1]
 		prev_cells[1][2] = prev_cells[2][2]
@@ -301,11 +308,13 @@ function love.update(dt)
 	-- default: 100 x dt (seconds between frames)
 	frame_speed = player.speed*dt*100
 	-- move left
+	local currLoc = getCurrentTile()
 	if player.x>player.static_x then
 		if player.x-player.static_x>=frame_speed then
 			player.x = player.x - frame_speed
 		else
 			player.x = player.static_x
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 	-- move right
@@ -314,6 +323,7 @@ function love.update(dt)
 			player.x = player.x + frame_speed
 		else
 			player.x = player.static_x
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 	-- move up
@@ -322,6 +332,7 @@ function love.update(dt)
 			player.y = player.y - frame_speed
 		else
 			player.y = player.static_y
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 	-- move down
@@ -330,31 +341,58 @@ function love.update(dt)
 			player.y = player.y + frame_speed
 		else
 			player.y = player.static_y
+			tileMatrix[currLoc.y][currLoc.x]:onReach()
 		end
 	end
 
 	-- step 5 - read the keyboard for new movement
 	if player.state == 'still' then
 
+		local movedThisTurn = false
 		-- We restrict the player to stay within the bounds of the playable board
 		-- PRESS A KEY TO MOVE TO THE NEXT LOCATION
 		if love.keyboard.isDown("up") and up_allowed==1 then
 			if ((player.static_y - plantSize) >= (plantStartY)) then
 				player.static_y = player.static_y - plantSize
+				movedThisTurn = true
 			end
 
 		elseif love.keyboard.isDown("down") and down_allowed==1 then
 			if (player.static_y + plantSize) < (plantStartY + plantSize * 9) then
 				player.static_y = player.static_y + plantSize
+				movedThisTurn = true
 			end
 
 		elseif love.keyboard.isDown("left") and left_allowed==1 then
 			if (player.static_x - plantSize) >= (plantStartX) then
 				player.static_x = player.static_x - plantSize
+				movedThisTurn = true
 			end
 		elseif love.keyboard.isDown("right") and right_allowed==1 then
 			if (player.static_x + plantSize) < (plantStartX + plantSize * 16) then
 				player.static_x = player.static_x + plantSize
+				movedThisTurn = true
+			end
+	    end
+
+	    if movedThisTurn then
+	    	if player.mapNum == 2 then
+	    		hp_bar:onWaterWalk()
+	    	end
+
+	    	cell = {1+(player.static_y-plantStartY)/plantSize,
+				1+(player.static_x-plantStartX)/plantSize}
+
+			if prev_cells[2] == {} then
+				prev_cells[2][1] = cell[1]
+				prev_cells[2][2] = cell[2]
+			end
+
+			-- check if we changed cells
+			if cell[1] ~= prev_cells[2][1] or cell[2] ~= prev_cells[2][2] then
+				-- trigger onEnter()
+				tileMatrix[cell[1]][cell[2]]:onEnter()
+
 			end
 	    end
 	end
@@ -592,8 +630,8 @@ function love.draw()
 			plantYScale = plantSize / plantImage:getHeight()
 			local startX = plantSize * (col-1) + plantStartX
 			local startY = plantSize * (row-1) + plantStartY
-			love.graphics.draw(plantImage, startX, startY, 0,
-					plantXScale, plantYScale, 0)
+			love.graphics.draw(plantImage, startX + plantSize/2, startY + plantSize/2, plantObject.rotation,
+					plantXScale, plantYScale, plantImage:getWidth()/2, plantImage:getHeight()/2)
 			--highlight tile mouse is currently hovering over
 			if mouseXScaled > startX and mouseYScaled > startY and mouseXScaled < startX + plantSize and mouseYScaled < startY + plantSize then
 				love.graphics.draw(greenImage, startX, startY, 0,
@@ -649,22 +687,24 @@ function love.draw()
 	--draw editor inventory
 	if editor == true then
 		invX = 1520
-		allItems = {"bamboo", "cactus", "dragonfruit", "grass", "dirt"}
+		allItems = {"bamboo", "cactus", "dragonfruit", "apple", "grass", "dirt"}
 		for row = 0, 4 do
 			local invY = (inventoryHeight * row) + 300
 			love.graphics.draw(inventorySquare, invX, invY, 0,
 			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
-			if row == 4 or row == 0 then
+			--[[if row == 4 or row == 0 then
 				path = "graphics/" .. allItems[row+1] .. ".jpg"
 			else
 				path = "graphics/" .. allItems[row+1] .. ".png"
-			end
-			currentImage = love.graphics.newImage(path)
-				local invOffset = 20
-				local seedscale1 = (inventoryWidth - 2 * invOffset) / currentImage:getWidth()
-				local seedscale2 = (inventoryHeight - 2 * invOffset) / currentImage:getHeight()
-				love.graphics.draw(currentImage, invX + invOffset, invY + invOffset, 0,
-					seedscale1, seedscale2, 0)
+			end]]
+			plants[allItems[row+1]]:onLoad()
+			currentImage = plants[allItems[row+1]]:getImage()
+			--currentImage = love.graphics.newImage(path)
+			local invOffset = 20
+			local seedscale1 = (inventoryWidth - 2 * invOffset) / currentImage:getWidth()
+			local seedscale2 = (inventoryHeight - 2 * invOffset) / currentImage:getHeight()
+			love.graphics.draw(currentImage, invX + invOffset, invY + invOffset, 0,
+				seedscale1, seedscale2, 0)
 		end
 	end
 
@@ -681,6 +721,8 @@ function love.draw()
 		local x = hp_bar.hearts[h]
 		if x == 0 then
 			love.graphics.draw(empty_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
+		elseif x == 0.5 then
+			love.graphics.draw(half_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
 		else
 			love.graphics.draw(full_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
 		end
@@ -731,13 +773,7 @@ function love.mousepressed(x, y, button, istouch)
 		if x >= 1520 then
 			inventoryYPressed = math.floor((y- 300) / inventoryHeight)
 			print(inventoryYPressed)
-			if inventoryYPressed == 4 then
-				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".jpg"
-			elseif inventoryYPressed == 0 then
-				path = "graphics/" .. allItems[inventoryYPressed+1] .. "_tile.png"
-			else
-				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".png"
-			end
+			path = plants[allItems[inventoryYPressed+1]]:getImageDir()
 			selected = allItems[inventoryYPressed+1]
 			cursorImage = love.graphics.newImage(path)
 		end
@@ -806,4 +842,10 @@ function getNewImage(imName)
 		imageBank[imName] = love.graphics.newImage(imName)
 		return imageBank[imName]
 	end
+end
+
+function getCurrentTile()
+	local currX = math.floor((player.x - plantStartX)/plantSize + 1 + 0.5)
+	local currY = math.floor((player.y - plantStartY)/plantSize + 1 + 0.5)
+	return {x = currX, y = currY}
 end

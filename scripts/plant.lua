@@ -13,7 +13,8 @@ plant = object:new{
 	seedImageDir = "graphics/seeds.png",
 	imageDir = "graphics/grass.png",
 	watered = true,
-	description = "Plant this and see"
+	description = "Plant this and see",
+	rotation = 0
 }
 
 function plant:onLoad()
@@ -50,6 +51,9 @@ function plant:onEnter()
 	if self.dmg then
 		hp_bar:onDamage()
 	end
+end
+
+function plant:onReach()
 end
 
 function plant:onPlant()
@@ -188,10 +192,62 @@ function apple:onEnter()
 	end
 end
 
-
+portalPlant = plant:new {
+	name = "Portal Plant",
+	id = "portalPlant",
+	imageDir = "graphics/plants/portalPlant.png",
+	seedImageDir = "graphics/plants/dandelion seed.png",
+}
+function portalPlant:onEnter()
+	goToNextMap()
+end
+function portalPlant:update(dt)
+	self.rotation = self.rotation + 100
+end
 
 function plants:addPlant(toAdd)
 	self[toAdd.id] = toAdd
+end
+
+currentUp = plant:new {
+	name = "Up-Current",
+	id = "currentUp",
+	imageDir = "graphics/plants/waterCurrent.png",
+	rotation = 0
+}
+function currentUp:onReach()
+	if self.rotation == 0 then
+		player.static_y = player.static_y - plantSize
+	elseif self.rotation < 3.14/2 + 0.1 then
+		player.static_x = player.static_x + plantSize
+	elseif self.rotation < 3.14 + 0.1 then
+		player.static_y = player.static_y + plantSize
+	else
+		player.static_x = player.static_x - plantSize
+	end
+end
+
+currentDown = currentUp:new {
+	id = "currentDown",
+	rotation = 3.14
+}
+currentLeft = currentUp:new {
+	id = "currentLeft",
+	rotation = 3.14 * 3/2
+}
+currentRight = currentUp:new {
+	id = "currentRight",
+	rotation = 3.14 * 1/2
+}
+
+oxyplant = plant:new {
+	name = "Oxyplant",
+	id = "oxyplant",
+	imageDir = "graphics/plants/oxyplant.png"
+}
+function oxyplant:onEnter()
+	hp_bar:fullHeal()
+	player.dead = false
 end
 
 plants:addPlant(plant)
@@ -201,5 +257,12 @@ plants:addPlant(cactus)
 plants:addPlant(dragonfruit)
 plants:addPlant(dandelion)
 plants:addPlant(apple)
+plants:addPlant(portalPlant)
+plants:addPlant(currentUp)
+plants:addPlant(currentDown)
+plants:addPlant(currentLeft)
+plants:addPlant(currentRight)
+plants:addPlant(currentRight)
+plants:addPlant(oxyplant)
 
 return plants
