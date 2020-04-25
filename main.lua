@@ -61,6 +61,7 @@ function love.load()
 	hp_bar = hp_bar:new()
 	full_heart = love.graphics.newImage("graphics/heart_full.png")
 	empty_heart = love.graphics.newImage("graphics/heart_empty.png")
+	half_heart = love.graphics.newImage("graphics/heart_half_full.png")
 
 	cornerWall1 = love.graphics.newImage("graphics/walls/corner1.png")
 	cornerWall2 = love.graphics.newImage("graphics/walls/corner2.png")
@@ -347,26 +348,37 @@ function love.update(dt)
 	-- step 5 - read the keyboard for new movement
 	if player.state == 'still' then
 
+		local movedThisTurn = false
 		-- We restrict the player to stay within the bounds of the playable board
 		-- PRESS A KEY TO MOVE TO THE NEXT LOCATION
 		if love.keyboard.isDown("up") and up_allowed==1 then
 			if ((player.static_y - plantSize) >= (plantStartY)) then
 				player.static_y = player.static_y - plantSize
+				movedThisTurn = true
 			end
 
 		elseif love.keyboard.isDown("down") and down_allowed==1 then
 			if (player.static_y + plantSize) < (plantStartY + plantSize * 9) then
 				player.static_y = player.static_y + plantSize
+				movedThisTurn = true
 			end
 
 		elseif love.keyboard.isDown("left") and left_allowed==1 then
 			if (player.static_x - plantSize) >= (plantStartX) then
 				player.static_x = player.static_x - plantSize
+				movedThisTurn = true
 			end
 		elseif love.keyboard.isDown("right") and right_allowed==1 then
 			if (player.static_x + plantSize) < (plantStartX + plantSize * 16) then
 				player.static_x = player.static_x + plantSize
+				movedThisTurn = true
 			end
+	    end
+
+	    if movedThisTurn then
+	    	if player.mapNum == 2 then
+	    		hp_bar:onWaterWalk()
+	    	end
 	    end
 	end
 
@@ -694,6 +706,8 @@ function love.draw()
 		local x = hp_bar.hearts[h]
 		if x == 0 then
 			love.graphics.draw(empty_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
+		elseif x == 0.5 then
+			love.graphics.draw(half_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
 		else
 			love.graphics.draw(full_heart, 800+plantSize*h, 40, 0, 5, 5, 0, 32)
 		end

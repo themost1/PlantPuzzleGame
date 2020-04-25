@@ -6,10 +6,22 @@ hp_bar = object:new {
 }
 
 function hp_bar:onDamage()
-	print("damage")
 	if self.hp > 0 then
 		self.hearts[self.hp] = 0
 		self.hp = self.hp - 1
+		if self.hp == 0 then
+			-- you are now dead
+			-- TODO: respawn or trigger death animation or w/e
+			kill_player()
+		end
+	end
+end
+
+function hp_bar:onWaterWalk()
+	if self.hp > 0 then
+		local whichHeart = math.ceil(self.hp)
+		self.hearts[whichHeart] = self.hearts[whichHeart] - 0.5
+		self.hp = self.hp - 0.5
 		if self.hp == 0 then
 			-- you are now dead
 			-- TODO: respawn or trigger death animation or w/e
