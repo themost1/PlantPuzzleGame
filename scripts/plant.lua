@@ -240,6 +240,16 @@ currentRight = currentUp:new {
 	rotation = 3.14 * 1/2
 }
 
+oxyplant = plant:new {
+	name = "Oxyplant",
+	id = "oxyplant",
+	imageDir = "graphics/plants/oxyplant.png"
+}
+function oxyplant:onEnter()
+	hp_bar:fullHeal()
+	player.dead = false
+end
+
 plants:addPlant(plant)
 plants:addPlant(dirt)
 plants:addPlant(bamboo)
@@ -252,5 +262,7 @@ plants:addPlant(currentUp)
 plants:addPlant(currentDown)
 plants:addPlant(currentLeft)
 plants:addPlant(currentRight)
+plants:addPlant(currentRight)
+plants:addPlant(oxyplant)
 
 return plants

@@ -253,7 +253,7 @@ function love.update(dt)
 	-- check if we changed cells
 	if cell[1] ~= prev_cells[2][1] or cell[2] ~= prev_cells[2][2] then
 		-- trigger onEnter()
-		tileMatrix[cell[1]][cell[2]]:onEnter()
+		--tileMatrix[cell[1]][cell[2]]:onEnter()
 		-- update curr and prev cell
 		prev_cells[1][1] = prev_cells[2][1]
 		prev_cells[1][2] = prev_cells[2][2]
@@ -379,6 +379,21 @@ function love.update(dt)
 	    	if player.mapNum == 2 then
 	    		hp_bar:onWaterWalk()
 	    	end
+
+	    	cell = {1+(player.static_y-plantStartY)/plantSize,
+				1+(player.static_x-plantStartX)/plantSize}
+
+			if prev_cells[2] == {} then
+				prev_cells[2][1] = cell[1]
+				prev_cells[2][2] = cell[2]
+			end
+
+			-- check if we changed cells
+			if cell[1] ~= prev_cells[2][1] or cell[2] ~= prev_cells[2][2] then
+				-- trigger onEnter()
+				tileMatrix[cell[1]][cell[2]]:onEnter()
+
+			end
 	    end
 	end
 
