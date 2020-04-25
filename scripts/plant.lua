@@ -216,6 +216,23 @@ currentUp = plant:new {
 	rotation = 0
 }
 function currentUp:onReach()
+	local ct = getCurrentTile()
+	if self.rotation == 0 then
+		ct.y = ct.y - 1
+	elseif self.rotation < 3.14/2 + 0.1 then
+		ct.x = ct.x + 1
+	elseif self.rotation < 3.14 + 0.1 then
+		ct.y = ct.y + 1
+	else
+		ct.x = ct.x - 1
+	end
+
+	if not (ct.y >= 1 and ct.y <= #tileMatrix and ct.x >= 1 and ct.x <= #tileMatrix[ct.y]) then
+		return
+	elseif tileMatrix[ct.y][ct.x]:isPassable() == false then
+		return
+	end
+
 	if self.rotation == 0 then
 		player.static_y = player.static_y - plantSize
 	elseif self.rotation < 3.14/2 + 0.1 then
@@ -243,11 +260,23 @@ currentRight = currentUp:new {
 oxyplant = plant:new {
 	name = "Oxyplant",
 	id = "oxyplant",
-	imageDir = "graphics/plants/oxyplant.png"
+	imageDir = "graphics/plants/oxyplant.png",
+	description = "Refills full health"
 }
 function oxyplant:onEnter()
 	hp_bar:fullHeal()
 	player.dead = false
+end
+
+coral = plant:new {
+	name = "Coral",
+	id = "coral",
+	description = "Blocks movement (and currents)",
+	passable = false,
+	imageDir = "graphics/plants/coral.png"
+}
+function coral:isPassable()
+	return false
 end
 
 plants:addPlant(plant)
@@ -264,5 +293,6 @@ plants:addPlant(currentLeft)
 plants:addPlant(currentRight)
 plants:addPlant(currentRight)
 plants:addPlant(oxyplant)
+plants:addPlant(coral)
 
 return plants
