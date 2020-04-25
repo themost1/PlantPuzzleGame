@@ -212,11 +212,33 @@ end
 currentUp = plant:new {
 	name = "Up-Current",
 	id = "currentUp",
-	imageDir = "graphics/plants/waterCurrent.png"
+	imageDir = "graphics/plants/waterCurrent.png",
+	rotation = 0
 }
 function currentUp:onReach()
-	player.static_y = player.static_y - plantSize
+	if self.rotation == 0 then
+		player.static_y = player.static_y - plantSize
+	elseif self.rotation < 3.14/2 + 0.1 then
+		player.static_x = player.static_x + plantSize
+	elseif self.rotation < 3.14 + 0.1 then
+		player.static_y = player.static_y + plantSize
+	else
+		player.static_x = player.static_x - plantSize
+	end
 end
+
+currentDown = currentUp:new {
+	id = "currentDown",
+	rotation = 3.14
+}
+currentLeft = currentUp:new {
+	id = "currentLeft",
+	rotation = 3.14 * 3/2
+}
+currentRight = currentUp:new {
+	id = "currentRight",
+	rotation = 3.14 * 1/2
+}
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
@@ -227,5 +249,8 @@ plants:addPlant(dandelion)
 plants:addPlant(apple)
 plants:addPlant(portalPlant)
 plants:addPlant(currentUp)
+plants:addPlant(currentDown)
+plants:addPlant(currentLeft)
+plants:addPlant(currentRight)
 
 return plants
