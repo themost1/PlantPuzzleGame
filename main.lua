@@ -24,7 +24,7 @@ function love.load()
 	}
 
 	imageBank = {}
-	startRoomX = 3
+	startRoomX = 1
 	startRoomY = 2
 	player.map_x = startRoomX
 	player.map_y = startRoomY
