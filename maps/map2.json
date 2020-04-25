@@ -3,7 +3,7 @@
     "layout": [
 
         ["testRoom0101","testRoom0102","testRoom0103","testRoom0104"],
-        ["testRoom0201","testRoom0202","testRoom0204","testRoom0204"],
+        ["testRoom0201","testRoom0202","testRoom0101","testRoom0204"],
         ["testRoom0301","testRoom0302","testRoom0303","testRoom0304"],
         ["testRoom0401","testRoom0402","testRoom0403","testRoom0404"]
     ]

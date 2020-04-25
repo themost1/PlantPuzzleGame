@@ -13,7 +13,8 @@ plant = object:new{
 	seedImageDir = "graphics/seeds.png",
 	imageDir = "graphics/grass.png",
 	watered = true,
-	description = "Plant this and see"
+	description = "Plant this and see",
+	rotation = 0
 }
 
 function plant:onLoad()
@@ -191,11 +192,14 @@ end
 portalPlant = plant:new {
 	name = "Portal Plant",
 	id = "portalPlant",
-	imageDir = "graphics/dandelion.pixil-pixilart.png",
+	imageDir = "graphics/plants/portalPlant.png",
 	seedImageDir = "graphics/plants/dandelion seed.png",
 }
 function portalPlant:onEnter()
 	goToNextMap()
+end
+function portalPlant:update(dt)
+	self.rotation = self.rotation + 100
 end
 
 function plants:addPlant(toAdd)

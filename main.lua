@@ -598,8 +598,8 @@ function love.draw()
 			plantYScale = plantSize / plantImage:getHeight()
 			local startX = plantSize * (col-1) + plantStartX
 			local startY = plantSize * (row-1) + plantStartY
-			love.graphics.draw(plantImage, startX, startY, 0,
-					plantXScale, plantYScale, 0)
+			love.graphics.draw(plantImage, startX + plantSize/2, startY + plantSize/2, plantObject.rotation,
+					plantXScale, plantYScale, plantImage:getWidth()/2, plantImage:getHeight()/2)
 			--highlight tile mouse is currently hovering over
 			if mouseXScaled > startX and mouseYScaled > startY and mouseXScaled < startX + plantSize and mouseYScaled < startY + plantSize then
 				love.graphics.draw(greenImage, startX, startY, 0,
