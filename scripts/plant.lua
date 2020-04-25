@@ -188,7 +188,15 @@ function apple:onEnter()
 	end
 end
 
-
+portalPlant = plant:new {
+	name = "Portal Plant",
+	id = "portalPlant",
+	imageDir = "graphics/dandelion.pixil-pixilart.png",
+	seedImageDir = "graphics/plants/dandelion seed.png",
+}
+function portalPlant:onEnter()
+	goToNextMap()
+end
 
 function plants:addPlant(toAdd)
 	self[toAdd.id] = toAdd
@@ -201,5 +209,6 @@ plants:addPlant(cactus)
 plants:addPlant(dragonfruit)
 plants:addPlant(dandelion)
 plants:addPlant(apple)
+plants:addPlant(portalPlant)
 
 return plants

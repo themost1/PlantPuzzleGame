@@ -19,7 +19,8 @@ function love.load()
 		water = 0,
 		stop_time = 0,          -- how many frames of stop after a new room is entered
 		dead = false,
-		editor = false
+		editor = false,
+		mapNum = 1
 	}
 
 	imageBank = {}
@@ -76,7 +77,7 @@ function love.load()
 
 	prev_cells = {{}, {}}
 	loadRooms()
-	loadMap()
+	loadMap('maps/map1.json')
 	tileMatrix = currentRoom.layout
 
 	love.mouse.setVisible(false)
@@ -100,10 +101,15 @@ function loadRooms()
 	end
 end
 
+function goToNextMap()
+	player.mapNum = player.mapNum + 1
+	if player.mapNum == 2 then
+		loadMap('maps/map2.json')
+	end
+end
 
-
-function loadMap()
-	local read = util.readJSON('maps/map1.json', true)
+function loadMap(whichMap)
+	local read = util.readJSON(whichMap, true)
 	local mapLayout = read[1].layout
 	map = {}
 
@@ -649,22 +655,24 @@ function love.draw()
 	--draw editor inventory
 	if editor == true then
 		invX = 1520
-		allItems = {"bamboo", "cactus", "dragonfruit", "grass", "dirt"}
+		allItems = {"bamboo", "cactus", "dragonfruit", "apple", "grass", "dirt"}
 		for row = 0, 4 do
 			local invY = (inventoryHeight * row) + 300
 			love.graphics.draw(inventorySquare, invX, invY, 0,
 			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
-			if row == 4 or row == 0 then
+			--[[if row == 4 or row == 0 then
 				path = "graphics/" .. allItems[row+1] .. ".jpg"
 			else
 				path = "graphics/" .. allItems[row+1] .. ".png"
-			end
-			currentImage = love.graphics.newImage(path)
-				local invOffset = 20
-				local seedscale1 = (inventoryWidth - 2 * invOffset) / currentImage:getWidth()
-				local seedscale2 = (inventoryHeight - 2 * invOffset) / currentImage:getHeight()
-				love.graphics.draw(currentImage, invX + invOffset, invY + invOffset, 0,
-					seedscale1, seedscale2, 0)
+			end]]
+			plants[allItems[row+1]]:onLoad()
+			currentImage = plants[allItems[row+1]]:getImage()
+			--currentImage = love.graphics.newImage(path)
+			local invOffset = 20
+			local seedscale1 = (inventoryWidth - 2 * invOffset) / currentImage:getWidth()
+			local seedscale2 = (inventoryHeight - 2 * invOffset) / currentImage:getHeight()
+			love.graphics.draw(currentImage, invX + invOffset, invY + invOffset, 0,
+				seedscale1, seedscale2, 0)
 		end
 	end
 
@@ -731,13 +739,7 @@ function love.mousepressed(x, y, button, istouch)
 		if x >= 1520 then
 			inventoryYPressed = math.floor((y- 300) / inventoryHeight)
 			print(inventoryYPressed)
-			if inventoryYPressed == 4 then
-				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".jpg"
-			elseif inventoryYPressed == 0 then
-				path = "graphics/" .. allItems[inventoryYPressed+1] .. "_tile.png"
-			else
-				path = "graphics/" .. allItems[inventoryYPressed+1] .. ".png"
-			end
+			path = plants[allItems[inventoryYPressed+1]]:getImageDir()
 			selected = allItems[inventoryYPressed+1]
 			cursorImage = love.graphics.newImage(path)
 		end
