@@ -62,7 +62,7 @@
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "portalPlant", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -76,8 +76,8 @@
     "door1X": 1,
     "door1Y": 7,
     "door1Direction": "W",
-    "door2X": 16,
-    "door2Y": 2,
+    "door2X": 1,
+    "door2Y": 7,
     "door2Direction": "E"
   },
 
