@@ -2,9 +2,9 @@
   {
     "layout": [
 
-        ["testRoom0101","testRoom0102","testRoom0103","testRoom0104"],
-        ["testRoom0201","testRoom0202","map2Start","testRoom0204"],
-        ["testRoom0301","testRoom0302","testRoom0303","testRoom0304"],
+        ["testRoom0101","testRoom0102","testRoom0103","map2_Room5"],
+        ["testRoom0201","testRoom0202","map2Start","map2_Room4"],
+        ["testRoom0301","testRoom0302","map2_Room2","map2_Room3"],
         ["testRoom0401","testRoom0402","testRoom0403","testRoom0404"]
     ]
   }
