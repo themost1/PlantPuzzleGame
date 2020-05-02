@@ -458,6 +458,464 @@
 
 
 
+  {
+    "name": "World2_Room0101",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+  {
+    "name": "World2_Room0102",
+    "layout":
+    [
+    ["currentDown","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "coral"],
+    ["dirt","dirt","grass", "grass", "grass", "coral", "grass", "grass",    "grass", "grass", "grass", "coral", "grass", "grass", "coral", "grass"],
+    ["grass","dirt","dirt", "grass", "grass", "grass", "coral", "grass",    "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","dirt", "dirt", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "coral", "grass"],
+    ["grass","grass","grass", "dirt", "dirt", "grass", "oxyplant", "grass",    "coral", "grass", "grass", "grass", "grass", "coral", "grass", "coral"],
+    ["grass","grass","grass", "grass", "dirt", "dirt", "grass", "grass",    "grass", "coral", "grass", "grass", "coral", "grass", "oxyplant", "grass"],
+    ["coral","coral","coral", "coral", "coral", "coral", "coral", "coral",    "grass", "coral", "coral", "coral", "grass", "grass", "grass", "coral"],
+    ["grass","currentDown","grass", "grass", "grass", "grass", "grass", "dirt",    "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass"],
+    ["coral","currentUp","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
+    ],
+
+    "seeds": ["coral","currentUp","currentDown","currentRight","currentLeft"],
+    "seedCounts": [99,99,99,99,99],
+    "water": 99,
+
+    "door1X": 2,
+    "door1Y": 9,
+    "door1Direction": "S",
+    "door2X": 16,
+    "door2Y": 2,
+    "door2Direction": "E"
+  },
+    {
+    "name": "World2_Room0103",
+    "layout":
+    [
+    ["grass", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown", "currentLeft", "currentLeft", "currentLeft", "currentDown", "currentRight", "currentDown"],
+    ["grass", "currentRight", "currentDown", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown", "currentRight", "oxyplant", "currentRight", "currentDown", "currentUp", "oxyplant", "currentDown", "currentLeft"],
+    ["grass", "currentUp", "currentRight", "currentUp", "currentRight", "currentRight", "currentDown", "currentRight", "currentUp", "currentDown", "currentDown", "currentLeft", "currentUp", "currentLeft", "currentLeft", "currentUp"],
+    ["grass", "currentRight", "currentRight", "currentRight", "currentUp", "currentDown", "currentDown", "currentDown", "currentLeft", "currentLeft", "currentRight", "currentRight", "currentUp", "currentRight", "currentRight", "currentDown"],
+    ["grass", "currentDown", "currentUp", "currentRight", "currentRight", "currentDown", "currentDown", "currentDown", "currentRight", "currentDown", "currentDown", "oxyplant", "currentRight", "oxyplant", "currentRight", "oxyplant"],
+    ["grass", "currentRight", "currentUp", "currentUp", "currentDown", "currentRight", "currentRight", "currentRight", "currentRight", "oxyplant", "currentLeft", "currentUp", "currentLeft", "currentLeft", "currentUp", "currentLeft"],
+    ["grass", "currentRight", "currentRight", "currentUp", "currentRight", "currentUp", "currentRight", "currentUp", "currentLeft", "currentRight", "currentRight", "currentRight", "currentDown", "currentUp", "currentLeft", "currentLeft"],
+    ["grass", "currentUp", "currentLeft", "currentRight", "currentUp", "currentRight", "currentDown", "currentUp", "currentLeft", "currentDown", "currentUp", "currentUp", "currentRight", "oxyplant", "currentRight", "currentUp"],
+    ["grass", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp", "currentLeft", "currentLeft", "currentLeft", "currentUp", "currentDown"],
+    ],
+
+    "seeds": [],
+    "seedCounts": [],
+    "water": 0,
+
+    "door1X": 1,
+    "door1Y": 2,
+    "door1Direction": "W",
+    "door2X": 16,
+    "door2Y": 5,
+    "door2Direction": "E"
+  },
+    {
+    "name": "World2_Room0104",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+
+
+
+
+
+  {
+    "name": "World2_Room0201",
+    "layout":
+    [
+    ["grass","grass","grass", "coral", "grass", "grass", "grass", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "coral", "grass", "grass", "oxyplant", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "coral", "grass", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "coral", "grass", "grass", "grass", "coral", "grass", "grass", "fishLeft", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "fishLeft", "grass", "coral", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "oxyplant", "grass", "grass", "grass", "grass", "coral", "grass", "grass", "grass", "grass", "oxyplant", "grass", "grass"],
+    ["grass","grass","oxyplant", "grass", "oxyplant", "grass", "grass", "coral", "grass", "grass", "grass", "grass", "oxyplant", "grass", "oxyplant", "grass"],
+    ["grass","fishUp","grass", "oxyplant", "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass", "grass", "oxyplant", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 9,
+    "door1Y": 9,
+    "door1Direction": "S",
+    "door2X": 9,
+    "door2Y": 9,
+    "door2Direction": "S"
+  },
+  {
+    "name": "World2_Room0202",
+    "layout":
+    [
+    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
+    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "oxyplant", "grass"],
+    ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["coral","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight"],
+    ["coral","grass","oxyplant", "grass", "coral", "coral", "coral", "coral",    "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
+    ["currentDown","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentDown",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentUp"],
+    ["currentRight","currentUp","grass", "grass", "grass", "grass", "currentUp", "currentLeft",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": ["coral"],
+    "seedCounts": [3],
+    "water": 0,
+
+    "door1X": 15,
+    "door1Y": 9,
+    "door1Direction": "S",
+    "door2X": 2,
+    "door2Y": 1,
+    "door2Direction": "N"
+  },
+    {
+    "name": "World2_Room0203",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+    {
+    "name": "World2_Room0204",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+
+
+
+
+    {
+    "name": "World2_Room0301",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "coral",    "grass", "coral", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "coral",    "grass", "coral", "grass", "grass", "grass", "grass", "dirt", "grass"],
+    ["grass","dirt","grass", "grass", "grass", "coral", "coral", "grass",    "grass", "coral", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","coral", "grass", "grass", "grass", "grass", "grass",    "coral", "grass", "dirt", "coral", "coral", "grass", "grass", "grass"],
+    ["grass","grass","grass", "coral", "grass", "dirt", "grass", "coral",    "grass", "grass", "coral", "grass", "grass", "dirt", "grass", "grass"],
+    ["grass","grass","dirt", "grass", "coral", "grass", "coral", "dirt",    "grass", "coral", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "coral", "grass", "grass",    "coral", "grass", "grass", "grass", "coral", "coral", "coral", "coral"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "coral",    "grass", "grass", "coral", "coral", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "dirt", "coral", "dirt",    "grass", "grass", "grass", "grass", "grass", "grass", "coral", "coral"],
+    ],
+
+    "seeds": ["oxyplant"],
+    "seedCounts": [6],
+    "water": 10,
+
+    "door1X": 9,
+    "door1Y": 1,
+    "door1Direction": "N",
+    "door2X": 16,
+    "door2Y": 8,
+    "door2Direction": "E"
+  },  
+  {
+    "name": "World2_Room0302",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "currentDown", "currentDown", "currentDown",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","oxyplant","grass", "grass", "grass", "currentDown", "currentDown", "currentDown",    "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "currentDown", "currentDown", "currentDown",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["coral","coral","coral", "grass", "coral", "currentDown", "currentDown", "currentDown",    "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
+    ["currentDown","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
+    ["currentDown","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
+    ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "oxyplant", "currentLeft"],
+    ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp"],
+    ],
+
+    "seeds": ["coral"],
+    "seedCounts": [6],
+    "water": 0,
+
+    "door1X": 1,
+    "door1Y": 8,
+    "door1Direction": "W",
+    "door2X": 15,
+    "door2Y": 1,
+    "door2Direction": "N"
+  },
+    {
+    "name": "World2_Room0303",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+    {
+    "name": "World2_Room0304",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+
+
+
+
+    {
+    "name": "World2_Room0401",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+  {
+    "name": "World2_Room0402",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+    {
+    "name": "World2_Room0403",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+    {
+    "name": "World2_Room0404",
+    "layout":
+    [
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 16,
+    "door1Y": 4,
+    "door1Direction": "E",
+    "door2X": 16,
+    "door2Y": 4,
+    "door2Direction": "E"
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -661,7 +1119,7 @@
     "layout":
     [
     ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
-    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
+    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "oxyplant", "grass"],
     ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["coral","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -689,12 +1147,12 @@
     [
     ["currentDown","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "coral"],
     ["dirt","dirt","grass", "grass", "grass", "coral", "grass", "grass",    "grass", "grass", "grass", "coral", "grass", "grass", "coral", "grass"],
-    ["grass","dirt","dirt", "oxyplant", "grass", "grass", "coral", "grass",    "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","dirt","dirt", "grass", "grass", "grass", "coral", "grass",    "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","dirt", "dirt", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "coral", "grass"],
-    ["grass","grass","grass", "dirt", "dirt", "grass", "grass", "grass",    "coral", "grass", "grass", "grass", "grass", "coral", "oxyplant", "coral"],
-    ["grass","grass","grass", "grass", "dirt", "dirt", "grass", "grass",    "grass", "coral", "grass", "grass", "coral", "grass", "grass", "grass"],
+    ["grass","grass","grass", "dirt", "dirt", "grass", "oxyplant", "grass",    "coral", "grass", "grass", "grass", "grass", "coral", "grass", "coral"],
+    ["grass","grass","grass", "grass", "dirt", "dirt", "grass", "grass",    "grass", "coral", "grass", "grass", "coral", "grass", "oxyplant", "grass"],
     ["coral","coral","coral", "coral", "coral", "coral", "coral", "coral",    "grass", "coral", "coral", "coral", "grass", "grass", "grass", "coral"],
-    ["grass","currentDown","grass", "grass", "grass", "grass", "grass", "grass",    "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass"],
+    ["grass","currentDown","grass", "grass", "grass", "grass", "grass", "dirt",    "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass"],
     ["coral","currentUp","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
     ],
 
@@ -708,6 +1166,35 @@
     "door2X": 16,
     "door2Y": 2,
     "door2Direction": "E"
-  }
+  },
+
+  {
+    "name": "map2_Room6",
+    "layout":
+    [
+    ["grass", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown", "currentLeft", "currentLeft", "currentLeft", "currentDown", "currentRight", "currentDown"],
+    ["grass", "currentRight", "currentDown", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown", "currentRight", "oxyplant", "currentRight", "currentDown", "currentUp", "oxyplant", "currentDown", "currentLeft"],
+    ["grass", "currentUp", "currentRight", "currentUp", "currentRight", "currentRight", "currentDown", "currentRight", "currentUp", "currentDown", "currentDown", "currentLeft", "currentUp", "currentLeft", "currentLeft", "currentUp"],
+    ["grass", "currentRight", "currentRight", "currentRight", "currentUp", "currentDown", "currentDown", "currentDown", "currentLeft", "currentLeft", "currentRight", "currentRight", "currentUp", "currentRight", "currentRight", "currentDown"],
+    ["grass", "currentDown", "currentUp", "currentRight", "currentRight", "currentDown", "currentDown", "currentDown", "currentRight", "currentDown", "currentDown", "oxyplant", "currentRight", "oxyplant", "currentRight", "oxyplant"],
+    ["grass", "currentRight", "currentUp", "currentUp", "currentDown", "currentRight", "currentRight", "currentRight", "currentRight", "oxyplant", "currentLeft", "currentUp", "currentLeft", "currentLeft", "currentUp", "currentLeft"],
+    ["grass", "currentRight", "currentRight", "currentUp", "currentRight", "currentUp", "currentRight", "currentUp", "currentLeft", "currentRight", "currentRight", "currentRight", "currentDown", "currentUp", "currentLeft", "currentLeft"],
+    ["grass", "currentUp", "currentLeft", "currentRight", "currentUp", "currentRight", "currentDown", "currentUp", "currentLeft", "currentDown", "currentUp", "currentUp", "currentRight", "oxyplant", "currentRight", "currentUp"],
+    ["grass", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp", "currentLeft", "currentLeft", "currentLeft", "currentUp", "currentDown"],
+    ],
+
+    "seeds": [],
+    "seedCounts": [],
+    "water": 0,
+
+    "door1X": 1,
+    "door1Y": 2,
+    "door1Direction": "W",
+    "door2X": 16,
+    "door2Y": 5,
+    "door2Direction": "E"
+  },
 
 ]
+
+

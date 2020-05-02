@@ -2,10 +2,12 @@
   {
     "layout": [
 
-        ["testRoom0101","testRoom0102","testRoom0103","map2_Room5"],
-        ["testRoom0201","testRoom0202","map2Start","map2_Room4"],
-        ["testRoom0301","testRoom0302","map2_Room2","map2_Room3"],
-        ["testRoom0401","testRoom0402","testRoom0403","testRoom0404"]
-    ]
+        ["World2_Room0101","World2_Room0102","World2_Room0103","World2_Room0104"],
+        ["World2_Room0201","World2_Room0202","World2_Room0203","World2_Room0204"],
+        ["World2_Room0301","World2_Room0302","World2_Room0303","World2_Room0304"],
+        ["World2_Room0401","World2_Room0402","World2_Room0403","World2_Room0404"]
+    ],
+    "start_room_X": [2],
+    "start_room_Y": [1]
   }
 ]
