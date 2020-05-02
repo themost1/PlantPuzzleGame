@@ -6,6 +6,8 @@
         ["testRoom0201","testRoom0202","testRoom0203","testRoom0204"],
         ["testRoom0301","testRoom0302","testRoom0303","testRoom0304"],
         ["testRoom0401","testRoom0402","testRoom0403","testRoom0404"]
-    ]
+    ],
+    "start_room_X": [3],
+    "start_room_Y": [2]
   }
 ]

@@ -213,6 +213,10 @@ portalPlant = plant:new {
 }
 function portalPlant:onEnter()
 	goToNextMap()
+	goToRoom(2, 1, "")
+	player.map_y = 2
+	player.map_x = 1
+
 end
 function portalPlant:update(dt)
 	self.rotation = self.rotation + 100
