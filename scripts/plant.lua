@@ -371,6 +371,17 @@ function fish:postEnter()
 	kill_player()
 end
 
+fishUp = fish:new {
+	name = "fishUp",
+	id = "fishUp",
+	moveDir = "up"
+}
+
+fishDown = fish:new {
+	name = "fishDown",
+	id = "fishDown",
+	moveDir = "down"
+}
 
 
 plants:addPlant(plant)
@@ -389,5 +400,7 @@ plants:addPlant(currentRight)
 plants:addPlant(oxyplant)
 plants:addPlant(coral)
 plants:addPlant(fish)
+plants:addPlant(fishUp)
+plants:addPlant(fishDown)
 
 return plants
