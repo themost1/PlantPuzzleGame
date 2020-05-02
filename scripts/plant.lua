@@ -341,6 +341,30 @@ function fish:onStep(row, col)
 		if self:canEnterHere(self.row+1, col) == false then
 			self.moveDir = "up"
 		end
+	elseif self.moveDir == "left" then
+		local canEnter = self:canEnterHere(row, col-1)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row][col-1] = self
+			tileMatrix[row][col] = grass
+			self.row = row-1
+		end
+		if self:canEnterHere(self.row, col-1) == false then
+			self.moveDir = "right"
+		end
+	elseif self.moveDir == "right" then
+		local canEnter = self:canEnterHere(row, col+1)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row][col+1] = self
+			tileMatrix[row][col] = grass
+			self.col = self.col + 1
+		end
+		if self:canEnterHere(self.row, col + 1) == false then
+			self.moveDir = "left"
+		end
 	end
 
 	self.moved = true
@@ -363,6 +387,10 @@ function fish:updateImage()
 		self.imageDir = "graphics/fishUp.png"
 	elseif self.moveDir == "down" then
 		self.imageDir = "graphics/fishDown.png"
+	elseif self.moveDir == "left" then
+		self.imageDir = "graphics/fishLeft.png"
+	elseif self.moveDir == "right" then
+		self.imageDir = "graphics/fishRight.png"
 	end
 
 	self.image = getNewImage(self.imageDir)
@@ -402,6 +430,18 @@ fishDown = fish:new {
 	moveDir = "down"
 }
 
+fishRight = fish:new {
+	name = "fishRight",
+	id = "fishRight",
+	moveDir = "right"
+}
+
+fishLeft = fish:new {
+	name = "fishLeft",
+	id = "fishLeft",
+	moveDir = "left"
+}
+
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
@@ -421,5 +461,7 @@ plants:addPlant(coral)
 plants:addPlant(fish)
 plants:addPlant(fishUp)
 plants:addPlant(fishDown)
+plants:addPlant(fishRight)
+plants:addPlant(fishLeft)
 
 return plants
