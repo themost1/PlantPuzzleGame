@@ -16,6 +16,9 @@ plant = object:new{
 	description = "Plant this and see",
 	rotation = 0
 }
+function plant:getImageDir()
+	return self.imageDir
+end
 
 function plant:onLoad()
 	self.image = getNewImage(self.imageDir)
