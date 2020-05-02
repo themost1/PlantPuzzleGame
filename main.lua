@@ -699,8 +699,12 @@ function love.draw()
 	--draw editor inventory
 	if editor == true then
 		invX = 1520
-		allItems = {"bamboo", "cactus", "dragonfruit", "apple", "grass", "dirt", "fish", "coral", "oxyplant"}
-		for row = 0, 8 do
+		if player.mapNum == 2 then
+			allItems = {"grass", "fish", "coral", "oxyplant", "currentUp", "currentDown", "currentLeft", "currentRight"}
+		else
+			allItems = {"bamboo", "cactus", "apple", "grass", "dirt", "dandelion"}
+		end
+		for row = 0, #allItems - 1 do
 			local invY = (inventoryHeight * row) + 100
 			love.graphics.draw(inventorySquare, invX, invY, 0,
 			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
@@ -709,14 +713,14 @@ function love.draw()
 			else
 				path = "graphics/" .. allItems[row+1] .. ".png"
 			end]]
-			plants[allItems[row+1]]:onLoad()
+			plant = plants[allItems[row+1]]:onLoad()
 			currentImage = plants[allItems[row+1]]:getImage()
 			--currentImage = love.graphics.newImage(path)
 			local invOffset = 20
 			local seedscale1 = (inventoryWidth - 2 * invOffset) / currentImage:getWidth()
 			local seedscale2 = (inventoryHeight - 2 * invOffset) / currentImage:getHeight()
-			love.graphics.draw(currentImage, invX + invOffset, invY + invOffset, 0,
-				seedscale1, seedscale2, 0)
+			love.graphics.draw(currentImage, invX+40, invY+40, plants[allItems[row+1]].rotation,
+				seedscale1, seedscale2, currentImage:getWidth()/2, currentImage:getHeight()/2)
 		end
 	end
 
@@ -743,7 +747,11 @@ function love.draw()
 	drawMinimap()
 
 	love.graphics.scale(1/xScale, 1/yScale)
-	love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), 0, 0)
+	if inventoryYPressed ~= nil then
+		love.graphics.draw(cursorImage, mouseX, mouseY, plants[allItems[inventoryYPressed+1]].rotation, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
+	else
+		love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
+	end
 end
 
 
@@ -867,4 +875,3 @@ function getStaticTile()
 	local currY = math.floor((player.static_y - plantStartY)/plantSize + 1 + 0.5)
 	return {x = currX, y = currY}
 end
-
