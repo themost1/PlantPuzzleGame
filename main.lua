@@ -404,6 +404,8 @@ function love.update(dt)
 					tileMatrix[i][j]:onStep(i, j)
 				end
 			end
+
+			tileMatrix[cell[1]][cell[2]]:postEnter()
 	    end
 	end
 
@@ -618,11 +620,15 @@ function love.draw()
 	-- draw dirt beneath everything
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
-			local plantXScale = plantSize / grassImage:getWidth()
-			local plantYScale = plantSize / grassImage:getHeight()
+			local underImage = grassImage
+			if player.mapNum == 2 then
+				underImage = grassImage
+			end
+			local plantXScale = plantSize / underImage:getWidth()
+			local plantYScale = plantSize / underImage:getHeight()
 			local startX = plantSize * (col-1) + plantStartX
 			local startY = plantSize * (row-1) + plantStartY
-			love.graphics.draw(grassImage, startX, startY, 0,
+			love.graphics.draw(underImage, startX, startY, 0,
 					plantXScale, plantYScale, 0)
 		end
 	end
@@ -677,7 +683,7 @@ function love.draw()
 			local wateringcanScale = 1.5
 			local wateringcanHeight = wateringcanImage:getHeight() * wateringcanScale
 			local wateringcanWidth = wateringcanImage:getWidth() * wateringcanScale
-			love.graphics.draw(wateringcanImage, 0 , invY, 0, 
+			love.graphics.draw(wateringcanImage, 0 , invY, 0,
 			wateringcanWidth/wateringcanImage:getWidth(), wateringcanHeight/wateringcanImage:getHeight(), 0)
 
 			local waterCount = player.water
@@ -697,9 +703,9 @@ function love.draw()
 	--draw editor inventory
 	if editor == true then
 		invX = 1520
-		allItems = {"bamboo", "cactus", "dragonfruit", "apple", "grass", "dirt"}
-		for row = 0, 4 do
-			local invY = (inventoryHeight * row) + 300
+		allItems = {"bamboo", "cactus", "dragonfruit", "apple", "grass", "dirt", "fish", "coral", "oxyplant"}
+		for row = 0, 8 do
+			local invY = (inventoryHeight * row) + 100
 			love.graphics.draw(inventorySquare, invX, invY, 0,
 			inventoryWidth/inventorySquare:getWidth(), inventoryHeight/inventorySquare:getHeight() , 0)
 			--[[if row == 4 or row == 0 then
@@ -781,7 +787,7 @@ function love.mousepressed(x, y, button, istouch)
 	--mouse press functionality for the editor
 	if editor == true then
 		if x >= 1520 then
-			inventoryYPressed = math.floor((y- 300) / inventoryHeight)
+			inventoryYPressed = math.floor((y- 100) / inventoryHeight)
 			print(inventoryYPressed)
 			path = plants[allItems[inventoryYPressed+1]]:getImageDir()
 			selected = allItems[inventoryYPressed+1]
@@ -823,7 +829,7 @@ function love.mousepressed(x, y, button, istouch)
 end
 
 function love.mousemoved(x, y, dx, dy, istouch)
-	x = x / xScale 
+	x = x / xScale
 	y = y / yScale
 	-- set announcement text to description of hovered-over plant
 	local potentialAT = ""
@@ -859,3 +865,10 @@ function getCurrentTile()
 	local currY = math.floor((player.y - plantStartY)/plantSize + 1 + 0.5)
 	return {x = currX, y = currY}
 end
+
+function getStaticTile()
+	local currX = math.floor((player.static_x - plantStartX)/plantSize + 1 + 0.5)
+	local currY = math.floor((player.static_y - plantStartY)/plantSize + 1 + 0.5)
+	return {x = currX, y = currY}
+end
+
