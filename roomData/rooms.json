@@ -634,7 +634,7 @@
     "layout":
     [
     ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
-    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
+    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "oxyplant", "grass"],
     ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["coral","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -662,12 +662,12 @@
     [
     ["currentDown","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "coral"],
     ["dirt","dirt","grass", "grass", "grass", "coral", "grass", "grass",    "grass", "grass", "grass", "coral", "grass", "grass", "coral", "grass"],
-    ["grass","dirt","dirt", "oxyplant", "grass", "grass", "coral", "grass",    "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","dirt","dirt", "grass", "grass", "grass", "coral", "grass",    "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","dirt", "dirt", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "coral", "grass"],
-    ["grass","grass","grass", "dirt", "dirt", "grass", "grass", "grass",    "coral", "grass", "grass", "grass", "grass", "coral", "oxyplant", "coral"],
-    ["grass","grass","grass", "grass", "dirt", "dirt", "grass", "grass",    "grass", "coral", "grass", "grass", "coral", "grass", "grass", "grass"],
+    ["grass","grass","grass", "dirt", "dirt", "grass", "oxyplant", "grass",    "coral", "grass", "grass", "grass", "grass", "coral", "grass", "coral"],
+    ["grass","grass","grass", "grass", "dirt", "dirt", "grass", "grass",    "grass", "coral", "grass", "grass", "coral", "grass", "oxyplant", "grass"],
     ["coral","coral","coral", "coral", "coral", "coral", "coral", "coral",    "grass", "coral", "coral", "coral", "grass", "grass", "grass", "coral"],
-    ["grass","currentDown","grass", "grass", "grass", "grass", "grass", "grass",    "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass"],
+    ["grass","currentDown","grass", "grass", "grass", "grass", "grass", "dirt",    "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass"],
     ["coral","currentUp","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
     ],
 
