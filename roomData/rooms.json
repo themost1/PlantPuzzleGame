@@ -633,19 +633,19 @@
     "name": "map2_Room4",
     "layout":
     [
+    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
+    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
+    ["currentLeft","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentUp"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["coral","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["currentLeft","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
+    ["coral","grass","oxyplant", "grass", "coral", "coral", "coral", "coral",    "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
+    ["currentDown","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": [],
-    "seedCounts": [],
+    "seeds": ["coral"],
+    "seedCounts": [3],
     "water": 0,
 
     "door1X": 15,
