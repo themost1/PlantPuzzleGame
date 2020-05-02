@@ -396,6 +396,11 @@ function love.update(dt)
 
 			for i = 1, #tileMatrix do
 				for j = 1, #tileMatrix[i] do
+					tileMatrix[i][j]:preStep(i, j)
+				end
+			end
+			for i = 1, #tileMatrix do
+				for j = 1, #tileMatrix[i] do
 					tileMatrix[i][j]:onStep(i, j)
 				end
 			end
