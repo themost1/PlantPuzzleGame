@@ -16,6 +16,9 @@ plant = object:new{
 	description = "Plant this and see",
 	rotation = 0
 }
+function plant:getImageDir()
+	return self.imageDir
+end
 
 function plant:onLoad()
 	self.image = getNewImage(self.imageDir)
@@ -77,6 +80,11 @@ end
 function plant:onStep(row, col)
 end
 function plant:preStep(row, col)
+end
+function plant:postEnter(row, col)
+end
+function plant:hidesPlayer()
+	return false
 end
 
 dirt = plant:new {
@@ -289,7 +297,7 @@ function coral:isPassable()
 	return false
 end
 function coral:canPlantOnTile(tile)
-	if tile.id == "dirt" then
+	if tile.id == "dirt" or tile.id == "grass" then
 		return true
 	elseif tile.id == "currentUp" or tile.id == "currentDown" or tile.id == "currentLeft" or tile.id == "currentRight" then
 		return true
@@ -311,43 +319,162 @@ function fish:preStep()
 	self.moved = false
 end
 function fish:onStep(row, col)
+	local playerRow = getStaticTile().y
+	local playerCol = getStaticTile().x
+	if tileMatrix[playerRow][playerCol]:hidesPlayer() then
+		return
+	end
+
 	if self.moved then return end
 	self.row = row
 	self.col = col
 
 	if self.moveDir == "up" then
-		local grass = plants.grass:new()
-		grass:onLoad()
-		tileMatrix[row-1][col] = self
-		tileMatrix[row][col] = grass
-		self.row = row-1
-		if self.row - 1 <= 0 or tileMatrix[self.row-1][col].id ~= "grass" then
+		local canEnter = self:canEnterHere(row-1, col)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row-1][col] = self
+			tileMatrix[row][col] = grass
+			self.row = row-1
+		end
+		if self:canEnterHere(self.row-1, col) == false then
 			self.moveDir = "down"
 		end
 	elseif self.moveDir == "down" then
-		local grass = plants.grass:new()
-		grass:onLoad()
-		tileMatrix[row][col] = grass
-		tileMatrix[row+1][col] = self
-		self.row = row+1
-		if self.row +1 > #tileMatrix or tileMatrix[self.row+1][col].id ~= "grass" then
+		local canEnter = self:canEnterHere(row+1, col)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row+1][col] = self
+			tileMatrix[row][col] = grass
+			self.row = row+1
+		end
+		if self:canEnterHere(self.row+1, col) == false then
 			self.moveDir = "up"
+		end
+	elseif self.moveDir == "left" then
+		local canEnter = self:canEnterHere(row, col-1)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row][col-1] = self
+			tileMatrix[row][col] = grass
+			self.row = row-1
+		end
+		if self:canEnterHere(self.row, col-1) == false then
+			self.moveDir = "right"
+		end
+	elseif self.moveDir == "right" then
+		local canEnter = self:canEnterHere(row, col+1)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row][col+1] = self
+			tileMatrix[row][col] = grass
+			self.col = self.col + 1
+		end
+		if self:canEnterHere(self.row, col + 1) == false then
+			self.moveDir = "left"
 		end
 	end
 
 	self.moved = true
 	self:updateImage()
 end
+function fish:canEnterHere(row, col)
+	if row <= 0 or row > #tileMatrix or col <= 0 or col > #tileMatrix[row] then
+		return false
+	elseif tileMatrix[row][col].id ~= "grass" then
+		return false
+	elseif getCurrentTile().x == row and getCurrentTile().y == col then
+		return false
+	end
+
+	return true
+
+end
 function fish:updateImage()
 	if self.moveDir == "up" then
 		self.imageDir = "graphics/fishUp.png"
 	elseif self.moveDir == "down" then
 		self.imageDir = "graphics/fishDown.png"
+	elseif self.moveDir == "left" then
+		self.imageDir = "graphics/fishLeft.png"
+	elseif self.moveDir == "right" then
+		self.imageDir = "graphics/fishRight.png"
 	end
 
 	self.image = getNewImage(self.imageDir)
 end
+function fish:postEnter()
+	kill_player()
+end
+function fish:update(dt, row, col)
+	self.row = row
+	self.col = col
 
+	if self.moveDir == "up" then
+		local canEnter = self:canEnterHere(row-1, col)
+		if canEnter == false then
+			self.moveDir = "down"
+			self:updateImage()
+		end
+	elseif self.moveDir == "down" then
+		local canEnter = self:canEnterHere(row+1, col)
+		if canEnter == false then
+			self.moveDir = "up"
+			self:updateImage()
+		end
+	elseif self.moveDir == "left" then
+		local canEnter = self:canEnterHere(row, col-1)
+		if canEnter == false then
+			self.moveDir = "right"
+			self:updateImage()
+		end
+	elseif self.moveDir == "right" then
+		local canEnter = self:canEnterHere(row, col+1)
+		if canEnter == false then
+			self.moveDir = "left"
+			self:updateImage()
+		end
+	end
+end
+
+
+fishUp = fish:new {
+	name = "fishUp",
+	id = "fishUp",
+	moveDir = "up"
+}
+
+fishDown = fish:new {
+	name = "fishDown",
+	id = "fishDown",
+	moveDir = "down"
+}
+
+fishRight = fish:new {
+	name = "fishRight",
+	id = "fishRight",
+	moveDir = "right"
+}
+
+fishLeft = fish:new {
+	name = "fishLeft",
+	id = "fishLeft",
+	moveDir = "left"
+}
+
+seaweed = plant:new {
+	id = "seaweed",
+	name = "seaweed",
+	watered = true,
+	imageDir = "graphics/plants/seaweed.png"
+}
+function seaweed:hidesPlayer()
+	return true
+end
 
 
 plants:addPlant(plant)
@@ -366,5 +493,10 @@ plants:addPlant(currentRight)
 plants:addPlant(oxyplant)
 plants:addPlant(coral)
 plants:addPlant(fish)
+plants:addPlant(fishUp)
+plants:addPlant(fishDown)
+plants:addPlant(fishRight)
+plants:addPlant(fishLeft)
+plants:addPlant(seaweed)
 
 return plants
