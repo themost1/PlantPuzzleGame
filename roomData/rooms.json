@@ -552,20 +552,47 @@
     "name": "map2Start",
     "layout":
     [
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","fishDown","grass", "grass", "grass", "fishRight", "grass", "grass", "grass", "grass", "fishLeft", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","coral", "grass", "grass", "grass", "grass", "grass", "grass", "fish", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","currentUp", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","currentUp", "grass", "currentDown", "grass", "currentDown", "currentLeft", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","fishUp","grass", "grass", "grass", "grass", "currentRight", "currentUp", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","oxyplant", "seaweed", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","oxyplant", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "oxyplant", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "oxyplant", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "oxyplant", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"]
     ],
 
     "seeds": ["coral"],
     "seedCounts": [3],
     "water": 0,
+
+    "door1X": 9,
+    "door1Y": 9,
+    "door1Direction": "S",
+    "door2X": 9,
+    "door2Y": 9,
+    "door2Direction": "S"
+  },
+
+  {
+    "name": "map2FishPath",
+    "layout":
+    [
+    ["dirt","coral","dirt", "coral", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","coral","dirt", "coral", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["coral","coral","dirt", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "fishLeft", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["coral","coral","dirt", "coral", "coral", "coral", "coral", "dirt", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
+    ["dirt","coral","dirt", "coral", "coral", "coral", "coral", "dirt", "coral", "coral", "coral", "coral", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","coral","fishUp", "dirt", "dirt", "dirt", "fishRight", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","coral","coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "dirt", "dirt", "dirt", "dirt"],
+    ["dirt","dirt","dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "oxyplant", "dirt", "dirt"]
+    ],
+
+    "seeds": ["seaweed", "oxyplant", "coral"],
+    "seedCounts": [10, 5, 3],
+    "water": 99,
 
     "door1X": 9,
     "door1Y": 9,

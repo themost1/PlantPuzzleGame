@@ -301,7 +301,7 @@ function coral:isPassable()
 	return false
 end
 function coral:canPlantOnTile(tile)
-	if tile.id == "dirt" or tile.id == "grass" then
+	if tile.id == "dirt" then
 		return true
 	elseif tile.id == "currentUp" or tile.id == "currentDown" or tile.id == "currentLeft" or tile.id == "currentRight" then
 		return true
@@ -317,7 +317,8 @@ fish = plant:new {
 	moveDir = "up",
 	row = -1,
 	col = -1,
-	moved = false
+	moved = false,
+	enteredId = "grass"
 }
 function fish:preStep()
 	self.moved = false
@@ -333,63 +334,62 @@ function fish:onStep(row, col)
 	self.row = row
 	self.col = col
 
+	print(self.moveDir)
 	if self.moveDir == "up" then
 		local canEnter = self:canEnterHere(row-1, col)
 		if canEnter then
-			local grass = plants.grass:new()
-			grass:onLoad()
-			tileMatrix[row-1][col] = self
-			tileMatrix[row][col] = grass
-			self.row = row-1
+			self:moveTo(row-1, col)
 		end
-		if self:canEnterHere(self.row-1, col) == false then
+		if self:canEnterHere(self.row-1, self.col) == false then
 			self.moveDir = "down"
 		end
 	elseif self.moveDir == "down" then
 		local canEnter = self:canEnterHere(row+1, col)
 		if canEnter then
-			local grass = plants.grass:new()
-			grass:onLoad()
-			tileMatrix[row+1][col] = self
-			tileMatrix[row][col] = grass
-			self.row = row+1
+			self:moveTo(row+1, col)
 		end
-		if self:canEnterHere(self.row+1, col) == false then
+		if self:canEnterHere(self.row+1, self.col) == false then
 			self.moveDir = "up"
 		end
 	elseif self.moveDir == "left" then
+		print("in move left: " .. self.row .. " " .. self.col.." " .. row .. " " .. col)
 		local canEnter = self:canEnterHere(row, col-1)
 		if canEnter then
-			local grass = plants.grass:new()
-			grass:onLoad()
-			tileMatrix[row][col-1] = self
-			tileMatrix[row][col] = grass
-			self.row = row-1
+			self:moveTo(row, col-1)
 		end
-		if self:canEnterHere(self.row, col-1) == false then
+		if self:canEnterHere(self.row, self.col-1) == false then
 			self.moveDir = "right"
 		end
 	elseif self.moveDir == "right" then
 		local canEnter = self:canEnterHere(row, col+1)
 		if canEnter then
-			local grass = plants.grass:new()
-			grass:onLoad()
-			tileMatrix[row][col+1] = self
-			tileMatrix[row][col] = grass
-			self.col = self.col + 1
+			self:moveTo(row, col+1)
 		end
-		if self:canEnterHere(self.row, col + 1) == false then
+		if self:canEnterHere(self.row, self.col + 1) == false then
 			self.moveDir = "left"
 		end
 	end
 
+	print("\n\n\n")
+
 	self.moved = true
 	self:updateImage()
 end
+function fish:moveTo(row, col)
+	local grass = plants[self.enteredId]:new()
+	grass:onLoad()
+	self.enteredId = tileMatrix[row][col].id
+	tileMatrix[row][col] = self
+	tileMatrix[self.row][self.col] = grass
+	self.col = col
+	self.row = row
+end
 function fish:canEnterHere(row, col)
+	print("self: " .. self.row.." "..self.col)
 	if row <= 0 or row > #tileMatrix or col <= 0 or col > #tileMatrix[row] then
 		return false
-	elseif tileMatrix[row][col].id ~= "grass" then
+	elseif tileMatrix[row][col].id ~= "grass" and tileMatrix[row][col].id ~= "dirt" then
+		print(tileMatrix[row][col].id.." " .. row .. " " .. col .. " " .. self.row .. " " .. self.col)
 		return false
 	elseif getCurrentTile().x == row and getCurrentTile().y == col then
 		return false
