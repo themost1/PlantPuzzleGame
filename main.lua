@@ -392,7 +392,17 @@ function love.update(dt)
 			if cell[1] ~= prev_cells[2][1] or cell[2] ~= prev_cells[2][2] then
 				-- trigger onEnter()
 				tileMatrix[cell[1]][cell[2]]:onEnter()
+			end
 
+			for i = 1, #tileMatrix do
+				for j = 1, #tileMatrix[i] do
+					tileMatrix[i][j]:preStep(i, j)
+				end
+			end
+			for i = 1, #tileMatrix do
+				for j = 1, #tileMatrix[i] do
+					tileMatrix[i][j]:onStep(i, j)
+				end
 			end
 	    end
 	end

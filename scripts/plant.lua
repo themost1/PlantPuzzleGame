@@ -77,6 +77,11 @@ end
 function plant:update(dt)
 end
 
+function plant:onStep(row, col)
+end
+function plant:preStep(row, col)
+end
+
 dirt = plant:new {
 	name = "Dirt",
 	id = "dirt",
@@ -269,18 +274,84 @@ oxyplant = plant:new {
 function oxyplant:onEnter()
 	hp_bar:fullHeal()
 	player.dead = false
+	if string.find(announcementText, "died") ~= nil then
+		announcementText = ""
+	end
 end
 
 coral = plant:new {
 	name = "Coral",
 	id = "coral",
-	description = "Blocks movement (and currents)",
+	description = "Blocks movement (and currents); can plant on top of a current",
 	passable = false,
-	imageDir = "graphics/plants/coral.png"
+	imageDir = "graphics/plants/coral.png",
+	seedImageDir = "graphics/plants/coral.png",
+	watered = true
 }
 function coral:isPassable()
 	return false
 end
+function coral:canPlantOnTile(tile)
+	if tile.id == "dirt" then
+		return true
+	elseif tile.id == "currentUp" or tile.id == "currentDown" or tile.id == "currentLeft" or tile.id == "currentRight" then
+		return true
+	else
+		return false
+	end
+end
+
+fish = plant:new {
+	name = "Fish",
+	id = "fish",
+	imageDir = "graphics/fishUp.png",
+	moveDir = "up",
+	row = -1,
+	col = -1,
+	moved = false
+}
+function fish:preStep()
+	self.moved = false
+end
+function fish:onStep(row, col)
+	if self.moved then return end
+	self.row = row
+	self.col = col
+
+	if self.moveDir == "up" then
+		local grass = plants.grass:new()
+		grass:onLoad()
+		tileMatrix[row-1][col] = self
+		tileMatrix[row][col] = grass
+		self.row = row-1
+		if self.row - 1 <= 0 or tileMatrix[self.row-1][col].id ~= "grass" then
+			self.moveDir = "down"
+		end
+	elseif self.moveDir == "down" then
+		local grass = plants.grass:new()
+		grass:onLoad()
+		tileMatrix[row][col] = grass
+		tileMatrix[row+1][col] = self
+		self.row = row+1
+		if self.row +1 > #tileMatrix or tileMatrix[self.row+1][col].id ~= "grass" then
+			self.moveDir = "up"
+		end
+	end
+
+	self.moved = true
+	self:updateImage()
+end
+function fish:updateImage()
+	if self.moveDir == "up" then
+		self.imageDir = "graphics/fishUp.png"
+	elseif self.moveDir == "down" then
+		self.imageDir = "graphics/fishDown.png"
+	end
+
+	self.image = getNewImage(self.imageDir)
+end
+
+
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
@@ -297,5 +368,6 @@ plants:addPlant(currentRight)
 plants:addPlant(currentRight)
 plants:addPlant(oxyplant)
 plants:addPlant(coral)
+plants:addPlant(fish)
 
 return plants
