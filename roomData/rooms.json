@@ -563,8 +563,8 @@
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": [],
-    "seedCounts": [],
+    "seeds": ["coral"],
+    "seedCounts": [3],
     "water": 0,
 
     "door1X": 1,

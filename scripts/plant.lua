@@ -277,12 +277,23 @@ end
 coral = plant:new {
 	name = "Coral",
 	id = "coral",
-	description = "Blocks movement (and currents)",
+	description = "Blocks movement (and currents); can plant on top of a current",
 	passable = false,
-	imageDir = "graphics/plants/coral.png"
+	imageDir = "graphics/plants/coral.png",
+	seedImageDir = "graphics/plants/coral.png",
+	watered = true
 }
 function coral:isPassable()
 	return false
+end
+function coral:canPlantOnTile(tile)
+	if tile.id == "dirt" then
+		return true
+	elseif tile.id == "currentUp" or tile.id == "currentDown" or tile.id == "currentLeft" or tile.id == "currentRight" then
+		return true
+	else
+		return false
+	end
 end
 
 fish = plant:new {
