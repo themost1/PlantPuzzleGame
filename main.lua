@@ -404,6 +404,8 @@ function love.update(dt)
 					tileMatrix[i][j]:onStep(i, j)
 				end
 			end
+
+			tileMatrix[cell[1]][cell[2]]:postEnter()
 	    end
 	end
 
