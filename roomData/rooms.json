@@ -554,7 +554,7 @@
     [
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","coral", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","coral", "grass", "grass", "grass", "grass", "grass", "grass", "fish", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","currentUp", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","currentUp", "grass", "currentDown", "grass", "currentDown", "currentLeft", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "grass", "currentRight", "currentUp", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
@@ -563,8 +563,8 @@
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": [],
-    "seedCounts": [],
+    "seeds": ["coral"],
+    "seedCounts": [3],
     "water": 0,
 
     "door1X": 9,

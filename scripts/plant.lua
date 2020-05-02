@@ -74,6 +74,9 @@ end
 function plant:update(dt)
 end
 
+function plant:onStep(row, col)
+end
+
 dirt = plant:new {
 	name = "Dirt",
 	id = "dirt",
@@ -266,18 +269,47 @@ oxyplant = plant:new {
 function oxyplant:onEnter()
 	hp_bar:fullHeal()
 	player.dead = false
+	if string.find(announcementText, "died") ~= nil then
+		announcementText = ""
+	end
 end
 
 coral = plant:new {
 	name = "Coral",
 	id = "coral",
-	description = "Blocks movement (and currents)",
+	description = "Blocks movement (and currents); can plant on top of a current",
 	passable = false,
-	imageDir = "graphics/plants/coral.png"
+	imageDir = "graphics/plants/coral.png",
+	seedImageDir = "graphics/plants/coral.png",
+	watered = true
 }
 function coral:isPassable()
 	return false
 end
+function coral:canPlantOnTile(tile)
+	if tile.id == "dirt" then
+		return true
+	elseif tile.id == "currentUp" or tile.id == "currentDown" or tile.id == "currentLeft" or tile.id == "currentRight" then
+		return true
+	else
+		return false
+	end
+end
+
+fish = plant:new {
+	name = "Fish",
+	id = "fish",
+	imageDir = "graphics/fishUp.png",
+	moveDir = "up",
+	row = -1,
+	col = -1
+}
+function fish:onMove(row, col)
+	self.row = row
+	self.col = col
+end
+
+
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
@@ -294,5 +326,6 @@ plants:addPlant(currentRight)
 plants:addPlant(currentRight)
 plants:addPlant(oxyplant)
 plants:addPlant(coral)
+plants:addPlant(fish)
 
 return plants
