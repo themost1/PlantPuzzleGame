@@ -58,15 +58,15 @@
     "name": "testRoom0103",
     "layout":
     [
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "portalPlant", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "bamboo", "grass", "grass", "grass", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","portalPlant", "grass", "bamboo", "grass", "grass", "dandelion", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "bamboo", "grass", "grass", "dandelion", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "dandelion", "grass", "grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "dandelion", "grass", "grass"],
+    ["grass","grass","dandelion", "grass", "dandelion", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "dandelion", "grass", "dandelion", "grass"],
+    ["grass","grass","grass", "dandelion", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "dandelion", "grass", "grass"],
+    ["grass","grass","grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
     "seeds": [],
@@ -78,7 +78,7 @@
     "door1Direction": "W",
     "door2X": 1,
     "door2Y": 7,
-    "door2Direction": "E"
+    "door2Direction": "W"
   },
 
   {
