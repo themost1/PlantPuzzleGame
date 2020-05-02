@@ -291,7 +291,7 @@ function coral:isPassable()
 	return false
 end
 function coral:canPlantOnTile(tile)
-	if tile.id == "dirt" then
+	if tile.id == "dirt" or tile.id == "grass" then
 		return true
 	elseif tile.id == "currentUp" or tile.id == "currentDown" or tile.id == "currentLeft" or tile.id == "currentRight" then
 		return true
@@ -370,6 +370,25 @@ end
 function fish:postEnter()
 	kill_player()
 end
+function fish:update(dt, row, col)
+	self.row = row
+	self.col = col
+
+	if self.moveDir == "up" then
+		local canEnter = self:canEnterHere(row-1, col)
+		if canEnter == false then
+			self.moveDir = "down"
+			self:updateImage()
+		end
+	elseif self.moveDir == "down" then
+		local canEnter = self:canEnterHere(row+1, col)
+		if canEnter == false then
+			self.moveDir = "up"
+			self:updateImage()
+		end
+	end
+end
+
 
 fishUp = fish:new {
 	name = "fishUp",
