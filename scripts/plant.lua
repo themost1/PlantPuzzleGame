@@ -226,7 +226,8 @@ currentUp = plant:new {
 	name = "Up-Current",
 	id = "currentUp",
 	imageDir = "graphics/plants/waterCurrent.png",
-	rotation = 0
+	rotation = 0,
+	description = "Upward current"
 }
 function currentUp:onReach()
 	local ct = getCurrentTile()
@@ -259,14 +260,17 @@ end
 
 currentDown = currentUp:new {
 	id = "currentDown",
+	name = "Down-Current",
 	rotation = 3.14
 }
 currentLeft = currentUp:new {
 	id = "currentLeft",
+	name = "Left-Current",
 	rotation = 3.14 * 3/2
 }
 currentRight = currentUp:new {
 	id = "currentRight",
+	name = "Right-Current",
 	rotation = 3.14 * 1/2
 }
 

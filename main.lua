@@ -620,11 +620,15 @@ function love.draw()
 	-- draw dirt beneath everything
 	for row = 1, #tileMatrix do
 		for col = 1, #tileMatrix[row] do
-			local plantXScale = plantSize / grassImage:getWidth()
-			local plantYScale = plantSize / grassImage:getHeight()
+			local underImage = grassImage
+			if player.mapNum == 2 then
+				underImage = grassImage
+			end
+			local plantXScale = plantSize / underImage:getWidth()
+			local plantYScale = plantSize / underImage:getHeight()
 			local startX = plantSize * (col-1) + plantStartX
 			local startY = plantSize * (row-1) + plantStartY
-			love.graphics.draw(grassImage, startX, startY, 0,
+			love.graphics.draw(underImage, startX, startY, 0,
 					plantXScale, plantYScale, 0)
 		end
 	end

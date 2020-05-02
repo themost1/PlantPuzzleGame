@@ -592,7 +592,7 @@
 
     "seeds": ["oxyplant"],
     "seedCounts": [6],
-    "water": 6,
+    "water": 10,
 
     "door1X": 9,
     "door1Y": 1,
@@ -609,7 +609,7 @@
     ["grass","grass","grass", "grass", "grass", "currentDown", "currentDown", "currentDown",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","oxyplant","grass", "grass", "grass", "currentDown", "currentDown", "currentDown",    "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["grass","grass","grass", "grass", "grass", "currentDown", "currentDown", "currentDown",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["coral","coral","coral", "grass", "coral", "coral", "coral", "coral",    "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
+    ["coral","coral","coral", "grass", "coral", "currentDown", "currentDown", "currentDown",    "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
     ["currentDown","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
     ["currentDown","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
     ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown"],
@@ -634,14 +634,14 @@
     "layout":
     [
     ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
-    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "grass", "grass"],
-    ["currentLeft","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentUp"],
+    ["grass","grass","currentDown", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "currentDown", "grass", "grass", "oxyplant", "grass"],
+    ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp"],
     ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ["coral","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["currentLeft","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
+    ["currentRight","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight"],
     ["coral","grass","oxyplant", "grass", "coral", "coral", "coral", "coral",    "coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral"],
-    ["currentDown","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["currentDown","currentLeft","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentDown",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentUp"],
+    ["currentRight","currentUp","grass", "grass", "grass", "grass", "currentUp", "currentLeft",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
     "seeds": ["coral"],
@@ -660,20 +660,20 @@
     "name": "map2_Room5",
     "layout":
     [
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["currentDown","currentRight","currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight",    "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "coral"],
+    ["dirt","dirt","grass", "grass", "grass", "coral", "grass", "grass",    "grass", "grass", "grass", "coral", "grass", "grass", "coral", "grass"],
+    ["grass","dirt","dirt", "grass", "grass", "grass", "coral", "grass",    "grass", "grass", "coral", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","dirt", "dirt", "grass", "grass", "grass", "grass",    "grass", "grass", "grass", "grass", "grass", "grass", "coral", "grass"],
+    ["grass","grass","grass", "dirt", "dirt", "grass", "oxyplant", "grass",    "coral", "grass", "grass", "grass", "grass", "coral", "grass", "coral"],
+    ["grass","grass","grass", "grass", "dirt", "dirt", "grass", "grass",    "grass", "coral", "grass", "grass", "coral", "grass", "oxyplant", "grass"],
+    ["coral","coral","coral", "coral", "coral", "coral", "coral", "coral",    "grass", "coral", "coral", "coral", "grass", "grass", "grass", "coral"],
+    ["grass","currentDown","grass", "grass", "grass", "grass", "grass", "dirt",    "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass"],
+    ["coral","currentUp","currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft",    "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft", "currentLeft"],
     ],
 
-    "seeds": [],
-    "seedCounts": [],
-    "water": 0,
+    "seeds": ["coral","currentUp","currentDown","currentRight","currentLeft"],
+    "seedCounts": [99,99,99,99,99],
+    "water": 99,
 
     "door1X": 2,
     "door1Y": 9,
@@ -681,6 +681,35 @@
     "door2X": 16,
     "door2Y": 2,
     "door2Direction": "E"
-  }
+  },
+
+  {
+    "name": "map2_Room6",
+    "layout":
+    [
+    ["grass", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown", "currentLeft", "currentLeft", "currentLeft", "currentDown", "currentRight", "currentDown"],
+    ["grass", "currentRight", "currentDown", "currentRight", "currentRight", "currentRight", "currentRight", "currentDown", "currentRight", "oxyplant", "currentRight", "currentDown", "currentUp", "oxyplant", "currentDown", "currentLeft"],
+    ["grass", "currentUp", "currentRight", "currentUp", "currentRight", "currentRight", "currentDown", "currentRight", "currentUp", "currentDown", "currentDown", "currentLeft", "currentUp", "currentLeft", "currentLeft", "currentUp"],
+    ["grass", "currentRight", "currentRight", "currentRight", "currentUp", "currentDown", "currentDown", "currentDown", "currentLeft", "currentLeft", "currentRight", "currentRight", "currentUp", "currentRight", "currentRight", "currentDown"],
+    ["grass", "currentDown", "currentUp", "currentRight", "currentRight", "currentDown", "currentDown", "currentDown", "currentRight", "currentDown", "currentDown", "oxyplant", "currentRight", "oxyplant", "currentRight", "oxyplant"],
+    ["grass", "currentRight", "currentUp", "currentUp", "currentDown", "currentRight", "currentRight", "currentRight", "currentRight", "oxyplant", "currentLeft", "currentUp", "currentLeft", "currentLeft", "currentUp", "currentLeft"],
+    ["grass", "currentRight", "currentRight", "currentUp", "currentRight", "currentUp", "currentRight", "currentUp", "currentLeft", "currentRight", "currentRight", "currentRight", "currentDown", "currentUp", "currentLeft", "currentLeft"],
+    ["grass", "currentUp", "currentLeft", "currentRight", "currentUp", "currentRight", "currentDown", "currentUp", "currentLeft", "currentDown", "currentUp", "currentUp", "currentRight", "oxyplant", "currentRight", "currentUp"],
+    ["grass", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp", "currentRight", "currentRight", "currentRight", "currentRight", "currentUp", "currentLeft", "currentLeft", "currentLeft", "currentUp", "currentDown"],
+    ],
+
+    "seeds": [],
+    "seedCounts": [],
+    "water": 0,
+
+    "door1X": 1,
+    "door1Y": 2,
+    "door1Direction": "W",
+    "door2X": 16,
+    "door2Y": 5,
+    "door2Direction": "E"
+  },
 
 ]
+
+
