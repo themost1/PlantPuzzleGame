@@ -81,6 +81,8 @@ function plant:onStep(row, col)
 end
 function plant:preStep(row, col)
 end
+function plant:postEnter(row, col)
+end
 
 dirt = plant:new {
 	name = "Dirt",
@@ -292,7 +294,7 @@ function coral:isPassable()
 	return false
 end
 function coral:canPlantOnTile(tile)
-	if tile.id == "dirt" then
+	if tile.id == "dirt" or tile.id == "grass" then
 		return true
 	elseif tile.id == "currentUp" or tile.id == "currentDown" or tile.id == "currentLeft" or tile.id == "currentRight" then
 		return true
@@ -319,27 +321,45 @@ function fish:onStep(row, col)
 	self.col = col
 
 	if self.moveDir == "up" then
-		local grass = plants.grass:new()
-		grass:onLoad()
-		tileMatrix[row-1][col] = self
-		tileMatrix[row][col] = grass
-		self.row = row-1
-		if self.row - 1 <= 0 or tileMatrix[self.row-1][col].id ~= "grass" then
+		local canEnter = self:canEnterHere(row-1, col)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row-1][col] = self
+			tileMatrix[row][col] = grass
+			self.row = row-1
+		end
+		if self:canEnterHere(self.row-1, col) == false then
 			self.moveDir = "down"
 		end
 	elseif self.moveDir == "down" then
-		local grass = plants.grass:new()
-		grass:onLoad()
-		tileMatrix[row][col] = grass
-		tileMatrix[row+1][col] = self
-		self.row = row+1
-		if self.row +1 > #tileMatrix or tileMatrix[self.row+1][col].id ~= "grass" then
+		local canEnter = self:canEnterHere(row+1, col)
+		if canEnter then
+			local grass = plants.grass:new()
+			grass:onLoad()
+			tileMatrix[row+1][col] = self
+			tileMatrix[row][col] = grass
+			self.row = row+1
+		end
+		if self:canEnterHere(self.row+1, col) == false then
 			self.moveDir = "up"
 		end
 	end
 
 	self.moved = true
 	self:updateImage()
+end
+function fish:canEnterHere(row, col)
+	if row <= 0 or row > #tileMatrix or col <= 0 or col > #tileMatrix[row] then
+		return false
+	elseif tileMatrix[row][col].id ~= "grass" then
+		return false
+	elseif getCurrentTile().x == row and getCurrentTile().y == col then
+		return false
+	end
+
+	return true
+
 end
 function fish:updateImage()
 	if self.moveDir == "up" then
@@ -350,7 +370,40 @@ function fish:updateImage()
 
 	self.image = getNewImage(self.imageDir)
 end
+function fish:postEnter()
+	kill_player()
+end
+function fish:update(dt, row, col)
+	self.row = row
+	self.col = col
 
+	if self.moveDir == "up" then
+		local canEnter = self:canEnterHere(row-1, col)
+		if canEnter == false then
+			self.moveDir = "down"
+			self:updateImage()
+		end
+	elseif self.moveDir == "down" then
+		local canEnter = self:canEnterHere(row+1, col)
+		if canEnter == false then
+			self.moveDir = "up"
+			self:updateImage()
+		end
+	end
+end
+
+
+fishUp = fish:new {
+	name = "fishUp",
+	id = "fishUp",
+	moveDir = "up"
+}
+
+fishDown = fish:new {
+	name = "fishDown",
+	id = "fishDown",
+	moveDir = "down"
+}
 
 
 plants:addPlant(plant)
@@ -369,5 +422,7 @@ plants:addPlant(currentRight)
 plants:addPlant(oxyplant)
 plants:addPlant(coral)
 plants:addPlant(fish)
+plants:addPlant(fishUp)
+plants:addPlant(fishDown)
 
 return plants
