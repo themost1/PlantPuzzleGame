@@ -80,6 +80,9 @@ function plant:preStep(row, col)
 end
 function plant:postEnter(row, col)
 end
+function plant:hidesPlayer()
+	return false
+end
 
 dirt = plant:new {
 	name = "Dirt",
@@ -313,6 +316,12 @@ function fish:preStep()
 	self.moved = false
 end
 function fish:onStep(row, col)
+	local playerRow = getStaticTile().y
+	local playerCol = getStaticTile().x
+	if tileMatrix[playerRow][playerCol]:hidesPlayer() then
+		return
+	end
+
 	if self.moved then return end
 	self.row = row
 	self.col = col
@@ -414,6 +423,18 @@ function fish:update(dt, row, col)
 			self.moveDir = "up"
 			self:updateImage()
 		end
+	elseif self.moveDir == "left" then
+		local canEnter = self:canEnterHere(row, col-1)
+		if canEnter == false then
+			self.moveDir = "right"
+			self:updateImage()
+		end
+	elseif self.moveDir == "right" then
+		local canEnter = self:canEnterHere(row, col+1)
+		if canEnter == false then
+			self.moveDir = "left"
+			self:updateImage()
+		end
 	end
 end
 
@@ -442,6 +463,16 @@ fishLeft = fish:new {
 	moveDir = "left"
 }
 
+seaweed = plant:new {
+	id = "seaweed",
+	name = "seaweed",
+	watered = true,
+	imageDir = "graphics/plants/seaweed.png"
+}
+function seaweed:hidesPlayer()
+	return true
+end
+
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
@@ -463,5 +494,6 @@ plants:addPlant(fishUp)
 plants:addPlant(fishDown)
 plants:addPlant(fishRight)
 plants:addPlant(fishLeft)
+plants:addPlant(seaweed)
 
 return plants

@@ -861,3 +861,9 @@ function getCurrentTile()
 	local currY = math.floor((player.y - plantStartY)/plantSize + 1 + 0.5)
 	return {x = currX, y = currY}
 end
+
+function getStaticTile()
+	local currX = math.floor((player.static_x - plantStartX)/plantSize + 1 + 0.5)
+	local currY = math.floor((player.static_y - plantStartY)/plantSize + 1 + 0.5)
+	return {x = currX, y = currY}
+end
