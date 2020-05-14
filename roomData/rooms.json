@@ -540,27 +540,27 @@
     "name": "World2_Room0104",
     "layout":
     [
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","oxyplant","seaweed", "coral", "grass", "coral", "grass", "grass", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","coral","seaweed", "coral", "grass", "seaweed", "grass", "grass", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","coral","seaweed", "coral", "grass", "seaweed", "grass", "grass", "grass", "oxyplant", "seaweed", "seaweed", "seaweed", "seaweed", "grass", "grass"],
+    ["grass","coral","seaweed", "oxyplant", "grass", "coral", "fishUp", "fishUp", "fishUp", "coral", "grass", "grass", "grass", "fishLeft", "grass", "grass"],
+    ["grass","coral","coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "grass", "grass", "fishLeft", "grass", "grass", "grass"],
+    ["coral","grass","grass", "fishRight", "grass", "grass", "fishRight", "grass", "grass", "coral", "grass", "fishLeft", "grass", "grass", "grass", "grass"],
+    ["grass","grass","fishLeft", "seaweed", "oxyplant", "seaweed", "seaweed", "grass", "fishLeft", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","fishLeft", "seaweed", "oxyplant", "seaweed", "seaweed", "grass", "fishLeft", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["coral","grass","grass", "grass", "grass", "fishRight", "grass", "fishRight", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
     "seeds": [],
     "water": 0,
     "seedCounts": [],
 
-    "door1X": 16,
-    "door1Y": 4,
-    "door1Direction": "E",
-    "door2X": 16,
-    "door2Y": 4,
-    "door2Direction": "E"
+    "door1X": 1,
+    "door1Y": 5,
+    "door1Direction": "W",
+    "door2X": 2,
+    "door2Y": 9,
+    "door2Direction": "S"
   },
 
 
@@ -649,27 +649,27 @@
     "name": "World2_Room0204",
     "layout":
     [
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","oxyplant", "oxyplant", "grass", "grass", "grass", "oxyplant", "oxyplant", "grass", "grass", "grass", "oxyplant", "oxyplant", "grass", "grass"],
+    ["coral","coral","coral", "coral", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "coral", "coral", "coral", "coral"],
+    ["grass","grass","dirt", "grass", "grass", "grass", "grass", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "dirt", "fishLeft", "grass", "grass"],
+    ["grass","grass","grass", "dirt", "grass", "grass", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "dirt", "grass", "grass"],
+    ["grass","grass","dirt", "grass", "grass", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "dirt", "grass", "grass", "grass"],
+    ["grass","grass","grass", "dirt", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "grass", "grass", "dirt", "grass", "grass"],
+    ["grass","grass","dirt", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "grass", "grass", "dirt", "grass", "grass", "grass"],
+    ["coral","coral","coral", "coral", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "coral", "coral", "coral", "coral"],
+    ["grass","grass","grass", "grass", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": [],
+    "seeds": ["coral"],
     "water": 0,
-    "seedCounts": [],
+    "seedCounts": [10],
 
-    "door1X": 16,
-    "door1Y": 4,
-    "door1Direction": "E",
-    "door2X": 16,
-    "door2Y": 4,
-    "door2Direction": "E"
+    "door1X": 2,
+    "door1Y": 1,
+    "door1Direction": "N",
+    "door2X": 15,
+    "door2Y": 9,
+    "door2Direction": "S"
   },
 
 
@@ -757,27 +757,27 @@
     "name": "World2_Room0304",
     "layout":
     [
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
-    ["grass","grass","grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","grass", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass", "coral"],
+    ["grass","fishRight","grass", "fishRight", "fishRight", "grass", "dirt", "grass", "grass", "dirt", "grass", "grass", "grass", "grass", "grass", "coral"],
+    ["grass","coral","fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "coral"],
+    ["grass","fishRight","grass", "fishRight", "fishRight", "dirt", "dirt", "grass", "grass", "dirt", "dirt", "grass", "grass", "grass", "grass", "coral"],
+    ["oxyplant","coral","coral", "coral", "coral", "coral", "grass", "dirt", "dirt", "grass", "coral", "coral", "coral", "coral", "coral", "oxyplant"],
+    ["coral","grass","grass", "grass", "grass", "dirt", "dirt", "grass", "grass", "dirt", "dirt", "fishLeft", "fishLeft", "grass", "fishLeft", "grass"],
+    ["coral","fishLeft","fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "coral", "grass"],
+    ["coral","grass","grass", "grass", "grass", "grass", "dirt", "grass", "grass", "dirt", "grass", "fishLeft", "fishLeft", "grass", "fishLeft", "grass"],
+    ["coral","grass","grass", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass", "grass"],
     ],
 
-    "seeds": [],
-    "water": 0,
-    "seedCounts": [],
+    "seeds": ["currentRight","currentLeft","oxyplant"],
+    "water": 40,
+    "seedCounts": [20,20,1],
 
-    "door1X": 16,
-    "door1Y": 4,
-    "door1Direction": "E",
-    "door2X": 16,
-    "door2Y": 4,
-    "door2Direction": "E"
+    "door1X": 15,
+    "door1Y": 1,
+    "door1Direction": "N",
+    "door2X": 2,
+    "door2Y": 9,
+    "door2Direction": "S"
   },
 
 
@@ -894,6 +894,94 @@
 
 
 
+
+
+
+
+
+    {
+    "name": "RoomFish1",
+    "layout":
+    [
+    ["grass","oxyplant","seaweed", "coral", "grass", "coral", "grass", "grass", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","coral","seaweed", "coral", "grass", "seaweed", "grass", "grass", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","coral","seaweed", "coral", "grass", "seaweed", "grass", "grass", "grass", "oxyplant", "seaweed", "seaweed", "seaweed", "seaweed", "grass", "grass"],
+    ["grass","coral","seaweed", "oxyplant", "grass", "coral", "fishUp", "fishUp", "fishUp", "coral", "grass", "grass", "grass", "fishLeft", "grass", "grass"],
+    ["grass","coral","coral", "coral", "coral", "coral", "coral", "coral", "coral", "coral", "grass", "grass", "fishLeft", "grass", "grass", "grass"],
+    ["coral","grass","grass", "fishRight", "grass", "grass", "fishRight", "grass", "grass", "coral", "grass", "fishLeft", "grass", "grass", "grass", "grass"],
+    ["grass","grass","fishLeft", "seaweed", "oxyplant", "seaweed", "seaweed", "grass", "fishLeft", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["grass","grass","fishLeft", "seaweed", "oxyplant", "seaweed", "seaweed", "grass", "fishLeft", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ["coral","grass","grass", "grass", "grass", "fishRight", "grass", "fishRight", "grass", "oxyplant", "grass", "grass", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": [],
+    "water": 0,
+    "seedCounts": [],
+
+    "door1X": 1,
+    "door1Y": 5,
+    "door1Direction": "W",
+    "door2X": 2,
+    "door2Y": 9,
+    "door2Direction": "S"
+  },
+
+
+    {
+    "name": "RoomFish2",
+    "layout":
+    [
+    ["grass","grass","oxyplant", "oxyplant", "grass", "grass", "grass", "oxyplant", "oxyplant", "grass", "grass", "grass", "oxyplant", "oxyplant", "grass", "grass"],
+    ["coral","coral","coral", "coral", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "coral", "coral", "coral", "coral"],
+    ["grass","grass","dirt", "grass", "grass", "grass", "grass", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "dirt", "fishLeft", "grass", "grass"],
+    ["grass","grass","grass", "dirt", "grass", "grass", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "dirt", "grass", "grass"],
+    ["grass","grass","dirt", "grass", "grass", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "dirt", "grass", "grass", "grass"],
+    ["grass","grass","grass", "dirt", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "grass", "grass", "dirt", "grass", "grass"],
+    ["grass","grass","dirt", "fishLeft", "grass", "fishLeft", "fishLeft", "fishLeft", "grass", "fishLeft", "grass", "grass", "dirt", "grass", "grass", "grass"],
+    ["coral","coral","coral", "coral", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "coral", "coral", "coral", "coral"],
+    ["grass","grass","grass", "grass", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "grass", "grass", "grass", "grass"],
+    ],
+
+    "seeds": ["coral"],
+    "water": 0,
+    "seedCounts": [10],
+
+    "door1X": 2,
+    "door1Y": 1,
+    "door1Direction": "N",
+    "door2X": 15,
+    "door2Y": 9,
+    "door2Direction": "S"
+  },
+
+
+
+    {
+    "name": "RoomFish3",
+    "layout":
+    [
+    ["grass","grass","grass", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass", "coral"],
+    ["grass","fishRight","grass", "fishRight", "fishRight", "grass", "dirt", "grass", "grass", "dirt", "grass", "grass", "grass", "grass", "grass", "coral"],
+    ["grass","coral","fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "fishRight", "coral"],
+    ["grass","fishRight","grass", "fishRight", "fishRight", "dirt", "dirt", "grass", "grass", "dirt", "dirt", "grass", "grass", "grass", "grass", "coral"],
+    ["oxyplant","coral","coral", "coral", "coral", "coral", "grass", "dirt", "dirt", "grass", "coral", "coral", "coral", "coral", "coral", "oxyplant"],
+    ["coral","grass","grass", "grass", "grass", "dirt", "dirt", "grass", "grass", "dirt", "dirt", "fishLeft", "fishLeft", "grass", "fishLeft", "grass"],
+    ["coral","fishLeft","fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "fishLeft", "coral", "grass"],
+    ["coral","grass","grass", "grass", "grass", "grass", "dirt", "grass", "grass", "dirt", "grass", "fishLeft", "fishLeft", "grass", "fishLeft", "grass"],
+    ["coral","grass","grass", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "dirt", "grass", "grass", "grass"],
+    ],
+
+    "seeds": ["currentRight","currentLeft","oxyplant"],
+    "water": 40,
+    "seedCounts": [20,20,1],
+
+    "door1X": 15,
+    "door1Y": 1,
+    "door1Direction": "N",
+    "door2X": 2,
+    "door2Y": 9,
+    "door2Direction": "S"
+  },
 
 
 
