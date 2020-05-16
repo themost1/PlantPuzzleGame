@@ -86,6 +86,7 @@ function love.load()
 	cursorImage = love.graphics.newImage("graphics/mouse.png")
 	dirtImage = love.graphics.newImage("graphics/dirt.jpg")
 	grassImage = love.graphics.newImage("graphics/grass.png")
+	waterImage = love.graphics.newImage("graphics/water_tile.png")
 	greenImage = love.graphics.newImage("graphics/green.png")
 	wateringcanImage = love.graphics.newImage("graphics/wateringcan.png")
 
@@ -622,7 +623,7 @@ function love.draw()
 		for col = 1, #tileMatrix[row] do
 			local underImage = grassImage
 			if player.mapNum == 2 then
-				underImage = grassImage
+				underImage = waterImage
 			end
 			local plantXScale = plantSize / underImage:getWidth()
 			local plantYScale = plantSize / underImage:getHeight()
@@ -704,9 +705,9 @@ function love.draw()
 	if editor == true then
 		invX = 1520
 		if player.mapNum == 2 then
-			allItems = {"grass", "fish", "coral", "oxyplant", "currentUp", "currentDown", "currentLeft", "currentRight"}
+			allItems = {"water_tile","seaweed", "fish", "coral", "oxyplant", "currentUp", "currentDown", "currentLeft", "currentRight"}
 		else
-			allItems = {"bamboo", "cactus", "apple", "grass", "dirt", "dandelion"}
+			allItems = {"grass", "dirt", "bamboo", "cactus", "apple", "dandelion", "dragonfruit"}
 		end
 		for row = 0, #allItems - 1 do
 			local invY = (inventoryHeight * row) + 100

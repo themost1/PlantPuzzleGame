@@ -87,6 +87,8 @@ function plant:hidesPlayer()
 	return false
 end
 
+
+
 dirt = plant:new {
 	name = "Dirt",
 	id = "dirt",
@@ -484,6 +486,14 @@ function seaweed:hidesPlayer()
 	return true
 end
 
+water_tile = plant:new {
+	name = "WaterTile",
+	id = "water_tile",
+	watered = true,
+	imageDir = "graphics/water_tile.png"
+}
+
+
 
 plants:addPlant(plant)
 plants:addPlant(dirt)
@@ -506,5 +516,6 @@ plants:addPlant(fishDown)
 plants:addPlant(fishRight)
 plants:addPlant(fishLeft)
 plants:addPlant(seaweed)
+plants:addPlant(water_tile)
 
 return plants
