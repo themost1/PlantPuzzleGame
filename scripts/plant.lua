@@ -391,7 +391,6 @@ function fish:moveTo(row, col)
 	self.row = row
 end
 function fish:canEnterHere(row, col)
-	print("self: " .. self.row.." "..self.col)
 	if row <= 0 or row > #tileMatrix or col <= 0 or col > #tileMatrix[row] then
 		return false
 	elseif tileMatrix[row][col].id ~= "grass" and tileMatrix[row][col].id ~= "dirt" then

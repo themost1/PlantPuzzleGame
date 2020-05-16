@@ -76,6 +76,8 @@ function love.load()
 	doorLeft = love.graphics.newImage("graphics/walls/doorleft.png")
 	doorRight = love.graphics.newImage("graphics/walls/doorright.png")
 
+	congratulations_image = love.graphics.newImage("graphics/congratulations.png")
+
 	prev_cells = {{}, {}}
 	loadRooms()
 	loadMap('maps/map1.json')
@@ -107,6 +109,14 @@ function goToNextMap()
 	player.mapNum = player.mapNum + 1
 	if player.mapNum == 2 then
 		loadMap('maps/map2.json')
+		topWall = love.graphics.newImage("graphics/walls/water/top.png")
+		bottomWall = love.graphics.newImage("graphics/walls/water/top.png")
+		leftWall = love.graphics.newImage("graphics/walls/water/top.png")
+		rightWall = love.graphics.newImage("graphics/walls/water/top.png")
+		doorTop = love.graphics.newImage("graphics/walls/water/door.png")
+		doorBottom = love.graphics.newImage("graphics/walls/water/door.png")
+		doorLeft = love.graphics.newImage("graphics/walls/water/door.png")
+		doorRight = love.graphics.newImage("graphics/walls/water/door.png")
 	end
 end
 
@@ -542,6 +552,11 @@ function love.draw()
     green = 168/255
     blue = 229/255
     alpha = 1/100
+    if player.mapNum == 2 then
+    	red = red / 2
+    	green = green / 2
+    	blue = blue / 2
+    end
     love.graphics.setBackgroundColor( red, green, blue, alpha)
 
     -- two for-loops to draw walls around the sides
@@ -756,6 +771,10 @@ function love.draw()
 		love.graphics.draw(cursorImage, mouseX, mouseY, plants[allItems[inventoryYPressed+1]].rotation, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
 	else
 		love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
+	end
+
+	if currentRoom.name == "World2_Room0404" then
+		love.graphics.draw(congratulations_image, 10, 10, 0, 0.5, 0.5)
 	end
 end
 
