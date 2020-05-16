@@ -76,6 +76,8 @@ function love.load()
 	doorLeft = love.graphics.newImage("graphics/walls/doorleft.png")
 	doorRight = love.graphics.newImage("graphics/walls/doorright.png")
 
+	congratulations_image = love.graphics.newImage("graphics/congratulations.png")
+
 	prev_cells = {{}, {}}
 	loadRooms()
 	loadMap('maps/map1.json')
@@ -755,6 +757,10 @@ function love.draw()
 		love.graphics.draw(cursorImage, mouseX, mouseY, plants[allItems[inventoryYPressed+1]].rotation, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
 	else
 		love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
+	end
+
+	if currentRoom.name == "World2_Room0404" then
+		love.graphics.draw(congratulations_image, 10, 10, 0, 0.5, 0.5)
 	end
 end
 
