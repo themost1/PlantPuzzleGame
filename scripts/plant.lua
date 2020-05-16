@@ -432,6 +432,9 @@ function fish:updateImage()
 
 	self.image = getNewImage(self.imageDir)
 end
+function fish:onEnter()
+	kill_player()
+end
 function fish:postEnter()
 	kill_player()
 end
