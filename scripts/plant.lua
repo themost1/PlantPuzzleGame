@@ -342,36 +342,36 @@ function fish:onStep(row, col)
 
 	print(self.moveDir)
 	if self.moveDir == "up" then
-		local canEnter = self:canEnterHere(row-1, col)
+		local canEnter = self:canEnterHere(row-1, col,"up")
 		if canEnter then
 			self:moveTo(row-1, col)
 		end
-		if self:canEnterHere(self.row-1, self.col) == false then
+		if self:canEnterHere(self.row-1, self.col,"up") == false then
 			self.moveDir = "down"
 		end
 	elseif self.moveDir == "down" then
-		local canEnter = self:canEnterHere(row+1, col)
+		local canEnter = self:canEnterHere(row+1, col,"down")
 		if canEnter then
 			self:moveTo(row+1, col)
 		end
-		if self:canEnterHere(self.row+1, self.col) == false then
+		if self:canEnterHere(self.row+1, self.col,"down") == false then
 			self.moveDir = "up"
 		end
 	elseif self.moveDir == "left" then
 		print("in move left: " .. self.row .. " " .. self.col.." " .. row .. " " .. col)
-		local canEnter = self:canEnterHere(row, col-1)
+		local canEnter = self:canEnterHere(row, col-1,"left")
 		if canEnter then
 			self:moveTo(row, col-1)
 		end
-		if self:canEnterHere(self.row, self.col-1) == false then
+		if self:canEnterHere(self.row, self.col-1,"left") == false then
 			self.moveDir = "right"
 		end
 	elseif self.moveDir == "right" then
-		local canEnter = self:canEnterHere(row, col+1)
+		local canEnter = self:canEnterHere(row, col+1,"right")
 		if canEnter then
 			self:moveTo(row, col+1)
 		end
-		if self:canEnterHere(self.row, self.col + 1) == false then
+		if self:canEnterHere(self.row, self.col + 1,"right") == false then
 			self.moveDir = "left"
 		end
 	end
@@ -390,14 +390,28 @@ function fish:moveTo(row, col)
 	self.col = col
 	self.row = row
 end
-function fish:canEnterHere(row, col)
+-- Determine where the fish can go
+function fish:canEnterHere(row, col,moveDir)
+	-- check what is in the next tile (only if it is not beyond the border)
+	if row > 0 and row <= #tileMatrix and col > 0 and col <= #tileMatrix[row] then
+		local NextTile = tileMatrix[row][col].id
+	end
+	-- 1. do not go beyond edges
 	if row <= 0 or row > #tileMatrix or col <= 0 or col > #tileMatrix[row] then
 		return false
+	-- 2. can cross only water_tile and dirt
 	elseif tileMatrix[row][col].id ~= "water_tile" and tileMatrix[row][col].id ~= "dirt" then
+	--elseif tileMatrix[row][col].id ~= "fish" and tileMatrix[row][col].id ~= "fishUp" and tileMatrix[row][col].id ~= "fishDown" and tileMatrix[row][col].id ~= "fishLeft" and tileMatrix[row][col].id ~= "fishRight" and tileMatrix[row][col].id ~= "water_tile" and tileMatrix[row][col].id ~= "dirt" then
+	--elseif tileMatrix[row][col].id ~= "water_tile" and tileMatrix[row][col].id ~= "dirt" then
 		print(tileMatrix[row][col].id.." " .. row .. " " .. col .. " " .. self.row .. " " .. self.col)
+		-- check if the next fish is moving in the same direction
+		--if moveDir=="up" and (tileMatrix[row][col].id=="fish" or tileMatrix[row][col].id=="fishUp") then
+		--	return true
+		--end
+
 		return false
-	elseif getCurrentTile().x == row and getCurrentTile().y == col then
-		return false
+	--elseif getCurrentTile().x == row and getCurrentTile().y == col then
+	--	return false
 	end
 
 	return true
@@ -424,25 +438,25 @@ function fish:update(dt, row, col)
 	self.col = col
 
 	if self.moveDir == "up" then
-		local canEnter = self:canEnterHere(row-1, col)
+		local canEnter = self:canEnterHere(row-1, col,"up")
 		if canEnter == false then
 			self.moveDir = "down"
 			self:updateImage()
 		end
 	elseif self.moveDir == "down" then
-		local canEnter = self:canEnterHere(row+1, col)
+		local canEnter = self:canEnterHere(row+1, col,"down")
 		if canEnter == false then
 			self.moveDir = "up"
 			self:updateImage()
 		end
 	elseif self.moveDir == "left" then
-		local canEnter = self:canEnterHere(row, col-1)
+		local canEnter = self:canEnterHere(row, col-1,"left")
 		if canEnter == false then
 			self.moveDir = "right"
 			self:updateImage()
 		end
 	elseif self.moveDir == "right" then
-		local canEnter = self:canEnterHere(row, col+1)
+		local canEnter = self:canEnterHere(row, col+1,"right")
 		if canEnter == false then
 			self.moveDir = "left"
 			self:updateImage()
