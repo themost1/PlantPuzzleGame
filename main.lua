@@ -720,9 +720,9 @@ function love.draw()
 	if editor == true then
 		invX = 1520
 		if player.mapNum == 2 then
-			allItems = {"water_tile","seaweed", "fish", "coral", "oxyplant", "currentUp", "currentDown", "currentLeft", "currentRight"}
+			allItems = {"water_tile", "seaweed", "fish", "coral", "oxyplant", "currentUp", "currentDown", "currentLeft", "currentRight"}
 		else
-			allItems = {"grass", "dirt", "bamboo", "cactus", "apple", "dandelion", "dragonfruit"}
+			allItems = {"grass", "dirt", "bamboo", "cactus", "apple", "dandelion", "dragonfruit", "portalPlant"}
 		end
 		for row = 0, #allItems - 1 do
 			local invY = (inventoryHeight * row) + 100
