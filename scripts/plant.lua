@@ -324,7 +324,7 @@ fish = plant:new {
 	row = -1,
 	col = -1,
 	moved = false,
-	enteredId = "grass"
+	enteredId = "water_tile"
 }
 function fish:preStep()
 	self.moved = false
@@ -393,7 +393,7 @@ end
 function fish:canEnterHere(row, col)
 	if row <= 0 or row > #tileMatrix or col <= 0 or col > #tileMatrix[row] then
 		return false
-	elseif tileMatrix[row][col].id ~= "grass" and tileMatrix[row][col].id ~= "dirt" then
+	elseif tileMatrix[row][col].id ~= "water_tile" and tileMatrix[row][col].id ~= "dirt" then
 		print(tileMatrix[row][col].id.." " .. row .. " " .. col .. " " .. self.row .. " " .. self.col)
 		return false
 	elseif getCurrentTile().x == row and getCurrentTile().y == col then
