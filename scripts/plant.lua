@@ -213,9 +213,9 @@ portalPlant = plant:new {
 }
 function portalPlant:onEnter()
 	goToNextMap()
-	goToRoom(2, 1, "")
-	player.map_y = 2
-	player.map_x = 1
+	goToRoom(1, 4, "") -- 2,1
+	player.map_y = 1   -- 2
+	player.map_x = 4   -- 1
 
 end
 function portalPlant:update(dt)
@@ -433,7 +433,11 @@ function fish:updateImage()
 	self.image = getNewImage(self.imageDir)
 end
 function fish:onEnter()
-	--kill_player()
+	if prev_cells[2][1] == self.row then
+	if prev_cells[2][2] == self.col then
+		kill_player()
+	end
+	end
 end
 function fish:postEnter()
 	kill_player()
