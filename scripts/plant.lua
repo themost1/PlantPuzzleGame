@@ -5,7 +5,6 @@ plant = object:new{
 	name = "Base Plant",
 	id = "grass",
 	image = nil,
-	watered = false,
 	passable = true,
 	dmg = false,
 	seeds = 0,
@@ -176,7 +175,6 @@ dandelion = plant:new {
 
 function dandelion:onWater(row, col)
 	self.watered = true
-	print("aaa")
 	-- water everything around it
 	for i = -1, 1 do
 		for j = -1, 1 do
@@ -232,8 +230,10 @@ currentUp = plant:new {
 	name = "Up-Current",
 	id = "currentUp",
 	imageDir = "graphics/plants/waterCurrent.png",
+	seedImageDir = "graphics/plants/waterCurrent.png",
 	rotation = 0,
-	description = "Upward current"
+	description = "Upward current",
+	watered = true
 }
 function currentUp:onReach()
 	local ct = getCurrentTile()
@@ -284,7 +284,9 @@ oxyplant = plant:new {
 	name = "Oxyplant",
 	id = "oxyplant",
 	imageDir = "graphics/plants/oxyplant.png",
-	description = "Refills full health"
+	seedImageDir = "graphics/plants/oxyplant.png",
+	description = "Refills full health",
+	watered = true
 }
 function oxyplant:onEnter()
 	hp_bar:fullHeal()
