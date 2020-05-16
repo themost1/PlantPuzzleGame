@@ -108,6 +108,14 @@ function goToNextMap()
 	player.mapNum = player.mapNum + 1
 	if player.mapNum == 2 then
 		loadMap('maps/map2.json')
+		topWall = love.graphics.newImage("graphics/walls/water/top.png")
+		bottomWall = love.graphics.newImage("graphics/walls/water/top.png")
+		leftWall = love.graphics.newImage("graphics/walls/water/top.png")
+		rightWall = love.graphics.newImage("graphics/walls/water/top.png")
+		doorTop = love.graphics.newImage("graphics/walls/water/door.png")
+		doorBottom = love.graphics.newImage("graphics/walls/water/door.png")
+		doorLeft = love.graphics.newImage("graphics/walls/water/door.png")
+		doorRight = love.graphics.newImage("graphics/walls/water/door.png")
 	end
 end
 
@@ -543,6 +551,11 @@ function love.draw()
     green = 168/255
     blue = 229/255
     alpha = 1/100
+    if player.mapNum == 2 then
+    	red = red / 2
+    	green = green / 2
+    	blue = blue / 2
+    end
     love.graphics.setBackgroundColor( red, green, blue, alpha)
 
     -- two for-loops to draw walls around the sides
