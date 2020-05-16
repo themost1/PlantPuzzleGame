@@ -229,8 +229,8 @@ end
 currentUp = plant:new {
 	name = "Up-Current",
 	id = "currentUp",
-	imageDir = "graphics/plants/waterCurrent.png",
-	seedImageDir = "graphics/plants/waterCurrent.png",
+	imageDir = "graphics/plants/waterCurrent.jpg",
+	seedImageDir = "graphics/plants/waterCurrent.jpg",
 	rotation = 0,
 	description = "Upward current",
 	watered = true
