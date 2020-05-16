@@ -860,27 +860,27 @@
     "name": "World2_Room0404",
     "layout":
     [
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
-    ["water_tile","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile"],
+    ["oxyplant","water_tile","oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant"],
+    ["oxyplant","water_tile","seaweed", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "coral", "water_tile", "water_tile", "oxyplant"],
+    ["oxyplant","seaweed","water_tile", "seaweed", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "coral", "water_tile", "coral", "water_tile", "oxyplant"],
+    ["oxyplant","water_tile","seaweed", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "coral", "water_tile", "water_tile", "oxyplant"],
+    ["oxyplant","water_tile","water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "oxyplant"],
+    ["oxyplant","water_tile","water_tile", "coral", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "seaweed", "water_tile", "oxyplant"],
+    ["oxyplant","water_tile","coral", "water_tile", "coral", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "seaweed", "water_tile", "seaweed", "oxyplant"],
+    ["oxyplant","water_tile","water_tile", "coral", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "water_tile", "seaweed", "water_tile", "oxyplant"],
+    ["oxyplant","oxyplant","oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant", "oxyplant"],
     ],
 
     "seeds": [],
     "water": 0,
     "seedCounts": [],
 
-    "door1X": 16,
-    "door1Y": 4,
-    "door1Direction": "E",
-    "door2X": 16,
-    "door2Y": 4,
-    "door2Direction": "E"
+    "door1X": 2,
+    "door1Y": 1,
+    "door1Direction": "N",
+    "door2X": 2,
+    "door2Y": 1,
+    "door2Direction": "N"
   },
 
 
