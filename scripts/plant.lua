@@ -326,7 +326,9 @@ fish = plant:new {
 	row = -1,
 	col = -1,
 	moved = false,
-	enteredId = "water_tile"
+	enteredId = "water_tile",
+	prevRow = -1,
+	prevCol = -1
 }
 function fish:preStep()
 	self.moved = false
@@ -384,6 +386,8 @@ function fish:onStep(row, col)
 	self:updateImage()
 end
 function fish:moveTo(row, col)
+	self.prevRow = self.row
+	self.prevCol = self.col
 	local grass = plants[self.enteredId]:new()
 	grass:onLoad()
 	self.enteredId = tileMatrix[row][col].id
@@ -391,6 +395,14 @@ function fish:moveTo(row, col)
 	tileMatrix[self.row][self.col] = grass
 	self.col = col
 	self.row = row
+
+	if prev_cells[2][1] == self.row and prev_cells[2][2] == self.col then
+		local playerRow = getStaticTile().y
+		local playerCol = getStaticTile().x
+		if self.prevCol == playerCol and self.prevRow == playerRow then
+			kill_player()
+		end
+	end
 end
 -- Determine where the fish can go
 function fish:canEnterHere(row, col,moveDir)
@@ -433,11 +445,7 @@ function fish:updateImage()
 	self.image = getNewImage(self.imageDir)
 end
 function fish:onEnter()
-	if prev_cells[2][1] == self.row then
-	if prev_cells[2][2] == self.col then
-		kill_player()
-	end
-	end
+	
 end
 function fish:postEnter()
 	kill_player()
