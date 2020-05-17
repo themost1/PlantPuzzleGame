@@ -262,6 +262,10 @@ function currentUp:onReach()
 	else
 		player.static_x = player.static_x - plantSize
 	end
+
+	ct = getStaticTile()
+	print(ct.y.." "..ct.x)
+	currentRoom.layout[ct.y][ct.x]:onEnter()
 end
 
 currentDown = currentUp:new {
