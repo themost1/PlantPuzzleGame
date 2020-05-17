@@ -232,7 +232,7 @@ currentUp = plant:new {
 	imageDir = "graphics/plants/waterCurrent.jpg",
 	seedImageDir = "graphics/plants/waterCurrent.jpg",
 	rotation = 0,
-	description = "Upward current",
+	description = "Upward-moving current",
 	watered = true
 }
 function currentUp:onReach()
@@ -267,17 +267,20 @@ end
 currentDown = currentUp:new {
 	id = "currentDown",
 	name = "Down-Current",
+	description = "Downward-moving current",
 	rotation = 3.14
 }
 currentLeft = currentUp:new {
 	id = "currentLeft",
 	name = "Left-Current",
+	description = "Left-moving current",
 	rotation = 3.14 * 3/2
 }
 currentRight = currentUp:new {
 	id = "currentRight",
 	name = "Right-Current",
-	rotation = 3.14 * 1/2
+	rotation = 3.14 * 1/2,
+	description = "Right-moving current",
 }
 
 oxyplant = plant:new {

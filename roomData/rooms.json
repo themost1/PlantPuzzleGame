@@ -185,8 +185,8 @@
     ["grass","grass","grass", "grass", "grass", "bamboo", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass", "grass"],
     ],
 
-    "seeds": [],
-    "seedCounts": [],
+    "seeds": ["currentDown", "currentRight"],
+    "seedCounts": [1, 2],
     "water": 0,
 
     "door1X": 16,

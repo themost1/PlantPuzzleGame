@@ -710,12 +710,16 @@ function love.draw()
 			local invOffset = 20
 			local seedscale1 = (inventoryWidth - 2 * invOffset) / seedImage:getWidth()
 			local seedscale2 = (inventoryHeight - 2 * invOffset) / seedImage:getHeight()
-			love.graphics.draw(seedImage, invX + invOffset, invY + invOffset, 0,
-				seedscale1, seedscale2, 0)
+			local centerx = seedscale1 * seedImage:getWidth()/2
+			local centery = seedscale2 * seedImage:getHeight()/2
+			local oy = seedImage:getHeight()/2
+			love.graphics.draw(seedImage, invX + invOffset + centerx, invY + invOffset + centery, plants[plantToDraw].rotation,
+				seedscale1, seedscale2, seedImage:getWidth()/2, seedImage:getHeight()/2)
 			local thisSeedCount = plants[plantToDraw].seeds
 			love.graphics.print(""..thisSeedCount, invX + 5, invY + 2, 0, 3, 3)
 		end
 	end
+
 	--draw editor inventory
 	if editor == true then
 		invX = 1520
@@ -770,7 +774,11 @@ function love.draw()
 	if inventoryYPressed ~= nil then
 		love.graphics.draw(cursorImage, mouseX, mouseY, plants[allItems[inventoryYPressed+1]].rotation, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
 	else
-		love.graphics.draw(cursorImage, mouseX, mouseY, 0, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
+		local rot = 0
+		if plants[selected] ~= nil then
+			rot = plants[selected].rotation
+		end
+		love.graphics.draw(cursorImage, mouseX + 20, mouseY + 20, rot, 40 / cursorImage:getWidth(), 40 / cursorImage:getHeight(), cursorImage:getWidth()/2, cursorImage:getHeight()/2)
 	end
 
 	if currentRoom.name == "World2_Room0404" then
