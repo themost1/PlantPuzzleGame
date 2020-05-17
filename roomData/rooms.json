@@ -495,8 +495,8 @@
     ],
 
     "seeds": ["coral","currentUp","currentDown","currentRight","currentLeft"],
-    "seedCounts": [99,99,99,99,99],
-    "water": 99,
+    "seedCounts": [30,30,30,30,30],
+    "water": 0,
 
     "door1X": 2,
     "door1Y": 9,
@@ -687,7 +687,7 @@
 
     "seeds": ["oxyplant"],
     "seedCounts": [6],
-    "water": 10,
+    "water": 0,
 
     "door1X": 9,
     "door1Y": 1,
@@ -764,7 +764,7 @@
     ],
 
     "seeds": ["currentRight","currentLeft","oxyplant"],
-    "water": 40,
+    "water": 0,
     "seedCounts": [20,20,1],
 
     "door1X": 15,
